@@ -10,10 +10,7 @@
     "start": "vite build && node ./express.cjs "
   },
   "engines": { 
-    "node": "20.5.0"
-  },
-  "engine": { 
-    "node": "20.5.0"
+    "node": ">=20.5.0"
   },
   "devDependencies": {
     "sass": "^1.77.4",
