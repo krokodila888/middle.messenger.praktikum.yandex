@@ -1,0 +1,13 @@
+<button 
+  class="button{{#if className}} {{className}}{{/if}}" 
+  page="{{ page }}">
+  <p 
+    class="button__text" 
+    page="{{ page }}">
+    {{ text }}
+  </p>
+  <div 
+    class="button__img{{#if next}} button__next{{/if}}" 
+    page="{{ page }}">
+  </div>
+</button>

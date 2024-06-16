@@ -1,0 +1,14 @@
+<p class="link">
+  {{#if text}}
+    {{text}}
+  {{/if}}
+  {{#if link}}
+    <a 
+      href="{{ url }}" 
+      class="link__link{{#if className}} {{className}}{{/if}}" 
+      page="{{ page }}">
+      {{ link }}
+    </a>
+  {{/if}}
+</p>
+

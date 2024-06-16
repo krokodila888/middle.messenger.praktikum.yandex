@@ -1,0 +1,26 @@
+@import '../../assets/variables';
+
+.link {
+  text-align: center;
+  margin: 0;
+  font: $font-small;
+  color: $dark-grey-color;
+
+  &__link {
+  font: $font-small;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  color: $pink-accent-color;
+  text-decoration: underline;
+  cursor: pointer;
+
+    &:hover {
+      @include hovered
+    }
+
+    &_medium {
+      font-size: 24px;
+    }
+  }
+}

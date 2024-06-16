@@ -1,0 +1,11 @@
+@import '../../assets/variables';
+
+.header__logo1 {
+  background:url(/src/assets/logo.png);
+  height: 80px;
+  width: 80px;
+  @include shadow-inside;
+  border-radius: 50%;
+  background-size: cover;
+  flex-shrink: 0;
+}

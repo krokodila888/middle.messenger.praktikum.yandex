@@ -1,0 +1,12 @@
+<div class="exit-button">
+  {{> Link page="LoginPage" link="Log out" className="link__link_medium"}}
+  <button 
+    class="exit-button__button" 
+    page="LoginPage">
+    <img 
+      class="exit-button__img{{#if next}} button__next{{/if}}" 
+      page="LoginPage"
+      src="/assets/exit-icon.png"
+    />
+  </button>
+</div>

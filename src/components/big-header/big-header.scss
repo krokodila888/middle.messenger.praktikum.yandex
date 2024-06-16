@@ -1,0 +1,38 @@
+@import '../../assets/variables';
+
+.big-header {
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  align-items: center;
+  margin: 20px 0 0;
+  gap: 12px;
+  justify-content: space-between;
+  min-width: 880px;
+
+    & div {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      align-items: center;
+
+      & .title {
+        width: 240px;
+      }
+
+      & .header__logo {
+        width: 72px;
+        height: 72px;
+      }
+
+      & .avatar {
+        width: 72px;
+        height: 72px;
+      }
+
+      & a {
+        font-size: 22px;
+      }
+    }
+}
+  
