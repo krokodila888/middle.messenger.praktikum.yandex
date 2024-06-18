@@ -1,0 +1,15 @@
+{{#> Page }}
+  <div class="chat-page">
+    {{> BigHeader chat="chat"}}
+    <div class="chat-page__content">
+      {{#> ChatList className="chat-page__list" }}
+        {{#each (chat-page-list)}}
+          {{> ChatItem }}
+        {{/each}}
+      {{/ ChatList }}
+      {{> CurrentChat text="Выберите чат, чтобы начать"}}
+      
+    </div>
+    {{> Link page="LoginPage" link="Back to login"}}
+  </div>
+{{/ Page }}

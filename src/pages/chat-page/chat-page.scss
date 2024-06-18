@@ -1,0 +1,15 @@
+@import '../../assets/variables';
+
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  width: 96%;
+
+  &__content {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin: 28px 0;
+    height: 600px;
+  }
+}

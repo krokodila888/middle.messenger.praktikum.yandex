@@ -1,0 +1,30 @@
+@import '../../assets/variables';
+
+.profile-page {
+  width: 460px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 32px 34px;
+  background-color: $light-grey-color;
+  border-radius: 16px;
+  @include shadow;
+
+  &__top-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+  }
+
+  &__logout-button {
+    background:url(/src/assets/left-pic.png);
+    height: 80px;
+    width: 80px;
+    @include shadow-inside;
+    border-radius: 50%;
+    background-size: cover;
+    flex-shrink: 0;
+  }
+}

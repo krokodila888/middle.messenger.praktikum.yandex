@@ -1,0 +1,22 @@
+@import '../../assets/variables';
+
+.input {
+  &__element {
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 16px;
+    background-color: $light-beige-color;
+    color: $dark-grey-color;
+    @include shadow-inside;
+    height: 40px;
+    border-radius: 16px;
+    padding: 6px 20px;
+
+    &:focus-visible {
+      border: 2px solid $dark-green-color;
+      outline-offset: 0px;
+      outline: none;
+    }
+  }
+}

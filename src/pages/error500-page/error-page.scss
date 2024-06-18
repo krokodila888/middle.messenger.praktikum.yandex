@@ -1,0 +1,35 @@
+@import '../../assets/variables';
+
+.error-page {
+  position: relative;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 32px 0;
+  background-color: $light-grey-color;
+  border-radius: 16px;
+  margin-top: 80px;
+  align-items: center;
+  @include shadow;
+
+  &__img-left {
+    position: absolute;
+    left: 6px;
+    top: 120px;
+    height: 90px;
+    opacity: 0.8;
+  }
+
+  &__img-right {
+    position: absolute;
+    right: 40px;
+    top: 74px;
+    height: 100px;
+    opacity: 0.8;
+  }
+
+  & .header__logo1 {
+    margin-top: 28px;
+  }
+}

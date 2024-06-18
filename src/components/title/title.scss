@@ -1,0 +1,15 @@
+@import '../../assets/variables';
+
+.title {
+  font-size: 38px;
+  font-weight: normal;
+  color: $dark-grey-color;
+  margin: 0;
+  width: 140px;
+  text-align: center;
+
+  &__span {
+    color: $pink-accent-color;
+    font-weight: bold;
+  }
+}

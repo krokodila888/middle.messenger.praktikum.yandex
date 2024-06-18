@@ -1,0 +1,34 @@
+@import '../../assets/variables';
+
+.header {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+
+  &__title {
+  font-size: 38px;
+  font-weight: normal;
+  color: $dark-grey-color;
+  margin: 0;
+  width: 180px;
+  text-align: center;
+  }
+
+  &__span {
+    color: $pink-accent-color;
+    font-weight: bold;
+  }
+
+  &__logo {
+    background:url(/src/assets/logo.png);
+    height: 80px;
+    width: 80px;
+    @include shadow-inside;
+    border-radius: 50%;
+    background-size: cover;
+    flex-shrink: 0;
+  }
+}

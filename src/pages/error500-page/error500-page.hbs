@@ -1,0 +1,17 @@
+{{#> Page }}
+  <div class="error-page">
+      {{> Title title="Common " span="chat" }}
+      {{> ErrorField text="Error 500" }}
+      {{> Link text="Something went wrong. Sorry(" }}
+      {{> Link page="login" link="Go back and try again"}}
+      <img 
+        src="/assets/left-pic.png" 
+        class="error-page__img-left"
+        alt="Some question signs"/>
+      <img 
+        src="/assets/right-pic.png" 
+        class="error-page__img-right"
+        alt="Some question signs"/>
+      {{> Logo }}
+  </div>
+{{/ Page }}

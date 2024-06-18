@@ -1,0 +1,23 @@
+@import '../../assets/variables';
+
+.error-field {
+  height: 68px;
+  border-radius: 16px;
+  background-color: $light-beige-color;
+  color: $dark-grey-color;
+  border: 0;
+  @include shadow-inside;
+  margin: 36px auto;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 10px 36px;
+
+  &__text {
+    margin: 0 auto;
+    color: $dark-grey-color;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+  }
+}
