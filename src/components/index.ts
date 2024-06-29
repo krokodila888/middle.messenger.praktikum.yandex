@@ -16,3 +16,5 @@ export { BigHeader } from './big-header';
 export { ExitButton } from './exit-button';
 export { ChatIcon } from './chat-icon';
 export { ProfileInput } from './profile-input';
+export { MessageItem } from './message-item';
+export {InterlocutorItem} from './interlocutor-item';

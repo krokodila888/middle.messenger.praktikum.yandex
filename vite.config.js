@@ -1,6 +1,7 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import handlebars from 'vite-plugin-handlebars';
+import checker from 'vite-plugin-checker'
 
 export default defineConfig({
   build: {
@@ -26,5 +27,10 @@ export default defineConfig({
   },
   plugins: [handlebars({
     partialDirectory: resolve(__dirname, 'src/partials'),
+  }),
+  checker({
+    // e.g. use TypeScript check
+    typescript: true,
   })],
 });
+

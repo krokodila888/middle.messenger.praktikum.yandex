@@ -12,7 +12,7 @@
     background-color: #fff;
     color: $dark-grey-color;
     @include shadow-inside;
-    height: 40px;
+    height: 46px;
     box-sizing: border-box;
     padding: 6px 20px;
     border-radius: 30px 30px 0 30px;
@@ -27,12 +27,16 @@
     background:url(/src/assets/send-icon.png);
     height: 40px;
     width: 40px;
-    @include shadow-inside;
+    @include shadow-small;
     border-radius: 50%;
     background-size: cover;
     flex-shrink: 0;
     position: absolute;
     right: 10px;
-    top: 8px;
+    bottom: 4px;
+
+    &:hover {
+      @include shadow-small-hovered1;
+    }
   }
 }

@@ -1,0 +1,58 @@
+@import '../../assets/variables';
+
+.interlocutor-item {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  box-sizing: border-box;
+  gap: 12px;
+  cursor: pointer;
+  border-radius: 16px 30px 30px 16px;
+  min-height: 60px;
+  padding: 8px 12px;
+  @include shadow-inside;
+  height: 72px;
+  overflow: hidden;
+  background-color: $white-color;
+  max-width: 280px;
+  width: fit-content;
+  min-width: 240px;
+  align-items: center;
+
+  &:hover {
+    @include shadow-small-hovered;
+  }
+  
+  &__avatar {
+    height: 40px;
+    width: 40px;
+    @include shadow-small;
+    border-radius: 50%;
+    background: $middle-beige-color;
+    flex-shrink: 0;
+    object-fit: contain;
+    align-self: center;
+  }
+
+  &__name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  &__delete {
+    height: 40px;
+    width: 40px;
+    @include shadow-small;
+    border-radius: 50%;
+    background: $middle-beige-color;
+    flex-shrink: 0;
+    object-fit: contain;
+    align-self: center;
+    margin: 0 0 0 auto;
+
+    &:hover {
+      @include shadow-small-hovered;
+    }
+  }
+}

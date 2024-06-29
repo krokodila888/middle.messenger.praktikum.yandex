@@ -2,7 +2,7 @@ import Handlebars from "handlebars";
 import * as Components from './components';
 import * as Pages from './pages';
 
-const pages = {
+const pages: { [key: string]: string[] } = {
   'chat': [ Pages.ChatPage ],
   'login': [ Pages.LoginPage ],
   'register': [ Pages.RegisterPage ],
@@ -15,7 +15,7 @@ Object.entries(Components).forEach(([ name, component ]) => {
   Handlebars.registerPartial(name, component);
 });
 
-function navigate(page) {
+function navigate(page: string) {
   const [ source, args ] = pages[page];
   const handlebarsFunct = Handlebars.compile(source);
   document.body.innerHTML = handlebarsFunct(args);
@@ -24,11 +24,14 @@ function navigate(page) {
 document.addEventListener('DOMContentLoaded', () => navigate('login'));
 
 document.addEventListener('click', e => {
-  const page = e.target.getAttribute('page');
-  if (page) {
-    navigate(page);
+  if (e && e.target) {
+  const target = e.target as HTMLElement;
+  const page = target.getAttribute('page');
+    if (page) {
+      navigate(page);
 
-    e.preventDefault();
-    e.stopImmediatePropagation();
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
   }
 });

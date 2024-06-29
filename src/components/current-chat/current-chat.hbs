@@ -2,7 +2,15 @@
   {{#if text}}
     <p class="current-chat__text">{{text}}</p>
   {{else}}
-  {{> SearchInput 
+  <div class="current-chat__message-block">
+    {{> InterlocutorItem name="Boss"}}
+  {{#> Messages className="current-chat__list" }}
+    {{#each (messages)}}
+      {{> MessageItem }}
+    {{/each}}
+  {{/ Messages }}
+  </div>
+  {{> MessageInput 
     placeholder="Type something there" 
     name="message" }}
   {{/if}}

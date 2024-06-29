@@ -1,0 +1,21 @@
+<div 
+  class="interlocutor-item">
+  {{#if avatar}}
+  <img 
+    class="interlocutor-item__avatar" 
+    src="/assets/avatar.png"
+    alt="User avatar" />
+  {{else }}
+  <img 
+    class="interlocutor-item__avatar" 
+    src="/assets/no-avatar-icon.png"
+    alt="Icon with question sign for users withour avatar pictures"/>
+  {{/if}}
+  <p class="interlocutor-item__name">
+    {{ name }}
+  </p>
+  <img 
+    class="interlocutor-item__delete" 
+    src="/assets/delete-icon.png"
+    alt="Icon with garbage busket icon to delete chat"/>
+</div>
