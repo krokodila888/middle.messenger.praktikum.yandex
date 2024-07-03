@@ -1,4 +1,4 @@
-enum METHOD {
+/*enum METHOD {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
@@ -28,7 +28,7 @@ export type TOptions = {
   data?: any;
 };
 
-function queryStringify(data: TData /*| null*/) {
+function queryStringify(data: TData /*| null*//*) {
   if (typeof data !== 'object') {
     throw new Error('Data must be object');
   }
@@ -97,3 +97,4 @@ class HTTPTransport {
   });
   };
 }
+*/

@@ -1,2 +1,2 @@
 import './error-field.scss';
-export { default as ErrorField } from './error-field.hbs?raw';
+export { ErrorField } from './error-field';

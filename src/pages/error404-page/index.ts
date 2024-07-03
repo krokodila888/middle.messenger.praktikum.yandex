@@ -1,2 +1,19 @@
 import './error-page.scss';
-export { default as Error404Page } from './error404-page.hbs?raw';
+import Block from '../../tools/Block';
+import { Logo, Title, ErrorField, Link } from '../../components';
+import Error404PageRaw from './error404-page.hbs?raw';
+export class Error404Page extends Block {
+  constructor() {
+    super('div', {
+      title: new Title({ title: "Common ", span: "chat" }),
+      errorfield: new ErrorField({ text: "Error 404" }), 
+      link1: new Link({ text: "No such page. Sorry(" }),
+      link2: new Link({ page: "login", link: "Go back and try again" }),
+      logo: new Logo({ }),
+    });
+  }
+
+  override render() {
+    return Error404PageRaw;
+  }
+}

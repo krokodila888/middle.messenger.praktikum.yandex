@@ -1,8 +1,7 @@
-import Handlebars from "handlebars";
-import * as Components from './components';
 import * as Pages from './pages';
+import Block from './tools/Block';
 
-const pages: { [key: string]: string[] } = {
+const pages: { [key: string]: [typeof Block] } = {
   'chat': [ Pages.ChatPage ],
   'login': [ Pages.LoginPage ],
   'register': [ Pages.RegisterPage ],
@@ -11,15 +10,19 @@ const pages: { [key: string]: string[] } = {
   'profile': [ Pages.ProfilePage ],
 };
 
-Object.entries(Components).forEach(([ name, component ]) => {
-  Handlebars.registerPartial(name, component);
-});
-
 function navigate(page: string) {
-  const [ source, args ] = pages[page];
-  const handlebarsFunct = Handlebars.compile(source);
-  document.body.innerHTML = handlebarsFunct(args);
+  const [NewPage] = pages[page];
+  const block = new NewPage("main", {});
+  const container = document.getElementById('app');
+  container!.replaceChildren(block.getContent() as HTMLElement);
 }
+
+(window as any).navigate = navigate;
+
+const block = new Pages.LoginPage();
+const container = document.getElementById('app')!;
+
+container.append(block.getContent()!);
 
 document.addEventListener('DOMContentLoaded', () => navigate('login'));
 
@@ -29,7 +32,6 @@ document.addEventListener('click', e => {
   const page = target.getAttribute('page');
     if (page) {
       navigate(page);
-
       e.preventDefault();
       e.stopImmediatePropagation();
     }

@@ -1,5 +1,18 @@
 @import '../../assets/variables';
 
+body {
+  margin: 0;
+  background: $light-grey-color;
+}
+.page {
+  background: $light-grey-color;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 26px;
+}
+
 .chat-page {
   display: flex;
   flex-direction: column;
@@ -11,5 +24,79 @@
     gap: 12px;
     margin: 28px 0;
     height: 600px;
+  }
+
+  &__list {
+    background: $light-grey-color;
+    height: 100%;
+    overflow: hidden;
+    min-width: 340px;
+    border-radius: 16px 0 0 16px;
+    box-sizing: border-box;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    @include shadow-inside
+  }
+}
+
+.big-header {
+  display: flex;
+  flex-direction: row;
+  justify-items: flex-start;
+  align-items: center;
+  margin: 20px 0 0;
+  gap: 12px;
+  justify-content: space-between;
+  min-width: 880px;
+
+    & div {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+      align-items: center;
+
+      & .title {
+        width: 240px;
+      }
+
+      & .header__logo {
+        width: 72px;
+        height: 72px;
+      }
+
+      & .avatar {
+        width: 72px;
+        height: 72px;
+      }
+
+      & a {
+        font-size: 22px;
+      }
+    }
+}
+
+.current-chat {
+  background-color: $middle-grey-color;
+  border-radius: 0 16px 16px 0;
+  width: 100%;
+  padding: 16px;
+  @include shadow-inside;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  justify-content: space-between;
+  
+  &__text {
+    font-size: 24px;
+    font-weight: normal;
+    color: $dark-grey-color;
+    margin: 0;
+  }
+
+  &__message-block {
+    display: flex;
+    flex-direction: column;
   }
 }

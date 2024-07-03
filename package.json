@@ -5,14 +5,21 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --emptyOutDir",
     "preview": "vite preview --port 3000",
-    "start": "vite build && node ./express.cjs "
+    "start": "vite build && node ./express.cjs ",
+    "lint": "eslint ./src/**/*.{js,ts}",
+    "lint:fix": "eslint ./src/**/*.{js,ts} --fix",
+    "lint:css": "stylelint '**/*.css'",
+    "lint:css:fix": "stylelint '**/*.css' --fix",
+    "checkAll": "npm run lint && npm run lint:css",
+    "fixAll": "npm run lint:fix && npm run lint:css:fix"
   },
   "engines": {
     "node": ">=20.5.0"
   },
   "devDependencies": {
+    "@types/uuid": "^10.0.0",
     "eslint": "^9.5.0",
     "sass": "^1.77.4",
     "stylelint": "^16.6.1",
@@ -24,6 +31,7 @@
     "@types/express-handlebars": "^6.0.0",
     "@types/handlebars-helpers": "^0.5.6",
     "express": "^4.19.2",
-    "handlebars": "^4.7.8"
+    "handlebars": "^4.7.8",
+    "uuid": "^10.0.0"
   }
 }
