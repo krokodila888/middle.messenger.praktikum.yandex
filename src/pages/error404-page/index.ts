@@ -2,6 +2,7 @@ import './error-page.scss';
 import Block from '../../tools/Block';
 import { Logo, Title, ErrorField, Link } from '../../components';
 import Error404PageRaw from './error404-page.hbs?raw';
+
 export class Error404Page extends Block {
   constructor() {
     super('div', {
