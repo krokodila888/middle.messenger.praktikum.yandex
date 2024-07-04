@@ -8,7 +8,21 @@ interface Props {
 
 export class SearchInput extends Block {
   constructor(props: Props) {
-    super('div', { ...props
+    super('form', { ...props,
+      events: {
+        submit: (e: SubmitEvent) => {
+          e.preventDefault();
+          const input = document.querySelector(".search-input__element") as HTMLInputElement;
+          type MyType = {
+            [key: string]: string;
+          };
+          let res: MyType = {};
+          if (input) {
+            res[input.name] = input.value;
+          };
+          console.log(res);
+        }
+      },
     });
   }
   override render() {

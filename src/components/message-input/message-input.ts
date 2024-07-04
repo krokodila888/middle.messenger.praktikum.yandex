@@ -8,8 +8,22 @@ interface Props {
 
 export class MessageInput extends Block {
   constructor(props: Props) {
-    super('div', {
-      ...props
+    super('form', {
+      ...props,
+      events: {
+        submit: (e: SubmitEvent) => {
+          e.preventDefault();
+          const input1 = document.querySelector(".message-input__element") as HTMLInputElement;
+          type MyType = {
+            [key: string]: string;
+          };
+          let res: MyType = {};
+          if (input1) {
+            res[input1.name] = input1.value;
+          };
+          console.log(res);
+        }
+      },
     });
   }
   override render() {

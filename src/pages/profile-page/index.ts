@@ -1,6 +1,6 @@
 import './profile-page.scss';
 import Block from '../../tools/Block';
-import { Logo, ChatIcon, Title, Avatar, ProfileInput, ExitButton, Link } from '../../components';
+import { Logo, ChatIcon, Title, Avatar, ProfileInput, Button, ExitButton, Link } from '../../components';
 import ProfilePageRaw from './profile-page.hbs?raw';
 
 export class ProfilePage extends Block {
@@ -75,7 +75,11 @@ export class ProfilePage extends Block {
         type: "password",
         title: "New password:",
       }),
-      button: new ExitButton({}),
+      button: new Button({
+        text: "Save changes",
+        next: "next",
+      }),
+      exitbutton: new ExitButton({}),
       link1: new Link({ 
         page: "error404",
         text: "Ошибок быть не может, но вдруг: ",

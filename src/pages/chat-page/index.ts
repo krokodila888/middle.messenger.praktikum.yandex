@@ -8,7 +8,9 @@ export class ChatPage extends Block {
       logo: new Logo({ }),
       generaltitle: new Title({ title: "Common ", span: "chat" }),
       profilelink: new Link({ page: "profile", link: "Your profile", className: "link__link_medium" }),
-      searchinput: new SearchInput({}),
+      searchinput: new SearchInput({
+        name: "search",
+      }),
       chaticon: new ChatIcon({ }),
       linktologin: new Link({
         page: "LoginPage", 

@@ -1,13 +1,22 @@
 <button 
   class="button{{#if className}} {{className}}{{/if}}" 
-  page="{{ page }}">
+  {{#if page}}
+  page="{{ page }}"
+  {{/if}}
+  {{#if id}}
+  id="{{ id }}"
+  {{/if}}>
   <p 
     class="button__text" 
-    page="{{ page }}">
+    {{#if page}}
+    page="{{ page }}"
+    {{/if}}>
     {{ text }}
   </p>
   <div 
-    class="button__img{{#if next}} button__next{{/if}}" 
-    page="{{ page }}">
+    class="button__img{{#if next}} button__next{{/if}}"
+    {{#if page}}
+    page="{{ page }}"
+    {{/if}}>
   </div>
 </button>

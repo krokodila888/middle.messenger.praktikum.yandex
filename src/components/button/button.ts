@@ -8,7 +8,21 @@ interface Props {
 
 export class Button extends Block {
   constructor(props: Props) {
-    super('button', { ...props
+    super('button', { ...props,
+      events: {
+        click: (e: SubmitEvent) => {
+          e.preventDefault();
+          const inputs = document.querySelectorAll('input');
+          type MyType = {
+            [key: string]: string;
+          };
+          let res: MyType = {};
+          inputs.forEach((item) => {
+            res[item.name] = item.value;
+          })
+          console.log(res);
+        }
+      },
     });
   }
   override render() {
