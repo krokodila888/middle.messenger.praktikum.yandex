@@ -113,6 +113,7 @@ export class ProfilePage extends Block {
       button: new Button({
         text: "Save changes",
         next: "next",
+        className: "button__profile",
       }),
       exitbutton: new ExitButton({}),
       link1: new Link({ 

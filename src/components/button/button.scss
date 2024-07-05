@@ -19,6 +19,17 @@
     @include shadow-small
   }
 
+  &__disabled {
+    opacity: 0.7;
+    cursor: auto;
+    box-shadow: none;
+
+    &:hover {
+      transition: 0.6s;
+      box-shadow: none;
+    }
+  }
+
   &__text {
     margin: 0 auto;
     color: $dark-grey-color;
@@ -40,14 +51,42 @@
     background-size: cover;
   }
 
-  &__disabled {
-    opacity: 0.7;
-    cursor: auto;
-    box-shadow: none;
-
-    &:hover {
-      transition: 0.6s;
+  &__login {
+    &_disabled {
+      opacity: 0.7;
+      cursor: auto;
       box-shadow: none;
+  
+      &:hover {
+        transition: 0.6s;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__register {
+    &_disabled {
+      opacity: 0.7;
+      cursor: auto;
+      box-shadow: none;
+  
+      &:hover {
+        transition: 0.6s;
+        box-shadow: none;
+      }
+    }
+  }
+
+  &__profile {
+    &_disabled {
+      opacity: 0.7;
+      cursor: auto;
+      box-shadow: none;
+  
+      &:hover {
+        transition: 0.6s;
+        box-shadow: none;
+      }
     }
   }
 }

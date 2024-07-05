@@ -77,6 +77,7 @@ export class RegisterPage extends Block {
         text: "Create a profile", 
         page: "chat", 
         next: "next",
+        className: "button__register button__disabled",
       }),
       linktologin: new Link({
         page: "LoginPage", 

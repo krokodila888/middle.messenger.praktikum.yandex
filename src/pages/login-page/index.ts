@@ -38,6 +38,7 @@ export class LoginPage extends Block {
         text: "Enter", 
         page: "chat",
         next: "next",
+        className: "button__login button__disabled",
       }),
       linktoregister: new Link({
         page: "register", 
