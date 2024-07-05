@@ -4,7 +4,7 @@ import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, M
 import ChatPageRaw from './chat-page.hbs?raw';
 export class ChatPage extends Block {
   constructor() {
-    super('div', {
+    super({
       logo: new Logo({ }),
       generaltitle: new Title({ title: "Common ", span: "chat" }),
       profilelink: new Link({ page: "profile", link: "Your profile", className: "link__link_medium" }),

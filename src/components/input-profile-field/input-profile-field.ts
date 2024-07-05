@@ -9,7 +9,7 @@ interface Props {
 
 export class InputProfileField extends Block {
   constructor(props: Props) {
-    super('label', {
+    super({
       ...props,
       input: new ProfileInput({
         className: props.className,

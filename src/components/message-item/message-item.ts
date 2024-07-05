@@ -8,7 +8,7 @@ interface Props {
 
 export class MessageItem extends Block {
   constructor(props: Props) {
-    super('div', {
+    super({
       ...props
     });
   }

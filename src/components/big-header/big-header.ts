@@ -9,7 +9,7 @@ interface Props {
 
 export class BigHeader extends Block {
   constructor(props: Props) {
-    super('div', { ...props,
+    super({ ...props,
       logo: new Logo({ }),
       title: new Title({ title: "Common ", span: "chat" }),
       link1: new Link({ page: "profile", link: "Your profile", className: "link__link_medium" }),

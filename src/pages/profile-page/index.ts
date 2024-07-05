@@ -5,7 +5,7 @@ import ProfilePageRaw from './profile-page.hbs?raw';
 
 export class ProfilePage extends Block {
   constructor() {
-    super('div', {
+    super({
       logo: new Logo({ }),
       chatlink: new Link({ page: "chat", link: "Your chats", className: "link__link_medium" }),
       chaticon: new ChatIcon({ }),

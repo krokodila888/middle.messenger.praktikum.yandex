@@ -4,7 +4,7 @@ import { PageTitle, Button, Link, InputField } from '../../components';
 import LoginPageRaw from './login-page.hbs?raw';
 export class LoginPage extends Block {
   constructor() {
-    super('div', {
+    super({
       pagetitle: new PageTitle({
         title: "Common ", 
         span: "chat",

@@ -21,12 +21,8 @@ export default class Block {
   public props: IProps;
   public children: Record<string, typeof this>;
   public lists: Record<string, (typeof this)[]>;
-  private _meta: {
-    tagName: string;
-    props: IProps;
-  };
 
-  constructor(tagName: string = 'div', propsWithChildren:
+  constructor(propsWithChildren:
     | Record<string, Block | Record<string, unknown>>
     | Record<string, unknown> ) {
     const eventBus = new EventBus();
@@ -36,10 +32,6 @@ export default class Block {
     this.props = this._makePropsProxy({ ...props, _id: this._id });
     this.children = children;
     this.lists = lists;
-    this._meta = {
-      tagName,
-      props,
-    };
     this._registerEvents(eventBus);
     eventBus.emit(Block.EVENTS.INIT);
   }

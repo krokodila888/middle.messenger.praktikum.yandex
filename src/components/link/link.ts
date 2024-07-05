@@ -8,7 +8,7 @@ interface Props {
 
 export class Link extends Block {
   constructor(props: Props) {
-    super('p', { ...props
+    super({ ...props
     });
   }
   render() {

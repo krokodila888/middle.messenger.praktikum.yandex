@@ -9,7 +9,7 @@ interface Props {
 
 export class Input extends Block {
   constructor(props: Props) {
-    super('input', {
+    super({
       ...props,
       events: {
         blur: (e: FocusEvent) => validate(e),

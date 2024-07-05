@@ -9,7 +9,7 @@ interface Props {
 
 export class Avatar extends Block {
   constructor(props: Props) {
-    super('img', { ...props });
+    super({ ...props });
   }
 
   override render() {

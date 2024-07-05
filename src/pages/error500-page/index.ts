@@ -4,7 +4,7 @@ import { Logo, Title, ErrorField, Link } from '../../components';
 import Error500PageRaw from './error500-page.hbs?raw';
 export class Error500Page extends Block {
   constructor() {
-    super('div', {
+    super({
       title: new Title({ title: "Common ", span: "chat" }),
       errorfield: new ErrorField({ text: "Error 500" }), 
       link1: new Link({ text: "Something went wrong. Sorry(" }),

@@ -8,7 +8,7 @@ interface Props {
 
 export class ChatIcon extends Block {
   constructor(props: Props) {
-    super('img', { ...props });
+    super({ ...props });
   }
 
   render() {

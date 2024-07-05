@@ -8,7 +8,7 @@ interface Props {
 
 export class ErrorField extends Block {
   constructor(props: Props) {
-    super('div', { ...props
+    super({ ...props
     });
   }
   render() {

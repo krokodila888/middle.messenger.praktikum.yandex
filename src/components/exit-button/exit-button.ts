@@ -9,7 +9,7 @@ interface Props {
 
 export class ExitButton extends Block {
   constructor(props: Props) {
-    super('div', {
+    super({
       ...props,
       link: new Link({ 
         page: "LoginPage",

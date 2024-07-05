@@ -8,7 +8,7 @@ interface Props {
 
 export class MessageInput extends Block {
   constructor(props: Props) {
-    super('form', {
+    super({
       ...props,
       events: {
         submit: (e: SubmitEvent) => {

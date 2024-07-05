@@ -9,7 +9,7 @@ interface Props {
 
 export class Logo extends Block {
   constructor(props: Props) {
-    super('div', { ...props });
+    super({ ...props });
   }
 
   render() {

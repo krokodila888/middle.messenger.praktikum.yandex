@@ -8,7 +8,7 @@ interface Props {
 
 export class Title extends Block {
   constructor(props: Props) {
-    super('h1', { ...props
+    super({ ...props
     });
   }
   render() {

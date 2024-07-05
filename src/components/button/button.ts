@@ -9,7 +9,7 @@ interface Props {
 
 export class Button extends Block {
   constructor(props: Props) {
-    super('button', { ...props,
+    super({ ...props,
       events: {
         click: (e: SubmitEvent) => {
           e.preventDefault();

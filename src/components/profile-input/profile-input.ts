@@ -9,7 +9,7 @@ interface Props {
 
 export class ProfileInput extends Block {
   constructor(props: Props) {
-    super('div', { ...props,
+    super({ ...props,
       events: {
         blur: (e: FocusEvent) => validateProfile(e),
       },

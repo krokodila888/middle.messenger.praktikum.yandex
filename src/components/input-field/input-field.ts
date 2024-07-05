@@ -9,7 +9,7 @@ interface Props {
 
 export class InputField extends Block {
   constructor(props: Props) {
-    super('label', {
+    super({
       ...props,
       input: new Input({
         className: props.className,

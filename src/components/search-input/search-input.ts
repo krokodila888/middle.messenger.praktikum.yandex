@@ -8,7 +8,7 @@ interface Props {
 
 export class SearchInput extends Block {
   constructor(props: Props) {
-    super('form', { ...props,
+    super({ ...props,
       events: {
         submit: (e: SubmitEvent) => {
           e.preventDefault();

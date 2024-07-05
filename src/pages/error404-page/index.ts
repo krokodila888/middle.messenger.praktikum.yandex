@@ -5,7 +5,7 @@ import Error404PageRaw from './error404-page.hbs?raw';
 
 export class Error404Page extends Block {
   constructor() {
-    super('div', {
+    super({
       title: new Title({ title: "Common ", span: "chat" }),
       errorfield: new ErrorField({ text: "Error 404" }), 
       link1: new Link({ text: "No such page. Sorry(" }),

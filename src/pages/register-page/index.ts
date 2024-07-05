@@ -4,7 +4,7 @@ import { PageTitle, InputField, Button, Link } from '../../components';
 import RegisterPageRaw from './register-page.hbs?raw';
 export class RegisterPage extends Block {
   constructor() {
-    super('div', {
+    super({
       pagetitle: new PageTitle({
         title: "Common ", 
         span: "chat",
