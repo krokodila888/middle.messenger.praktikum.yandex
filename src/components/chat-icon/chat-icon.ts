@@ -11,7 +11,7 @@ export class ChatIcon extends Block {
     super('img', { ...props });
   }
 
-  override render() {
+  render() {
     return ChatIconRaw;
   }
 }

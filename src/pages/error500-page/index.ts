@@ -13,7 +13,7 @@ export class Error500Page extends Block {
     });
   }
 
-  override render() {
+  render() {
     return Error500PageRaw;
   }
 }

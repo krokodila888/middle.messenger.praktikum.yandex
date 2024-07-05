@@ -70,7 +70,7 @@ export class ChatPage extends Block {
     });
   }
 
-  override render() {
+  render() {
     return ChatPageRaw;
   }
 }

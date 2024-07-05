@@ -12,7 +12,7 @@ export class PageTitle extends Block {
       ...props
     });
   }
-  override render() {
+  render() {
     return PageTitleRaw;
   }
 }

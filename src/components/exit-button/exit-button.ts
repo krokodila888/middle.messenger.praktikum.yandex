@@ -18,7 +18,7 @@ export class ExitButton extends Block {
       }),
     });
   }
-  override render() {
+  render() {
     return ExitButtonRaw;
   }
 }

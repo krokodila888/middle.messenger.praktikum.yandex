@@ -11,7 +11,7 @@ export class ChatItem extends Block {
     super('div', { ...props
     });
   }
-  override render() {
+  render() {
     return ChatItemRaw;
   }
 }

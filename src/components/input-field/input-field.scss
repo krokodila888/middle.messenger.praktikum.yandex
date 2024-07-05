@@ -1,6 +1,7 @@
 @import '../../assets/variables';
 
-.input {
+.inputfield {
+  &__element {
     border: none;
     width: 100%;
     box-sizing: border-box;
@@ -17,12 +18,20 @@
       outline-offset: 0px;
       outline: none;
     }
+  }
 
-  &__invalid {
-    border: 1px solid $pink-accent-color;
+  &__span {
+    font-size: 12px;
+    color: $pink-accent-color;
+    margin: 2px 0;
+    text-align: center;
 
-    &:focus-visible {
-      border: 1px solid $pink-accent-color;
+    &_valid {
+      display: none;
+    }
+
+    &_invalid {
+      display: block;
     }
   }
 }

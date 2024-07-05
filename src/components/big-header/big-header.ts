@@ -18,7 +18,7 @@ export class BigHeader extends Block {
       chaticon: new ChatIcon({ }),
     });
   }
-  override render() {
+  render() {
     return BigHeaderRaw;
   }
 }

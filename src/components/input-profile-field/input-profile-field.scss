@@ -1,0 +1,51 @@
+@import '../../assets/variables';
+
+.input-profile-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__input-raw {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__title {
+    font-size: 18px;
+    color: $dark-green-color;
+    font-weight: bold;
+    margin: 20px 0 0;
+    min-width: fit-content;
+  }
+
+  &__icon {
+    background:url(/assets/edit-icon.png);
+    height: 38px;
+    width: 38px;
+    @include shadow-inside;
+    border-radius: 50%;
+    background-size: cover;
+    flex-shrink: 0;
+    position: absolute;
+    right: 4px;
+    top: 20px;
+  }
+
+  &__span {
+    font-size: 12px;
+    color: $pink-accent-color;
+    margin: 2px 0;
+    text-align: center;
+
+    &_valid {
+      display: none;
+    }
+
+    &_invalid {
+      display: block;
+    }
+  }
+}

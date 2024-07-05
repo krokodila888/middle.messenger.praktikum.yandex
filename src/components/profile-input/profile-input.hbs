@@ -1,10 +1,32 @@
-<div class="profile-input">
-  <p class="profile-input__title">{{ title }}</p>
-  <input
-    class="profile-input__element"
-    type="{{ type }}" 
-    placeholder="{{ placeholder }}" 
-    name="{{ name }}" 
-    value="{{value}}">
-  <div class="profile-input__icon"></div>
-</div>
+<input
+  class="input-profile"
+  type="{{ type }}" 
+  placeholder="{{ placeholder }}" 
+  name="{{ name }}"
+  id="{{ name }}"
+  {{#if value}}
+  value="{{value}}"
+  {{/if}}
+  {{#if required}}
+  required="true"
+  {{/if}}
+  {{#if min}}
+  minlength="{{min}}"
+  {{/if}}
+  {{#if max}}
+  maxlength="{{max}}"
+  {{/if}}
+  {{#if disabled}}
+  disabled="{{disabled}}"
+  {{/if}}
+  {{#if readonly}}
+  readonly="readonly"
+  {{/if}}
+  {{#if autocomplete}}
+  autocomplete="{{autocomplete}}"
+  {{/if}}
+  {{#if pattern}}
+  pattern="{{pattern}}"
+  {{/if}}
+  
+>

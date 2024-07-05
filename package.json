@@ -10,7 +10,7 @@
     "start": "vite build && node ./express.cjs ",
     "lint": "eslint ./src/**/*.{js,ts}",
     "lint:fix": "eslint ./src/**/*.{js,ts} --fix",
-    "lint:css": "stylelint '**/*.css'",
+    "lint:css": "stylelint '**/**/*.css'",
     "lint:css:fix": "stylelint '**/*.css' --fix",
     "checkAll": "npm run lint && npm run lint:css",
     "fixAll": "npm run lint:fix && npm run lint:css:fix"

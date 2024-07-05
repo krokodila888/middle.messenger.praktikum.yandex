@@ -12,7 +12,7 @@ export class InterlocutorItem extends Block {
       ...props
     });
   }
-  override render() {
+  render() {
     return InterlocutorItemRaw;
   }
 }

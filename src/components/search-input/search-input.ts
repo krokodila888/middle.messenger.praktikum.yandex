@@ -25,7 +25,7 @@ export class SearchInput extends Block {
       },
     });
   }
-  override render() {
+  render() {
     return SearchInputRaw;
   }
 }

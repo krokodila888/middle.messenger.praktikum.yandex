@@ -15,3 +15,5 @@ export { ChatIcon } from './chat-icon/chat-icon';
 export { ProfileInput } from './profile-input/profile-input';
 export { MessageItem } from './message-item/message-item';
 export { InterlocutorItem } from './interlocutor-item/interlocutor-item';
+export { InputField } from './input-field/input-field';
+export { InputProfileField } from './input-profile-field/input-profile-field';

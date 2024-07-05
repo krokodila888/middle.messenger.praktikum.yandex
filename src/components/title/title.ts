@@ -11,7 +11,7 @@ export class Title extends Block {
     super('h1', { ...props
     });
   }
-  override render() {
+  render() {
     return TitleRaw;
   }
 }

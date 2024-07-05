@@ -14,7 +14,7 @@ export class Error404Page extends Block {
     });
   }
 
-  override render() {
+  render() {
     return Error404PageRaw;
   }
 }

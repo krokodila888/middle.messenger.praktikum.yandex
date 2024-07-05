@@ -11,7 +11,7 @@ export class ErrorField extends Block {
     super('div', { ...props
     });
   }
-  override render() {
+  render() {
     return ErrorFieldRaw;
   }
 }

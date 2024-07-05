@@ -25,7 +25,7 @@ export class Button extends Block {
       },
     });
   }
-  override render() {
+  render() {
     return ButtonRaw;
   }
 }

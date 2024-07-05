@@ -12,7 +12,7 @@ export class MessageItem extends Block {
       ...props
     });
   }
-  override render() {
+  render() {
     return MessageItemRaw;
   }
 }

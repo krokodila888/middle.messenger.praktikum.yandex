@@ -26,7 +26,7 @@ export class MessageInput extends Block {
       },
     });
   }
-  override render() {
+  render() {
     return MessageInputRaw;
   }
 }

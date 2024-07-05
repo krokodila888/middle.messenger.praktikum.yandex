@@ -12,7 +12,7 @@ export class Logo extends Block {
     super('div', { ...props });
   }
 
-  override render() {
+  render() {
     return LogoRaw;
   }
 }

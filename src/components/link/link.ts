@@ -11,7 +11,7 @@ export class Link extends Block {
     super('p', { ...props
     });
   }
-  override render() {
+  render() {
     return LinkRaw;
   }
 }
