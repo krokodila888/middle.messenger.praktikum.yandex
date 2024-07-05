@@ -1,6 +1,11 @@
 import EventBus from "./EventBus";
 import Handlebars from "handlebars";
 import {v4 as makeUUID} from 'uuid';
+
+interface IProps {
+  [key: string]: unknown;
+  events?: Record<string, EventListenerOrEventListenerObject>;
+}
 export default class Block {
 
   static EVENTS = {
@@ -13,17 +18,17 @@ export default class Block {
   _id: string;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-  public props: Record<string, any>;
+  public props: IProps;
   public children: Record<string, typeof this>;
   public lists: Record<string, (typeof this)[]>;
   private _meta: {
     tagName: string;
-    props: Record<string, any>;
+    props: IProps;
   };
 
   constructor(tagName: string = 'div', propsWithChildren:
     | Record<string, Block | Record<string, unknown>>
-    | Record<string, unknown>,) {
+    | Record<string, unknown> ) {
     const eventBus = new EventBus();
     this.eventBus = () => eventBus;
     this._id = makeUUID();
@@ -69,13 +74,13 @@ export default class Block {
     Object.values(this.children).forEach(child => {child.dispatchComponentDidMount();});
   }
 
-  componentDidMount(oldProps?: Record<string, any>) {}
+  componentDidMount(oldProps?: IProps) {}
 
   dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>) {
+  _componentDidUpdate(oldProps: IProps, newProps: IProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -83,18 +88,18 @@ export default class Block {
     this._render();
   }
 
-  componentDidUpdate(oldProps: Record<string, any>, newProps: Record<string, any>) {
+  componentDidUpdate(oldProps: IProps, newProps: IProps) {
     if (oldProps !== newProps) return true;
     else return false
   }
 
   _getChildrenPropsAndProps(
     propsAndChildren:
-      | Record<string, Block | Record<string, any>>
-      | Record<string, any>,
+      | Record<string, Block | Record<string, EventListenerOrEventListenerObject>>
+      | Record<string, unknown>,
   ) {
-    const children: Record<string, any> = {};
-    const props = {} as Record<string, any>;
+    const children: Record<string, typeof this> = {};
+    const props = {} as IProps;
     const lists: Record<string, this[]> = {};
     Object.entries(propsAndChildren).forEach(([key, value]) => {
       if (value instanceof Block) {
@@ -116,7 +121,7 @@ export default class Block {
     });
   }
 
-  setProps = (nextProps: Record<string, any>) => {
+  setProps = (nextProps: IProps) => {
     if (!nextProps) {
       return;
     }
@@ -142,7 +147,6 @@ export default class Block {
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
 
-    //comment if you want to see
     Object.values(this.children).forEach(child => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`)
       stub!.replaceWith(child.getContent() as HTMLElement);
@@ -176,7 +180,7 @@ export default class Block {
     return this.element;
   }
 
-  _makePropsProxy(props: Record<string, any>) {
+  _makePropsProxy(props: IProps) {
     const self = this;
     return new Proxy(props, {
       get(target, prop: string) {

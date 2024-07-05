@@ -21,8 +21,6 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
-    //quotes: [2, "double", { avoidEscape: true }],
-    "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-for-in-array": "error",

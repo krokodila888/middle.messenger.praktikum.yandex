@@ -4,59 +4,60 @@ body {
   margin: 0;
   background: $light-grey-color;
 }
+
 .page {
-  background: $light-grey-color;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
   gap: 26px;
+  background: $light-grey-color;
 }
 
 .profile-page {
-  width: 460px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  width: 460px;
   padding: 32px 34px;
   background-color: $light-grey-color;
   border-radius: 16px;
+
   @include shadow;
 
   &__top-row {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-items: center;
     justify-content: center;
+    place-items: center center;
   }
 
   &__logout-button {
-    background:url(/src/assets/left-pic.png);
-    height: 80px;
-    width: 80px;
-    @include shadow-inside;
-    border-radius: 50%;
-    background-size: cover;
     flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    background:url("/src/assets/left-pic.png");
+    background-size: cover;
+    border-radius: 50%;
+
+    @include shadow-inside;
   }
 }
 
 .big-header {
   display: flex;
   flex-direction: row;
-  justify-items: flex-start;
-  align-items: center;
-  margin: 20px 0 0;
-  gap: 12px;
   justify-content: space-between;
+  place-items: center flex-start;
+  gap: 12px;
   min-width: 880px;
+  margin: 20px 0 0;
 
     & div {
       display: flex;
       flex-direction: row;
-      gap: 12px;
       align-items: center;
+      gap: 12px;
 
       & .title {
         width: 240px;

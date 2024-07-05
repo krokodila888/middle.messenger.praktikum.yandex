@@ -20,7 +20,6 @@ export class Button extends Block {
           inputs.forEach((item) => {
             res[item.name] = item.value;
           })
-          console.log(res);
         }
       },
     });

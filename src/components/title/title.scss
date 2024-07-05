@@ -1,11 +1,11 @@
 @import '../../assets/variables';
 
 .title {
-  font-size: 38px;
-  font-weight: normal;
-  color: $dark-grey-color;
-  margin: 0;
   width: 140px;
+  margin: 0;
+  color: $dark-grey-color;
+  font-weight: normal;
+  font-size: 38px;
   text-align: center;
 
   &__span {

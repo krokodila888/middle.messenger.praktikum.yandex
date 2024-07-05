@@ -9,11 +9,11 @@ enum METHOD {
 export type TData = {
   status?: number;
   statusText?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 };
 
 export type THeader = {
-  [key: string]: any;
+  [key: string]: string;
 };
 
 export type TOptions = {
@@ -25,10 +25,10 @@ export type TOptions = {
   cache?: "default" | "no-store" | "reload" | "no-cache" | "force-cache" | "only-if-cached";
   signal?: unknown;
   timeout?: number;
-  data?: any;
+  data?: Record<string, unknown>;
 };
 
-function queryStringify(data: TData /*| null*/) {
+function queryStringify(data: Record<string, unknown> /*| null*/) {
   if (typeof data !== 'object') {
     throw new Error('Data must be object');
   }
@@ -90,9 +90,9 @@ class HTTPTransport {
     xhr.ontimeout = reject;
 
     if (isGet || !data) {
-      xhr.send();
+      xhr.send(JSON.stringify(data));
     } else {
-      xhr.send(data);
+      xhr.send();
     }
   });
   };

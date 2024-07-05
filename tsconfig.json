@@ -4,20 +4,23 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
-    "sourceMap": true,
     "moduleResolution": "Node",
     "strict": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "esModuleInterop": true,
     "noEmit": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "noImplicitReturns": true,
     "skipLibCheck": true,
-    "strictNullChecks": true,
     "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "strictNullChecks": true
+
   },
   "include": ["src"],
   "exclude": ["dist"]
 }
+
+

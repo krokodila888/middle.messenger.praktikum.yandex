@@ -6,7 +6,7 @@
 - `npm run build` — сборка для деплоя,
 - `npm start` — запуск сервера на http://localhost:3000,
 - `npm lint` и `npm lint:fix` — проверка и испрвление eslint,
-- `npm lint:css` и `npm lint:css:fix` — проверки и испрвление stylelint,
+- `npm stylelint` и `npm stylelint:fix` — проверки и испрвление stylelint,
 - `npm checkAll` — проверить всё линтерами,
 - `npm fixAll` — сразу поправить линтерами все, что можно,
 

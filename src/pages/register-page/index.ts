@@ -101,7 +101,7 @@ export class RegisterPage extends Block {
           type MyType = {
             [key: string]: boolean;
           };
-          let res: MyType = {};
+          const res: MyType = {};
           inputs.forEach((item) => {
             res[item.name] = item.validity.valid;
           })

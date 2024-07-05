@@ -10,8 +10,8 @@
     "start": "vite build && node ./express.cjs ",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "lint:fix": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
-    "stylelint": "stylelint '**/*.scss'",
-    "stylelint:fix": "stylelint '**/*.css' --fix",
+    "stylelint": "stylelint src/**/*.scss",
+    "stylelint:fix": "stylelint src/**/*.scss --fix",
     "checkAll": "npm run lint && npm run stylelint",
     "fixAll": "npm run lint:fix && npm run stylelint:fix"
   },
@@ -22,6 +22,8 @@
     "@types/uuid": "^10.0.0",
     "sass": "^1.77.4",
     "stylelint": "^16.6.1",
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-order": "^6.0.4",
     "vite": "^5.2.0",
     "vite-plugin-checker": "^0.6.4",
     "vite-plugin-handlebars": "^2.0.0"

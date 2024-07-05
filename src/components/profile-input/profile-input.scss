@@ -1,23 +1,23 @@
 @import '../../assets/variables';
 
 .input-profile {
-  border: none;
+  box-sizing: border-box;
   width: 100%;
   height: 100%;
-  box-sizing: border-box;
-  margin-top: 16px;
-  background-color: $light-beige-color;
-  color: $dark-grey-color;
-  @include shadow-inside;
   height: 44px;
-  border-radius: 16px;
-  box-sizing: border-box;
+  margin-top: 16px;
   padding: 4px 14px;
+  color: $dark-grey-color;
+  background-color: $light-beige-color;
+  border: none;
+  border-radius: 16px;
+
+  @include shadow-inside;
 
   &:focus-visible {
     border: 2px solid $dark-green-color;
-    outline-offset: 0px;
     outline: none;
+    outline-offset: 0;
   }
 
   &__invalid {

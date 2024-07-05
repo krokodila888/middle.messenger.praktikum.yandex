@@ -17,6 +17,7 @@ function navigate(page: string) {
   container!.replaceChildren(block.getContent() as HTMLElement);
 }
 
+//у других типов Property 'navigate' does not exist on type 
 (window as any).navigate = navigate;
 
 const block = new Pages.LoginPage();

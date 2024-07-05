@@ -4,13 +4,14 @@ body {
   margin: 0;
   background: $light-grey-color;
 }
+
 .page {
-  background: $light-grey-color;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: flex-start;
+  align-items: center;
   gap: 26px;
+  background: $light-grey-color;
 }
 
 .chat-page {
@@ -22,21 +23,22 @@ body {
     display: flex;
     flex-direction: row;
     gap: 12px;
-    margin: 28px 0;
     height: 600px;
+    margin: 28px 0;
   }
 
   &__list {
-    background: $light-grey-color;
-    height: 100%;
-    overflow: hidden;
-    min-width: 340px;
-    border-radius: 16px 0 0 16px;
-    box-sizing: border-box;
-    padding: 12px;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    box-sizing: border-box;
+    min-width: 340px;
+    height: 100%;
+    padding: 12px;
+    overflow: hidden;
+    background: $light-grey-color;
+    border-radius: 16px 0 0 16px;
+
     @include shadow-inside
   }
 }
@@ -44,18 +46,17 @@ body {
 .big-header {
   display: flex;
   flex-direction: row;
-  justify-items: flex-start;
-  align-items: center;
-  margin: 20px 0 0;
-  gap: 12px;
   justify-content: space-between;
+  place-items: center flex-start;
+  gap: 12px;
   min-width: 880px;
+  margin: 20px 0 0;
 
     & div {
       display: flex;
       flex-direction: row;
-      gap: 12px;
       align-items: center;
+      gap: 12px;
 
       & .title {
         width: 240px;
@@ -78,21 +79,22 @@ body {
 }
 
 .current-chat {
-  background-color: $middle-grey-color;
-  border-radius: 0 16px 16px 0;
-  width: 100%;
-  padding: 16px;
-  @include shadow-inside;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
   justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+  overflow-y: scroll;
+  background-color: $middle-grey-color;
+  border-radius: 0 16px 16px 0;
+
+  @include shadow-inside;
   
   &__text {
-    font-size: 24px;
-    font-weight: normal;
-    color: $dark-grey-color;
     margin: 0;
+    color: $dark-grey-color;
+    font-weight: normal;
+    font-size: 24px;
   }
 
   &__message-block {

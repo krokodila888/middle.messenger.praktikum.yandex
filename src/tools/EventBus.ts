@@ -1,9 +1,5 @@
-interface Subscriber {
-  [key: string]: Function[];
-}
-
 export default class EventBus {
-  private listeners: Subscriber;
+  private listeners: Record<string, Function[]>;
   constructor() {
       this.listeners = {};
   }
