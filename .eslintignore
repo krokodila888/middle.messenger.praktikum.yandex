@@ -1,4 +1,7 @@
-/build
-/dist
-**/*.min.js
-/node_modules 
+node_modules
+public
+.eslintrc.js
+build
+dist
+package*.json
+*.d.ts

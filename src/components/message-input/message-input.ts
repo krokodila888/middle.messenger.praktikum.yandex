@@ -17,7 +17,7 @@ export class MessageInput extends Block {
           type MyType = {
             [key: string]: string;
           };
-          let res: MyType = {};
+          const res: MyType = {};
           if (input1) {
             res[input1.name] = input1.value;
           };

@@ -16,7 +16,7 @@ export class Button extends Block {
           type MyType = {
             [key: string]: string;
           };
-          let res: MyType = {};
+          const res: MyType = {};
           inputs.forEach((item) => {
             res[item.name] = item.value;
           })

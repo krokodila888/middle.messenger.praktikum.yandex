@@ -16,7 +16,7 @@ export class SearchInput extends Block {
           type MyType = {
             [key: string]: string;
           };
-          let res: MyType = {};
+          const res: MyType = {};
           if (input) {
             res[input.name] = input.value;
           };
