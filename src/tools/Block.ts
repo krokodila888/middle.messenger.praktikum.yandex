@@ -80,17 +80,16 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate(oldProps: IProps, newProps: IProps) {
-    const response = this.componentDidUpdate(oldProps, newProps);
+  _componentDidUpdate() {
+    const response = this.componentDidUpdate();
     if (!response) {
       return;
     }
     this._render();
   }
 
-  componentDidUpdate(oldProps: IProps, newProps: IProps) {
-    if (oldProps !== newProps) return true;
-    else return false
+  componentDidUpdate() {
+    return true;
   }
 
   _getChildrenPropsAndProps(
