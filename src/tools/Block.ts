@@ -74,7 +74,7 @@ export default class Block {
     Object.values(this.children).forEach(child => {child.dispatchComponentDidMount();});
   }
 
-  componentDidMount(oldProps?: IProps) {}
+  componentDidMount(_oldProps?: IProps) {}
 
   dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
@@ -151,7 +151,7 @@ export default class Block {
       stub!.replaceWith(child.getContent() as HTMLElement);
     });
 
-    Object.entries(this.lists).forEach(([key, child]) => {
+    Object.entries(this.lists).forEach(([, child]) => {
       const listCont = this._createDocumentElement('template') as HTMLTemplateElement;;
       child.forEach(item => {
         if (item instanceof Block) {

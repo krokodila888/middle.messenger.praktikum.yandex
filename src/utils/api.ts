@@ -39,7 +39,7 @@ function queryStringify(data: Record<string, unknown> /*| null*/) {
   }, '?');
 }
 
-class HTTPTransport {
+export default class HTTPTransport {
   get = (url: string, options:TOptions = {}) => {
     return this.request(url, {...options, method: METHOD.GET}, options.timeout);
   };
