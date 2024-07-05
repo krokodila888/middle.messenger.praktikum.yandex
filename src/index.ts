@@ -12,7 +12,7 @@ const pages: { [key: string]: [typeof Block] } = {
 
 function navigate(page: string): void {
   const [NewPage] = pages[page];
-  const block = new NewPage("main", {});
+  const block = new NewPage({});
   const container = document.getElementById('app');
   container!.replaceChildren(block.getContent()!);
 }
