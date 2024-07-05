@@ -1,6 +1,6 @@
 import { phonePattern, loginPattern, emailPattern, anyLatinLetterPattern, firstNamePattern, anyDigitPattern, anyBigLetterPattern } from './constants';
 
-function validateItem(i: HTMLInputElement) {
+export function validateItem(i: HTMLInputElement) {
   let isValid = true;
     if (i.name === 'password') {
       isValid = (i.validity.valid && anyBigLetterPattern.test(i.value) && anyDigitPattern.test(i.value))
@@ -23,7 +23,7 @@ function validateItem(i: HTMLInputElement) {
   return isValid;
 }
 
-function validateProfileItem(i: HTMLInputElement) {
+export function validateProfileItem(i: HTMLInputElement) {
   let isValid = true;
     if (i.name === 'profile_newPassword') {
       isValid = (i.value === '' || (i.validity.valid && anyBigLetterPattern.test(i.value) && anyDigitPattern.test(i.value)))
@@ -56,14 +56,12 @@ function buttonValidation() {
     };
   });
   if (inputsAreValid) {
-    console.log("yes");
     button?.classList.remove('button__disabled');
     if (button instanceof HTMLButtonElement) {
       button!.disabled = false;
     }
   };
   if (!inputsAreValid) {
-    console.log("no");
     button?.classList.add('button__disabled');
     if (button instanceof HTMLButtonElement) {
       button!.disabled = true;

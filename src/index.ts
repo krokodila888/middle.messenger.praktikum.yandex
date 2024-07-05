@@ -10,15 +10,15 @@ const pages: { [key: string]: [typeof Block] } = {
   'profile': [ Pages.ProfilePage ],
 };
 
-function navigate(page: string) {
+function navigate(page: string): void {
   const [NewPage] = pages[page];
   const block = new NewPage("main", {});
   const container = document.getElementById('app');
-  container!.replaceChildren(block.getContent() as HTMLElement);
+  container!.replaceChildren(block.getContent()!);
 }
 
 //у других типов Property 'navigate' does not exist on type 
-(window as any).navigate = navigate;
+window.navigate = navigate;
 
 const block = new Pages.LoginPage();
 const container = document.getElementById('app')!;

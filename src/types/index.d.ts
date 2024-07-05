@@ -1,5 +1,6 @@
-declare module "*?raw"
-{
-  const content: string;
-  export default content;
+declare global {
+  var example: string;
+  function navigate(page: string): void;
 }
+
+export {};
