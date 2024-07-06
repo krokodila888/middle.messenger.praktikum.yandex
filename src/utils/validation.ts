@@ -25,22 +25,22 @@ export function validateItem(i: HTMLInputElement) {
 
 export function validateProfileItem(i: HTMLInputElement) {
   let isValid = true;
-    if (i.name === 'profile_newPassword') {
+    if (i.name === 'newPassword') {
       isValid = (i.value === '' || (i.validity.valid && anyBigLetterPattern.test(i.value) && anyDigitPattern.test(i.value)))
     };
-    if (i.name === 'profile_login') {
+    if (i.name === 'login') {
       isValid = (i.validity.valid && anyLatinLetterPattern.test(i.value) && loginPattern.test(i.value))
     };
-    if (i.name === 'profile_first_name') {
+    if (i.name === 'first_name') {
       isValid = (i.validity.valid && firstNamePattern.test(i.value))
     };
-    if (i.name === 'profile_second_name') {
+    if (i.name === 'second_name') {
       isValid = (i.validity.valid && firstNamePattern.test(i.value))
     };
-    if (i.name === 'profile_phone') {
+    if (i.name === 'phone') {
       isValid = (i.validity.valid && phonePattern .test(i.value))
     };
-    if (i.name === 'profile_email') {
+    if (i.name === 'email') {
       isValid = (i.validity.valid && emailPattern.test(i.value))
     };
   return isValid;
@@ -118,8 +118,8 @@ export function validateProfile(e: Event) {
     const isValid = validateProfileItem(e.target);
 
     if (!isValid) {
-      document.getElementById(`span_${e.target.name}`)?.classList.add('input-profile-field__span_invalid');
-      document.getElementById(`span_${e.target.name}`)?.classList.remove('input-profile-field__span_valid');
+      document.getElementById(`span_profile_${e.target.name}`)?.classList.add('input-profile-field__span_invalid');
+      document.getElementById(`span_profile_${e.target.name}`)?.classList.remove('input-profile-field__span_valid');
       e.target.classList.add('input-profile__invalid');
       document.querySelector(`button`)?.classList.add('button__profile_disabled');
       const button = document.querySelector(`.button__profile`);
@@ -128,8 +128,8 @@ export function validateProfile(e: Event) {
       }
     }
     else {
-      document.getElementById(`span_${e.target.name}`)?.classList.remove('input-profile-field__span_invalid');
-      document.getElementById(`span_${e.target.name}`)?.classList.add('input-profile-field__span_valid');
+      document.getElementById(`span_profile_${e.target.name}`)?.classList.remove('input-profile-field__span_invalid');
+      document.getElementById(`span_profile_${e.target.name}`)?.classList.add('input-profile-field__span_valid');
       e.target.classList.remove('input-profile__invalid');
       profileButtonValidation()
     }

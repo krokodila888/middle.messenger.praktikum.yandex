@@ -50,12 +50,14 @@ export default class Block {
     });
   }
 
-  /*_removeEvents() {
+  _removeEvents() {
     const { events = {} } = this.props;
     Object.keys(events).forEach((eventName) => {
-      this._element!.removeEventListener(eventName, events[eventName]);
+      if (this._element) {
+        this._element.removeEventListener(eventName, events[eventName]);
+      }
     });
-  }*/
+  }
 
   init() {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
@@ -133,7 +135,7 @@ export default class Block {
     Object.entries(this.lists).forEach(([key, _child]) => {
       propsAndStubs[key] = `<div data-id="__l_${_tmpId}"></div>`;
     });
-    //this._removeEvents();
+    this._removeEvents();
 
     const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
     fragment.innerHTML = Handlebars.compile(this.render())(propsAndStubs);
