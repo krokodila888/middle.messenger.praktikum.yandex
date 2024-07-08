@@ -1,69 +1,32 @@
-{{#> Page }}
-{{> BigHeader }}
+<main class="page">
+  <div class="big-header">
+  <div>
+    {{{ logo }}}
+    {{{ generaltitle }}}
+  </div>
+  <div>
+    {{{ chatlink }}}
+    {{{ chaticon }}}
+  </div>
+  </div>
   <form class="profile-page">
     <div class="profile-page__content">
       <div class="profile-page__top-row">
-        {{> Title title="Your " span="profile" }}
-        {{> Avatar }}
+        {{{ title }}}
+        {{{ avatar }}}
       </div>
-      {{>  ProfileInput 
-        className="profile-page__input" 
-        placeholder="First name" 
-        value="Ann" 
-        name="first_name"
-        title="Name:" }}
-      {{>  ProfileInput 
-        className="profile-page__input" 
-        placeholder="Second name"
-        value="Doe"
-        name="second_name"
-        title="Surname:" }}
-      {{>  ProfileInput 
-        className="profile-page__input" 
-        placeholder="Login" 
-        value="Ann8888"
-        name="login"
-        title="Login:" }}
-      {{>  ProfileInput 
-        className="profile-page__input" 
-        placeholder="Email"
-        value="ann888@ya.ru" 
-        name="email"
-        title="Email:" }}
-      {{>  ProfileInput 
-        className="profile-page__input" 
-        placeholder="Phone number" 
-        name="phone"
-        value="+7(900) 000-00-00"
-        title="Phone:" }}
-      {{>  ProfileInput 
-        className="profile-page__input" 
-        placeholder="Avatar" 
-        name="avatar"
-        value="https//some-link.png"
-        title="Avatar:" }}
-      {{>  ProfileInput 
-        className="profile-page__input" 
-        placeholder="Password" 
-        name="oldPassword"
-        value="********"
-        type="password"
-        title="Password:" }}
-      {{>  ProfileInput 
-        className="profile-page__input" 
-        placeholder="New password" 
-        name="newPassword" 
-        type="password"
-        title="New password:" }}
+      {{{ firstnameinput }}}
+      {{{ lastnameinput }}}
+      {{{ logininput }}}
+      {{{ emailinput }}}
+      {{{ phoneinput }}}
+      {{{ avatarInput }}}
+      {{{ passwordinput }}}
+      {{{ newpasswordinput }}}
     </div>
-    {{> ExitButton  }}
+    {{{ button }}}
+    {{{ exitbutton }}}
   </form>
-  {{> Link 
-    page="error404" 
-    text="Ошибок быть не может, но вдруг: " 
-    link="Ошибка 404"}}
-  {{> Link 
-    page="error500" 
-    text="И вот еще " 
-    link="Ошибка 5**"}}
-{{/ Page }}
+  {{{ link1 }}}
+  {{{ link2 }}}
+</main>

@@ -1,9 +1,11 @@
-<div class="message-input{{#if className}} {{className}}{{/if}}">
+<form class="message-input{{#if className}} {{className}}{{/if}}">
   <input
     class="message-input__element"
     type="{{ type }}" 
     placeholder="{{ placeholder }}" 
     name="{{ name }}" 
-    value="{{value}}">
-  <div class="search-input__icon"></div>
-</div>
+    value="{{ value }}"
+    required="true"
+    minlength="1"/>
+  <button class="message-input__icon"></button>
+</form>

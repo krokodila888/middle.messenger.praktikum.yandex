@@ -4,35 +4,41 @@
   position: relative;
 
   &__element {
-    border: none;
-    min-height: 50px;
+    box-sizing: border-box;
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
-    background-color: #fff;
-    color: $dark-grey-color;
-    @include shadow-inside;
-    height: 40px;
-    box-sizing: border-box;
+    height: 46px;
+    min-height: 50px;
     padding: 6px 20px;
-    border-radius: 30px 30px 0 30px;
+    color: $dark-grey-color;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 30px 30px 0;
+
+    @include shadow-inside;
 
     &:focus-visible {
       border: 2px solid $dark-green-color;
-      outline-offset: 0px;
       outline: none;
+      outline-offset: 0;
     }
   }
+
   &__icon {
-    background:url(/src/assets/send-icon.png);
-    height: 40px;
-    width: 40px;
-    @include shadow-inside;
-    border-radius: 50%;
-    background-size: cover;
-    flex-shrink: 0;
     position: absolute;
     right: 10px;
-    top: 8px;
+    bottom: 4px;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background:url("/assets/send-icon.png");
+    background-size: cover;
+    border-radius: 50%;
+
+    @include shadow-small;
+
+    &:hover {
+      @include shadow-small-hovered1;
+    }
   }
 }

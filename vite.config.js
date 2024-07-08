@@ -1,12 +1,18 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import handlebars from 'vite-plugin-handlebars';
 
 export default defineConfig({
+  root: resolve(__dirname, 'src'),
+  publicDir: "../public",
   build: {
     outDir: resolve(__dirname, 'build'),
+    emptyOutDir: true,
+    assetsDir: 'assets',
     rollupOptions: {
-      input: resolve(__dirname, './index.html'),
+      input: {
+        main: resolve(__dirname, 'src/index.html'),
+        nested: resolve(__dirname, 'src/index.ts'),
+      },
     },
     output: {
       chunkFileNames: 'assets/[name]-[hash].png',
@@ -24,7 +30,11 @@ export default defineConfig({
       },
     },
   },
-  plugins: [handlebars({
-    partialDirectory: resolve(__dirname, 'src/partials'),
-  })],
+  base: './',
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
+  },
+  plugins: [],
 });

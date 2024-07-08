@@ -1,8 +1,27 @@
-<div class="input{{#if className}} {{className}}{{/if}}">
   <input
-    class="input__element"
-    type="{{ type }}" 
+    class="input"
+    {{#if type}}
+    type="{{ type }}"
+    {{/if}}
     placeholder="{{ placeholder }}" 
+    id="{{ name }}"
     name="{{ name }}" 
-    value="{{value}}">
-</div>
+    value="{{value}}"
+    {{#if required}}
+    required="true"
+    {{/if}}
+    {{#if min}}
+    minlength="{{min}}"
+    {{/if}}
+    {{#if max}}
+    maxlength="{{max}}"
+    {{/if}}
+    {{#if autocomplete}}
+    autocomplete="{{autocomplete}}"
+    {{/if}}
+    {{#if pattern}}
+    pattern="{{pattern}}"
+    {{/if}}
+    errormessage="{{errormessage}}"
+  >
+
