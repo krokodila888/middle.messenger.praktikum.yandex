@@ -2,6 +2,16 @@ import './register-page.scss';
 import Block from '../../tools/Block';
 import { PageTitle, InputField, Button, Link } from '../../components';
 import RegisterPageRaw from './register-page.hbs?raw';
+import SignupAPI, { RegisterAPI } from '../../api/auth-api';
+
+type TSignupRequest = {
+  email: string;
+  login: string;
+  first_name: string;
+  second_name: string;
+  phone: string;
+  password: string;
+};
 export class RegisterPage extends Block {
   constructor() {
     super({
@@ -80,7 +90,7 @@ export class RegisterPage extends Block {
         className: "button__register button__disabled",
       }),
       linktologin: new Link({
-        page: "LoginPage", 
+        page: "login", 
         text: "Already registered? ", 
         link: "Log in",
       }),
@@ -94,9 +104,11 @@ export class RegisterPage extends Block {
         text: "И вот еще ", 
         link: "Ошибка 5**", 
       }),
-      events: {
+      /*events: {
         submit: (e: SubmitEvent) => {
           e.preventDefault();
+          const signupAPI = new SignupAPI; 
+          const reg = new RegisterAPI;
           const inputs = document.querySelectorAll('input');
           type MyType = {
             [key: string]: boolean;
@@ -104,10 +116,13 @@ export class RegisterPage extends Block {
           const res: MyType = {};
           inputs.forEach((item) => {
             res[item.name] = item.validity.valid;
-          })
+          });
           console.log(res);
+          if (res.email && res.phone && res.login && res.password && res.first_name && res.second_name) {
+            reg.request(res as unknown as TSignupRequest);
+          }
         }
-      },
+      },*/
     });
   }
 

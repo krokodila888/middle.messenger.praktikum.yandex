@@ -13,7 +13,7 @@ export class ChatPage extends Block {
       }),
       chaticon: new ChatIcon({ }),
       linktologin: new Link({
-        page: "LoginPage", 
+        page: "login", 
         link: "Back to login",
       }),
       interlocutoritem: new InterlocutorItem({ 

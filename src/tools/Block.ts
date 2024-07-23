@@ -1,6 +1,7 @@
 import EventBus from "./EventBus";
 import Handlebars from "handlebars";
 import {v4 as makeUUID} from 'uuid';
+import { isEqual } from "../utils/is-equal";
 
 interface IProps {
   [key: string]: unknown;
@@ -39,7 +40,10 @@ export default class Block {
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(
+      Block.EVENTS.FLOW_CDU,
+      this.componentDidUpdate.bind(this) as (...args: unknown[]) => void
+    );
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -74,16 +78,16 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate() {
-    const response = this.componentDidUpdate();
+  _componentDidUpdate(oldProps: IProps, newProps: IProps) {
+    const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
     }
     this._render();
   }
 
-  componentDidUpdate() {
-    return true;
+  componentDidUpdate(oldProps: IProps, newProps: IProps) {
+    return !isEqual(oldProps, newProps);
   }
 
   _getChildrenPropsAndProps(

@@ -2,6 +2,7 @@ import './profile-page.scss';
 import Block from '../../tools/Block';
 import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link } from '../../components';
 import ProfilePageRaw from './profile-page.hbs?raw';
+import store from '../../tools/Store';
 
 export class ProfilePage extends Block {
   constructor() {
@@ -128,6 +129,24 @@ export class ProfilePage extends Block {
       }),
     });
   }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  componentDidUpdate(oldProps: any, newProps: any) {
+    if (oldProps.user !== newProps.user) {
+      /*this.children.firstnameinput.setProps({ value: newProps.user.first_name });
+      this.children.lastnameinput.setProps({ value: newProps.user.second_name });
+      this.children.logininput.setProps({ value: newProps.user.login });
+      this.children.phoneinput.setProps({ value: newProps.user.phone });
+      this.children.emailinput.setProps({ value: newProps.user.email });*/
+      console.log("111111");
+      const aaa = store.getState().user;
+      console.log(aaa);
+      console.log(document.getElementById(`first_name`));
+      console.log(document.getElementsByClassName('.profile'));
+      //(document.getElementById(`first_name`) as HTMLInputElement).value = aaa.first_name;
+    }
+    return true;
+}
 
 
 

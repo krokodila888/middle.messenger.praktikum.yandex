@@ -1,40 +1,27 @@
 import * as Pages from './pages';
+import Router from './tools/Router';
+import { connect } from './tools/Hoc';
 import Block from './tools/Block';
+import store from './tools/Store';
 
-const pages: { [key: string]: [typeof Block] } = {
-  'chat': [ Pages.ChatPage ],
-  'login': [ Pages.LoginPage ],
-  'register': [ Pages.RegisterPage ],
-  'error404': [ Pages.Error404Page ],
-  'error500': [ Pages.Error500Page ],
-  'profile': [ Pages.ProfilePage ],
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Indexed<T = any> = {
+  [key in string]: T;
 };
 
-function navigate(page: string): void {
-  const [NewPage] = pages[page];
-  const block = new NewPage({});
-  const container = document.getElementById('app');
-  container!.replaceChildren(block.getContent()!);
-}
+const connectedChatPage = connect(Pages.ChatPage);
+const connectedLoginPage = connect(Pages.LoginPage);
+const connectedRegisterPage = connect(Pages.RegisterPage);
+const connectedProfilePage = connect(Pages.ProfilePage) as unknown as typeof Block;
+const connectedError404Page = connect(Pages.Error404Page);
+const connectedError500Page = connect(Pages.Error500Page);
 
-//у других типов Property 'navigate' does not exist on type 
-window.navigate = navigate;
-
-const block = new Pages.LoginPage();
-const container = document.getElementById('app')!;
-
-container.append(block.getContent()!);
-
-document.addEventListener('DOMContentLoaded', () => navigate('login'));
-
-document.addEventListener('click', e => {
-  if (e && e.target) {
-  const target = e.target as HTMLElement;
-  const page = target.getAttribute('page');
-    if (page) {
-      navigate(page);
-      e.preventDefault();
-      e.stopImmediatePropagation();
-    }
-  }
-});
+const router = new Router("app");  
+router
+  .use("/", connectedLoginPage)
+  .use("/sign-up", connectedRegisterPage)
+  .use("/settings", connectedProfilePage)
+  .use("/messenger", connectedChatPage)
+  .use("/error404", connectedError404Page)
+  .use("/error500", connectedError500Page)
+  .start()
