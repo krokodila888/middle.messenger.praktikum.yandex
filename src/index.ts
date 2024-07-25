@@ -9,14 +9,14 @@ type Indexed<T = any> = {
   [key in string]: T;
 };
 
-const connectedChatPage = connect(Pages.ChatPage);
-const connectedLoginPage = connect(Pages.LoginPage);
-const connectedRegisterPage = connect(Pages.RegisterPage);
+const connectedChatPage = connect(Pages.ChatPage) as unknown as typeof Block;;
+const connectedLoginPage = connect(Pages.LoginPage) as unknown as typeof Block;;
+const connectedRegisterPage = connect(Pages.RegisterPage) as unknown as typeof Block;;
 const connectedProfilePage = connect(Pages.ProfilePage) as unknown as typeof Block;
 const connectedError404Page = connect(Pages.Error404Page);
 const connectedError500Page = connect(Pages.Error500Page);
 
-const router = new Router("app");  
+export const router = new Router("app");  
 router
   .use("/", connectedLoginPage)
   .use("/sign-up", connectedRegisterPage)

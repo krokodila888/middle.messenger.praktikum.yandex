@@ -2,6 +2,7 @@ import './link.scss';
 import Block from '../../tools/Block';
 import LinkRaw from './link.hbs?raw';
 import Router from '../../tools/Router';
+import { router } from '../..';
 
 interface Props {
   [key: string]: string;
@@ -12,7 +13,6 @@ export class Link extends Block {
     super({ ...props,
       events: {
         click: () => {
-          const router = new Router("app");
           if (props.page === "register") {
             router.go("/sign-up")
           };

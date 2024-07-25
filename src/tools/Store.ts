@@ -21,7 +21,8 @@ const state: IState = {
     login: "",
     phone: "",
     second_name: "",
-  }
+  },
+  first_name: '',
 };
 
 interface IStore<S> {
@@ -39,6 +40,7 @@ const reducer: TReducer<IState> = (state, action) => {
   } else if (action.type === 'SET_USER') {
     console.log('SET_USER')
     newState.user = action.user;
+    newState.first_name = action.user.first_name;
     return newState;
   } else {
     return state;
@@ -61,7 +63,6 @@ const createStore = <S>(reducer: TReducer<S>, initialState: S): IStore<S> => {
     },
   };
 };
-
 
 const setTextAction = {
   type: 'SET_TEXT',

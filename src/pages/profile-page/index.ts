@@ -3,6 +3,7 @@ import Block from '../../tools/Block';
 import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link } from '../../components';
 import ProfilePageRaw from './profile-page.hbs?raw';
 import store from '../../tools/Store';
+import { isEqual } from '../../utils/is-equal';
 
 export class ProfilePage extends Block {
   constructor() {
@@ -22,7 +23,7 @@ export class ProfilePage extends Block {
       firstnameinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "First name", 
-        value: "Ann", 
+        value: "", 
         name: "first_name",
         title: "Name:",
         required: "true",
@@ -130,27 +131,84 @@ export class ProfilePage extends Block {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  componentDidUpdate(oldProps: any, newProps: any) {
-    if (oldProps.user !== newProps.user) {
+  _componentDidMount() {
       /*this.children.firstnameinput.setProps({ value: newProps.user.first_name });
       this.children.lastnameinput.setProps({ value: newProps.user.second_name });
       this.children.logininput.setProps({ value: newProps.user.login });
       this.children.phoneinput.setProps({ value: newProps.user.phone });
       this.children.emailinput.setProps({ value: newProps.user.email });*/
       console.log("111111");
+      console.log(store.getState());
       const aaa = store.getState().user;
       console.log(aaa);
       console.log(document.getElementById(`first_name`));
       console.log(document.getElementsByClassName('.profile'));
       //(document.getElementById(`first_name`) as HTMLInputElement).value = aaa.first_name;
-    }
+  }
+
+  componentDidMount() {
+    /*this.children.firstnameinput.setProps({ value: newProps.user.first_name });
+    this.children.lastnameinput.setProps({ value: newProps.user.second_name });
+    this.children.logininput.setProps({ value: newProps.user.login });
+    this.children.phoneinput.setProps({ value: newProps.user.phone });
+    this.children.emailinput.setProps({ value: newProps.user.email });*/
+    console.log("111111");
+    console.log(store.getState());
+    const aaa = store.getState().user;
+    console.log(aaa);
+    console.log(document.getElementById(`first_name`));
+    console.log(document.getElementsByClassName('.profile'));
+    //(document.getElementById(`first_name`) as HTMLInputElement).value = aaa.first_name;
+  }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  /*componentDidUpdate(oldProps: any, newProps: any) {
+    console.log('renew!');
+    const aaa = store.getState().user;
+    console.log(aaa);
+    console.log(document.getElementById(`first_name`));
+    this.children.firstnameinput.setProps({ value: aaa.first_name });
+  }*/
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  componentDidUpdate(oldProps: any, newProps: any) {
+    console.log('renew');
+    console.log(this.children.button);
+      const aaa = store.getState().user;
+      console.log(this.children.firstnameinput);
+      console.log(aaa);
+      this.children.firstnameinput.setProps({ value: newProps.user.first_name })
+
     return true;
 }
 
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  /*_componentDidUpdate(oldProps: any, newProps: any) {
+    if (oldProps.user !== newProps.user) {*/
+      /*this.children.firstnameinput.setProps({ value: newProps.user.first_name });
+      this.children.lastnameinput.setProps({ value: newProps.user.second_name });
+      this.children.logininput.setProps({ value: newProps.user.login });
+      this.children.phoneinput.setProps({ value: newProps.user.phone });
+      this.children.emailinput.setProps({ value: newProps.user.email });*/
+      /*console.log("111111");
+      console.log(store.getState());
+      const aaa = store.getState().user;
+      console.log(aaa);
+      console.log(oldProps.user);
+      console.log(newProps.user);
+      console.log(document.getElementById(`first_name`));
+      console.log(document.getElementsByClassName('.profile'));
+      //(document.getElementById(`first_name`) as HTMLInputElement).value = aaa.first_name;
+    }
+    return true;
+  }*/
+
+  
 
   render() {
     return ProfilePageRaw;
   }
+
 }

@@ -19,12 +19,10 @@ export function connect<T extends new (...args: any[]) => any>(Component: T) {
   return class extends Component {
     constructor(...args: any[]) {
       super(...args);
-
         store.subscribe(() => {
           console.log('We are in store subscription')
           this.setProps({...store.getState()});
         });
-
         console.log(this)
     }
   } 

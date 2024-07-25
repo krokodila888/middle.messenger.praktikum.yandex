@@ -67,6 +67,7 @@ export class Button extends Block {
             .then((response) => {
               console.log(response);
               if (response === "OK") {
+                console.log('OK + next');
                 return new HTTPTransport()
               .get('https://ya-praktikum.tech/api/v2/auth/user', {
                 credentials: 'include',
@@ -76,7 +77,8 @@ export class Button extends Block {
               .then((xhr) => {
                 const rawResponse = (xhr as XMLHttpRequest).responseText;
                 if (typeof rawResponse === 'string') {
-                  return rawResponse;
+                  console.log(rawResponse);
+                  return JSON.parse(rawResponse);
                 }
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 const response1 = JSON.parse(rawResponse) as any;
@@ -135,14 +137,11 @@ export class Button extends Block {
               withCredentials: true
             })
             .then((xhr) => {
-              console.log((xhr as XMLHttpRequest).responseText);
               const rawResponse = (xhr as XMLHttpRequest).responseText;
               if (typeof rawResponse === 'string') {
                 console.log(rawResponse);
-                return rawResponse;
+                return JSON.parse(rawResponse);
               }
-              
-
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               const response1 = JSON.parse(rawResponse) as any;
               console.log(response1);
@@ -154,6 +153,7 @@ export class Button extends Block {
                   type: 'SET_USER',
                   user: resss
                 });
+                console.log(resss);
                 console.log(store.getState());
               }
             })

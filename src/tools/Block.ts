@@ -67,6 +67,8 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
+  preRender() { }
+
   _componentDidMount() {
     this.componentDidMount();
     Object.values(this.children).forEach(child => {child.dispatchComponentDidMount();});

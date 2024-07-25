@@ -28,7 +28,7 @@ class Route {
   leave(): void {
     if (this.block) {
       this.block.hide();
-      this.block = null;
+      //this.block = null;
     }
   }
 
@@ -36,9 +36,11 @@ class Route {
     return isEqual(pathname as unknown as PlainObject, this.pathname as unknown as PlainObject);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render() {
     if (!this.block) {
         this.block = new this.blockClass({});
+        this.block.preRender();
         //есть подозрение, что тут пререндер. Иметь в виду, если не заведется
         render(this.props.rootQuery, this.block!);
         return;
