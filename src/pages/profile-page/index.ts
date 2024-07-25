@@ -5,8 +5,24 @@ import ProfilePageRaw from './profile-page.hbs?raw';
 import store from '../../tools/Store';
 import { isEqual } from '../../utils/is-equal';
 
+type TUser = {
+  avatar: string,
+  email: string,
+  first_name: string,
+  id: number 
+  login: string,
+  phone: string,
+  second_name: string,
+};
+
+type TStore = {
+  user: TUser;
+  buttonText: string,
+  first_name: string,
+}
+
 export class ProfilePage extends Block {
-  constructor() {
+  constructor(props: TStore) {
     super({
       logo: new Logo({ }),
       chatlink: new Link({ page: "chat", link: "Your chats", className: "link__link_medium" }),
@@ -15,10 +31,10 @@ export class ProfilePage extends Block {
         title: "Common ",
         span: "chat",
       }),
-      title: new Title({
+      title: /*new Title({
         title: "Your ",
         span: "profile",
-      }),
+      })*/"title",
       avatar: new Avatar({}),
       firstnameinput: new InputProfileField({
         className: "profile-page__input",
@@ -131,35 +147,20 @@ export class ProfilePage extends Block {
     });
   }
 
-  _componentDidMount() {
-      /*this.children.firstnameinput.setProps({ value: newProps.user.first_name });
-      this.children.lastnameinput.setProps({ value: newProps.user.second_name });
-      this.children.logininput.setProps({ value: newProps.user.login });
-      this.children.phoneinput.setProps({ value: newProps.user.phone });
-      this.children.emailinput.setProps({ value: newProps.user.email });*/
-      console.log("111111");
-      console.log(store.getState());
-      const aaa = store.getState().user;
-      console.log(aaa);
-      console.log(document.getElementById(`first_name`));
-      console.log(document.getElementsByClassName('.profile'));
-      //(document.getElementById(`first_name`) as HTMLInputElement).value = aaa.first_name;
-  }
-
-  componentDidMount() {
+  /*componentDidMount() {
     /*this.children.firstnameinput.setProps({ value: newProps.user.first_name });
     this.children.lastnameinput.setProps({ value: newProps.user.second_name });
     this.children.logininput.setProps({ value: newProps.user.login });
     this.children.phoneinput.setProps({ value: newProps.user.phone });
     this.children.emailinput.setProps({ value: newProps.user.email });*/
-    console.log("111111");
+    /*console.log("111111");
     console.log(store.getState());
     const aaa = store.getState().user;
     console.log(aaa);
     console.log(document.getElementById(`first_name`));
-    console.log(document.getElementsByClassName('.profile'));
+    console.log(document.getElementsByClassName('.profile'));*/
     //(document.getElementById(`first_name`) as HTMLInputElement).value = aaa.first_name;
-  }
+  /*}*/
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   /*componentDidUpdate(oldProps: any, newProps: any) {
@@ -172,40 +173,34 @@ export class ProfilePage extends Block {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  componentDidUpdate(oldProps: any, newProps: any) {
+  /*componentDidUpdate(oldProps: any, newProps: any) {
     console.log('renew');
     console.log(this.children.button);
       const aaa = store.getState().user;
       console.log(this.children.firstnameinput);
       console.log(aaa);
-      this.children.firstnameinput.setProps({ value: newProps.user.first_name })
 
-    return true;
-}
-
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  /*_componentDidUpdate(oldProps: any, newProps: any) {
-    if (oldProps.user !== newProps.user) {*/
-      /*this.children.firstnameinput.setProps({ value: newProps.user.first_name });
-      this.children.lastnameinput.setProps({ value: newProps.user.second_name });
-      this.children.logininput.setProps({ value: newProps.user.login });
-      this.children.phoneinput.setProps({ value: newProps.user.phone });
-      this.children.emailinput.setProps({ value: newProps.user.email });*/
-      /*console.log("111111");
-      console.log(store.getState());
-      const aaa = store.getState().user;
-      console.log(aaa);
-      console.log(oldProps.user);
-      console.log(newProps.user);
-      console.log(document.getElementById(`first_name`));
-      console.log(document.getElementsByClassName('.profile'));
-      //(document.getElementById(`first_name`) as HTMLInputElement).value = aaa.first_name;
-    }
     return true;
   }*/
 
-  
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  /*componentDidUpdate(oldProps: any, newProps: any) {
+    console.log('renew');
+
+    if (!isEqual(oldProps, newProps)) {
+      console.log('renew22');
+      //this.children.firstnameinput.setProps({ title: newProps.user.first_name });
+      //this.children.firstnameinput.setProps({ value: newProps.user.first_name });
+    }
+    return isEqual(oldProps, newProps);
+  }
+
+  componentDidMount() {
+    console.log('mount');
+      //this.children.firstnameinput.setProps({ title: newProps.user.first_name });
+      //this.children.firstnameinput.setProps({ value: newProps.user.first_name });
+
+  }*/
 
   render() {
     return ProfilePageRaw;
