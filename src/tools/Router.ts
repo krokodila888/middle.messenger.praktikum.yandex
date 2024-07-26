@@ -26,10 +26,6 @@ export default class Router {
   }
 
   start() {
-    /*window.onpopstate = (event: PopStateEvent) => {
-      const currentTarget = event.currentTarget as Window;
-      this._onRoute(currentTarget.location.pathname);
-    };*/
 
     window.onpopstate = ((event: Event) => {
       this._onRoute((event.currentTarget as Window).location.pathname);
@@ -49,7 +45,7 @@ export default class Router {
     }
 
     this._currentRoute = route;
-    route.render(/*route, pathname*/);
+    route.render();
   }
 
   go(pathname: string) {
@@ -65,19 +61,12 @@ export default class Router {
     this.history.forward();
   }
 
-  /*getRoute(pathname: string) {
-    return this.routes.find(route => route.match(pathname));
-  }*/
-
-  /*getRoute = (pathname: string) => {
+  getRoute = (pathname: string) => {
     const _route = this.routes.find((route) => route.match(pathname));
     if (_route) return _route
     else {
       window.location.pathname = 'error404';
       return this.routes.find((item) => item.match('error404'));
     }
-  };*/
-  getRoute(pathname: string) {
-    return this.routes.find((route) => route.match(pathname));
-}
+  };
 }

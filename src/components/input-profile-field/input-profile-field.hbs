@@ -2,7 +2,9 @@
   <div class="input-profile-field__input-raw">
   <p class="input-profile-field__title">{{ title }}</p>
   {{{ input }}}
+  {{#if span}}
   <div class="input-profile-field__icon"></div>
+  {{/if}}
   </div>
   <span
     class="input-profile-field__span input-profile-field__span_valid {{spanclass}}"

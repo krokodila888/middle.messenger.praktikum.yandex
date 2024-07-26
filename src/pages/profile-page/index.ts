@@ -2,8 +2,6 @@ import './profile-page.scss';
 import Block from '../../tools/Block';
 import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link } from '../../components';
 import ProfilePageRaw from './profile-page.hbs?raw';
-import store from '../../tools/Store';
-import { isEqual } from '../../utils/is-equal';
 
 type TUser = {
   avatar: string,
@@ -22,7 +20,7 @@ type TStore = {
 }
 
 export class ProfilePage extends Block {
-  constructor(props: TStore) {
+  constructor() {
     super({
       logo: new Logo({ }),
       chatlink: new Link({ page: "chat", link: "Your chats", className: "link__link_medium" }),
@@ -31,10 +29,10 @@ export class ProfilePage extends Block {
         title: "Common ",
         span: "chat",
       }),
-      title: /*new Title({
+      title: new Title({
         title: "Your ",
         span: "profile",
-      })*/"title",
+      }),
       avatar: new Avatar({}),
       firstnameinput: new InputProfileField({
         className: "profile-page__input",
@@ -50,7 +48,7 @@ export class ProfilePage extends Block {
       lastnameinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "Second name",
-        value: "Doe",
+        value: "",
         name: "second_name",
         title: "Surname:",
         required: "true",
@@ -61,7 +59,7 @@ export class ProfilePage extends Block {
       logininput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "Login",
-        value: "Ann8888",
+        value: "",
         name: "login",
         title: "Login:",
         required: "true",
@@ -74,7 +72,7 @@ export class ProfilePage extends Block {
       emailinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "Email",
-        value: "ann888@ya.ru", 
+        value: "", 
         name: "email",
         title: "Email:",
         required: "true",
@@ -87,7 +85,7 @@ export class ProfilePage extends Block {
         className: "profile-page__input",
         placeholder: "Phone number",
         name: "phone",
-        value: "+79000000000",
+        value: "",
         title: "Phone:",
         required: "true",
         min: "10",
@@ -100,33 +98,25 @@ export class ProfilePage extends Block {
         className: "profile-page__input", 
         placeholder: "Avatar", 
         name: "avatar",
-        value: "https//some-link.png",
+        value: "",
         title: "Avatar:",
         disabled: "disabled",
         readonly: "readonly",
-      }),
-      passwordinput: new InputProfileField({
-        className: "profile-page__input",
-        placeholder: "Password",
-        name: "oldPassword",
-        value: "777777777777Aaaaa",
-        type: "password",
-        title: "Password:",
-        disabled: "disabled",
-        readonly: "readonly",
+        span: 'edit',
       }),
       newpasswordinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "New password",
         name: "newPassword",
         type: "password",
-        title: "New password:",
+        title: "Change password:",
         min: "8",
         max: "40",
         autocomplete: "new-password",
         errormessage: "От 8 до 40 символов (обязательна хотя бы одна заглавная буква и цифра)",
         spanclass: "span_profile_newPassword",
         spanid: "span_profile_newPassword",
+        span: 'edit',
       }),
       button: new Button({
         text: "Save changes",
@@ -146,61 +136,6 @@ export class ProfilePage extends Block {
       }),
     });
   }
-
-  /*componentDidMount() {
-    /*this.children.firstnameinput.setProps({ value: newProps.user.first_name });
-    this.children.lastnameinput.setProps({ value: newProps.user.second_name });
-    this.children.logininput.setProps({ value: newProps.user.login });
-    this.children.phoneinput.setProps({ value: newProps.user.phone });
-    this.children.emailinput.setProps({ value: newProps.user.email });*/
-    /*console.log("111111");
-    console.log(store.getState());
-    const aaa = store.getState().user;
-    console.log(aaa);
-    console.log(document.getElementById(`first_name`));
-    console.log(document.getElementsByClassName('.profile'));*/
-    //(document.getElementById(`first_name`) as HTMLInputElement).value = aaa.first_name;
-  /*}*/
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  /*componentDidUpdate(oldProps: any, newProps: any) {
-    console.log('renew!');
-    const aaa = store.getState().user;
-    console.log(aaa);
-    console.log(document.getElementById(`first_name`));
-    this.children.firstnameinput.setProps({ value: aaa.first_name });
-  }*/
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  /*componentDidUpdate(oldProps: any, newProps: any) {
-    console.log('renew');
-    console.log(this.children.button);
-      const aaa = store.getState().user;
-      console.log(this.children.firstnameinput);
-      console.log(aaa);
-
-    return true;
-  }*/
-
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  /*componentDidUpdate(oldProps: any, newProps: any) {
-    console.log('renew');
-
-    if (!isEqual(oldProps, newProps)) {
-      console.log('renew22');
-      //this.children.firstnameinput.setProps({ title: newProps.user.first_name });
-      //this.children.firstnameinput.setProps({ value: newProps.user.first_name });
-    }
-    return isEqual(oldProps, newProps);
-  }
-
-  componentDidMount() {
-    console.log('mount');
-      //this.children.firstnameinput.setProps({ title: newProps.user.first_name });
-      //this.children.firstnameinput.setProps({ value: newProps.user.first_name });
-
-  }*/
 
   render() {
     return ProfilePageRaw;

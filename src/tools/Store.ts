@@ -64,11 +64,6 @@ const createStore = <S>(reducer: TReducer<S>, initialState: S): IStore<S> => {
   };
 };
 
-const setTextAction = {
-  type: 'SET_TEXT',
-  buttonText: ''
-};
-
 const store = Object.freeze(createStore(reducer, state));
 
 export default store;

@@ -42,7 +42,7 @@ export default class Block {
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(
       Block.EVENTS.FLOW_CDU,
-      this.componentDidUpdate.bind(this) as (...args: unknown[]) => void
+      this._componentDidUpdate.bind(this) as (...args: unknown[]) => void
     );
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
@@ -111,7 +111,6 @@ export default class Block {
     });
     return { children, props, lists };
   }
-
 
   addAttributes(): void {
     const {attr = {}} = this.props;

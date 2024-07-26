@@ -6,6 +6,7 @@ import { RegisterAPI } from '../../api/auth-api';
 import HTTPTransport, { TOptions } from '../../utils/api';
 import store from '../../tools/Store';
 import Router from '../../tools/Router';
+import cloneDeep from '../../utils/clone-deep';
 
 interface Props {
   [key: string]: string;
@@ -37,10 +38,75 @@ export class Button extends Block {
           });
 
           if (document.querySelector(`.button__profile`)) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const aaa: HTMLInputElement[] = [];
             inputs.forEach((item) => {
+              if (item.name !=="newPassword" && item.name !== 'avatar' && item.name !== 'search' && item.name !== 'message' && item.name !== 'password') {
+                aaa.push(item)
+              }
+            })
+            console.log(aaa);
+            aaa.forEach((item) => {
               validateProfileItem(item);
             });
-          };
+            const res1: MyType = {};
+            aaa.forEach((item) => {
+              res1[item.name] = item.value;
+            });
+            res1.display_name = `${res1.first_name} ${res1.second_name}`;
+            /*res1.id = storeData.user.id;
+            res1.avatar = '';*/
+            console.log(res1);
+            return new HTTPTransport()
+            .post('https://ya-praktikum.tech/api/v2/user/profile', {
+              credentials: 'include',
+              mode: 'cors',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              data: res1
+            })
+            .then((xhr) => {
+              const rawResponse = (xhr as XMLHttpRequest).responseText;
+              if (typeof rawResponse === 'string') {
+                return rawResponse;
+              }
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const response = JSON.parse(rawResponse) as any;
+              return response;
+            })
+            .then((response) => {
+              if (response === "OK") {
+                return new HTTPTransport()
+              .get('https://ya-praktikum.tech/api/v2/auth/user', {
+                credentials: 'include',
+                mode: 'cors',
+                withCredentials: true
+              })
+              .then((xhr) => {
+                const rawResponse = (xhr as XMLHttpRequest).responseText;
+                if (typeof rawResponse === 'string') {
+                  console.log(rawResponse);
+                  return JSON.parse(rawResponse);
+                }
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                const response1 = JSON.parse(rawResponse) as any;
+                console.log(response1);
+                return response1;
+              })
+              .then((resss) => {
+                if (resss) {
+                  store.dispatch({
+                    type: 'SET_USER',
+                    user: resss
+                  });
+                  console.log(store.getState());
+                }
+              })
+          }})}
+
+
+
           if (document.querySelector(`.button__login`)) {
             inputs.forEach((item) => {
               validateItem(item);
@@ -61,13 +127,10 @@ export class Button extends Block {
               }
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               const response = JSON.parse(rawResponse) as any;
-              console.log(response);
               return response;
             })
             .then((response) => {
-              console.log(response);
               if (response === "OK") {
-                console.log('OK + next');
                 return new HTTPTransport()
               .get('https://ya-praktikum.tech/api/v2/auth/user', {
                 credentials: 'include',
@@ -101,8 +164,9 @@ export class Button extends Block {
             }
           })
           };
+
+
           if (document.querySelector(`.button__register`)) {
-            //let aaa = false;
             inputs.forEach((item) => {
               validateItem(item);
             });
@@ -164,14 +228,6 @@ export class Button extends Block {
           }
         })
           } 
-          /*const options = {
-            credentials: 'include',
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            data: res
-          };*/
           
         },
       },
@@ -181,7 +237,3 @@ export class Button extends Block {
     return ButtonRaw;
   }
 }
-
-/*
-
-*/

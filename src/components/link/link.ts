@@ -31,6 +31,9 @@ export class Link extends Block {
           if (props.page === "chat") {
             router.go("/messenger")
           };
+          if (props.page === "back") {
+            router.back()
+          };
         },
       },
     });

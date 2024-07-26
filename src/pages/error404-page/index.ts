@@ -9,7 +9,7 @@ export class Error404Page extends Block {
       title: new Title({ title: "Common ", span: "chat" }),
       errorfield: new ErrorField({ text: "Error 404" }), 
       link1: new Link({ text: "No such page. Sorry(" }),
-      link2: new Link({ page: "login", link: "Go back and try again" }),
+      link2: new Link({ page: "back", link: "Go back and try again" }),
       logo: new Logo({ }),
     });
   }
