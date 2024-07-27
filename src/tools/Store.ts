@@ -11,6 +11,7 @@ type TSubscriber<S> = (state: S) => void;
 interface IState {
   [key: string]: any;
 }
+
 const state: IState = {
   buttonText: 'Initial text',
   user: {
@@ -23,6 +24,7 @@ const state: IState = {
     second_name: "",
   },
   first_name: '',
+  chats: null,
 };
 
 interface IStore<S> {
@@ -33,7 +35,7 @@ interface IStore<S> {
 
 const reducer: TReducer<IState> = (state, action) => {
   const newState: IState = cloneDeep(state);
-  if(action.type === 'SET_TEXT') {
+  if (action.type === 'SET_TEXT') {
     console.log('SET_TEXT')
     newState.buttonText = action.buttonText;
     return newState;
@@ -41,6 +43,10 @@ const reducer: TReducer<IState> = (state, action) => {
     console.log('SET_USER')
     newState.user = action.user;
     newState.first_name = action.user.first_name;
+    return newState;
+  } else if (action.type === 'SET_CHATS') {
+    console.log('SET_CHATS')
+    newState.chats = action.chats;
     return newState;
   } else {
     return state;

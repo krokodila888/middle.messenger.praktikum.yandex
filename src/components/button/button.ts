@@ -62,10 +62,12 @@ export class Button extends Block {
             .post('https://ya-praktikum.tech/api/v2/user/profile', {
               credentials: 'include',
               mode: 'cors',
+              withCredentials: true,
               headers: {
                 'Content-Type': 'application/json',
               },
               data: res1
+              
             })
             .then((xhr) => {
               const rawResponse = (xhr as XMLHttpRequest).responseText;
@@ -107,8 +109,6 @@ export class Button extends Block {
           }})
         }
 
-
-
           if (document.querySelector(`.button__login`)) {
             console.log(`.button__login`);
             inputs.forEach((item) => {
@@ -135,38 +135,61 @@ export class Button extends Block {
             .then((response) => {
               if (response === "OK") {
                 return new HTTPTransport()
-              .get('https://ya-praktikum.tech/api/v2/auth/user', {
-                credentials: 'include',
-                mode: 'cors',
-                withCredentials: true
-              })
-              .then((xhr) => {
-                const rawResponse = (xhr as XMLHttpRequest).responseText;
-                if (typeof rawResponse === 'string') {
-                  console.log(rawResponse);
-                  return JSON.parse(rawResponse);
-                }
+                  .get('https://ya-praktikum.tech/api/v2/auth/user', {
+                    credentials: 'include',
+                    mode: 'cors',
+                    withCredentials: true
+                  })
+                  .then((xhr) => {
+                    const rawResponse = (xhr as XMLHttpRequest).responseText;
+                    if (typeof rawResponse === 'string') {
+                      return JSON.parse(rawResponse);
+                    }
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const response1 = JSON.parse(rawResponse) as any;
-                console.log(response1);
-                return response1;
-              })
-              .then((resss) => {
-                if (resss) {
-                  store.dispatch({
-                    type: 'SET_USER',
-                    user: resss
-                  });
-                  console.log(store.getState());
-                }
-              })
-            .then(() => {
-              const router = new Router("app");
-              router.go("/messenger")
-            })
-            }
-          })
-          };
+                    const response1 = JSON.parse(rawResponse) as any;
+                    console.log(response1);
+                    return response1;
+                  })
+                  .then((resss) => {
+                    if (resss) {
+                      store.dispatch({
+                        type: 'SET_USER',
+                        user: resss
+                      });
+                      console.log(store.getState());
+                    }
+                      return new HTTPTransport()
+                        .get('https://ya-praktikum.tech/api/v2/chats', {
+                          credentials: 'include',
+                          mode: 'cors',
+                          withCredentials: true
+                        })
+                        .then((xhr) => {
+                          const rawResponse = (xhr as XMLHttpRequest).responseText;
+                          if (typeof rawResponse === 'string') {
+                            return JSON.parse(rawResponse);
+                          }
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          const response2 = JSON.parse(rawResponse) as any;
+                          console.log(response2);
+                          return response2;
+                        })
+                        .then((resss) => {
+                          if (resss) {
+                            store.dispatch({
+                              type: 'SET_CHATS',
+                              chats: resss
+                            });
+                            console.log(store.getState());
+                          }
+                        })
+                .then(() => {
+                  const router = new Router("app");
+                  router.go("/messenger")
+                })
+              }
+            )} })
+            };
 
 
           if (document.querySelector(`.button__register`)) {
