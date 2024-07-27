@@ -38,6 +38,7 @@ export class Button extends Block {
           });
 
           if (document.querySelector(`.button__profile`)) {
+            console.log(`.button__profile`);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const aaa: HTMLInputElement[] = [];
             inputs.forEach((item) => {
@@ -103,11 +104,13 @@ export class Button extends Block {
                   console.log(store.getState());
                 }
               })
-          }})}
+          }})
+        }
 
 
 
           if (document.querySelector(`.button__login`)) {
+            console.log(`.button__login`);
             inputs.forEach((item) => {
               validateItem(item);
             });

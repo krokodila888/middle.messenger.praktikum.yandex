@@ -1,4 +1,4 @@
-import './button.scss';
+import './input-button.scss';
 import Block from '../../tools/Block';
 import InputButtonRaw from './input-button.hbs?raw';
 import { validateProfileItem } from '../../utils/validation';
