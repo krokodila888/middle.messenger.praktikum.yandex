@@ -82,9 +82,9 @@ export class InputButton extends Block {
               mode: 'cors',
               withCredentials: true,
               data: formdata,
-              headers: {
+              /*headers: {
                 'Content-Type': 'multipart/form-data',
-              },
+              },*/
             })
             .then((xhr) => {
               const rawResponse = (xhr as XMLHttpRequest).responseText;
