@@ -100,7 +100,7 @@ export default class HTTPTransport {
     if (isGet || !data) {
       xhr.send();
     } else if (data instanceof FormData) {
-      xhr.send(data) 
+      xhr.send(data as FormData) 
     } else {
       xhr.send(JSON.stringify(data));
     }

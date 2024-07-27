@@ -65,15 +65,15 @@ export class InputButton extends Block {
            }
         if ((e.target as HTMLElement)!.id === 'avatarButton')  {
           e.preventDefault();
-          const avatar = document.getElementById('avatar') as HTMLInputElement;
           const form = document.querySelector('.fileinput-profile-field__input-raw');
-          const formdata = new FormData(form as HTMLFormElement);
-          
-
+          const formdata = new FormData(document.createElement('form') as HTMLFormElement);
           const input = (<HTMLInputElement>document.querySelector('input[type="file"]'));
           if (input !== null && input instanceof HTMLInputElement && input.files) {
             console.log('+ file');
-            formdata.append('file', input.files[0], input.files[0].name);
+            console.log(formdata);
+
+            formdata.append('avatar', input.files[0], input.files[0].name);
+            console.log(formdata.get('avatar'));
             //formdata.append('file', input, input.files[0].name);
           }
           return new HTTPTransport()
@@ -81,7 +81,10 @@ export class InputButton extends Block {
               credentials: 'include',
               mode: 'cors',
               withCredentials: true,
-              body: formdata,
+              data: formdata,
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
             })
             .then((xhr) => {
               const rawResponse = (xhr as XMLHttpRequest).responseText;
