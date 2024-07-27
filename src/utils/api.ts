@@ -25,7 +25,7 @@ export type TOptions = {
   cache?: "default" | "no-store" | "reload" | "no-cache" | "force-cache" | "only-if-cached";
   signal?: unknown;
   timeout?: number;
-  data?: Record<string, unknown>;
+  data?: Record<string, unknown> | FormData;
   withCredentials?: boolean;
 };
 
@@ -77,7 +77,7 @@ export default class HTTPTransport {
 
     xhr.open(
       method, 
-      isGet && !!data
+      isGet && !!data && !(data instanceof FormData) 
       ? `${url}${queryStringify(data)}`
       : url,
     );
@@ -99,6 +99,8 @@ export default class HTTPTransport {
 
     if (isGet || !data) {
       xhr.send();
+    } else if (data instanceof FormData) {
+      xhr.send(data) 
     } else {
       xhr.send(JSON.stringify(data));
     }
