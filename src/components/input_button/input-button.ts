@@ -69,21 +69,17 @@ export class InputButton extends Block {
           const form = document.querySelector('.fileinput-profile-field__input-raw');
           const formdata = new FormData(form as HTMLFormElement);
 
-
           const input = (<HTMLInputElement>document.querySelector('input[type="file"]'));
           if (input !== null && input instanceof HTMLInputElement && input.files) {
-            console.log ('file');
-            console.log()
+            console.log (input.files[0]);
+            console.log (input);
             formdata.append('file', input.files[0]);
+            console.log(formdata);
           }
           return new HTTPTransport()
             .put('https://ya-praktikum.tech/api/v2/user/profile/avatar', {
               credentials: 'include',
               mode: 'cors',
-              withCredentials: true,
-              headers: {
-                'Content-Type': 'multipart/form-data',
-              },
               body: formdata
             })
             .then((xhr) => {
