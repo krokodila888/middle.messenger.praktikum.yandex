@@ -29,6 +29,7 @@ export class Button extends Block {
         click: (e: SubmitEvent) => {
           e.preventDefault();
           const inputs = document.querySelectorAll('input');
+          console.log(inputs);
           type MyType = {
             [key: string]: string;
           };

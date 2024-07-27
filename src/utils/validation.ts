@@ -93,14 +93,18 @@ function profileButtonValidation() {
     };
   });
   if (inputsAreValid) {
-    button?.classList.remove('button__profile_disabled');
+
     if (button instanceof HTMLButtonElement) {
+      console.log('val')
+      button!.classList.remove('button__profile_disabled');
       button!.disabled = false;
     };
   }
   if (!inputsAreValid) {
-    button?.classList.add('button__profile_disabled');
+    
     if (button instanceof HTMLButtonElement) {
+      console.log('val')
+      button!.classList.add('button__profile_disabled');
       button!.disabled = true;
     }
   }
@@ -145,7 +149,7 @@ export function validate(e: Event) {
       document.getElementById(`span_${e.target.name}`)?.classList.remove('inputfield__span_invalid');
       document.getElementById(`span_${e.target.name}`)?.classList.add('inputfield__span_valid');
       e.target.classList.remove('input__invalid');
-      profileButtonValidation()
+      buttonValidation()
     }
   }
 };
