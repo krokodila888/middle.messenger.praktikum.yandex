@@ -18,3 +18,5 @@ export { InterlocutorItem } from './interlocutor-item/interlocutor-item';
 export { InputField } from './input-field/input-field';
 export { InputProfileField } from './input-profile-field/input-profile-field';
 export { InputButton } from './input_button/input-button';
+export { ProfileFileInput } from './profile-file-input/profile-file-input';
+export { FileInputProfileField} from './fileinput-profile-field/fileinput-profile-field'

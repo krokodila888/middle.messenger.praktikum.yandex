@@ -10,24 +10,40 @@
   background:url("/assets/edit-icon.png");
   background-size: cover;
   border-radius: 50%;
+  border: none;
 
   @include shadow-inside;
 
 
   &:hover {
     transition: 0.4s ease;
-
-    @include shadow-small
+    box-shadow: none;
+    //@include shadow-small
   }
 
-  &__disabled {
-    box-shadow: none;
+  &_disabled {
     cursor: auto;
-    opacity: 0.7;
+    opacity: 0.2;
+    box-shadow: none;
 
     &:hover {
       box-shadow: none;
-      transition: 0.6s;
+      cursor: auto;
+      opacity: 0.2;
+      box-shadow: none;
     }
+  }
+}
+
+.input-button__icon_disabled {
+    cursor: auto;
+    opacity: 0.2;
+    box-shadow: none;
+
+    &:hover {
+      box-shadow: none;
+      cursor: auto;
+      opacity: 0.2;
+      box-shadow: none;
   }
 }

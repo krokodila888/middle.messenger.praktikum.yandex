@@ -48,6 +48,10 @@ const reducer: TReducer<IState> = (state, action) => {
     console.log('SET_CHATS')
     newState.chats = action.chats;
     return newState;
+  } else if (action.type === 'SET_PASSWORD') {
+    console.log('SET_PASSWORD')
+    newState.user.password = action.password;
+    return newState;
   } else {
     return state;
   }

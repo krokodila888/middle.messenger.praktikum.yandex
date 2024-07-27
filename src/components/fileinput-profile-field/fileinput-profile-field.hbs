@@ -1,0 +1,13 @@
+<label for="{{ name }}" class="fileinput-profile-field">
+  <form class="fileinput-profile-field__input-raw {{#if classNameForInput}} {{classNameForInput}}{{/if}}">
+  <p class="fileinput-profile-field__title">{{ title }}</p>
+  {{{ inputFile }}}
+  {{{ buttonDiv }}}
+  </form>
+  <span
+    class="fileinput-profile-field__span fileinput-profile-field__span_valid {{spanclass}}"
+    id="{{spanid}}">
+    {{errormessage}}
+  </span>
+</label>
+

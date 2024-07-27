@@ -45,8 +45,7 @@ export class Button extends Block {
               if (item.name !=="newPassword" && item.name !== 'avatar' && item.name !== 'search' && item.name !== 'message' && item.name !== 'password') {
                 aaa.push(item)
               }
-            })
-            console.log(aaa);
+            });
             aaa.forEach((item) => {
               validateProfileItem(item);
             });
@@ -59,7 +58,7 @@ export class Button extends Block {
             res1.avatar = '';*/
             console.log(res1);
             return new HTTPTransport()
-            .post('https://ya-praktikum.tech/api/v2/user/profile', {
+            .put('https://ya-praktikum.tech/api/v2/user/profile', {
               credentials: 'include',
               mode: 'cors',
               withCredentials: true,
@@ -72,31 +71,14 @@ export class Button extends Block {
             .then((xhr) => {
               const rawResponse = (xhr as XMLHttpRequest).responseText;
               if (typeof rawResponse === 'string') {
-                return rawResponse;
+                console.log(JSON.parse(rawResponse));
+                return JSON.parse(rawResponse);
               }
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              const response = JSON.parse(rawResponse) as any;
-              return response;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const response1 = JSON.parse(rawResponse) as any;
+              console.log(response1);
+              return response1;
             })
-            .then((response) => {
-              if (response === "OK") {
-                return new HTTPTransport()
-              .get('https://ya-praktikum.tech/api/v2/auth/user', {
-                credentials: 'include',
-                mode: 'cors',
-                withCredentials: true
-              })
-              .then((xhr) => {
-                const rawResponse = (xhr as XMLHttpRequest).responseText;
-                if (typeof rawResponse === 'string') {
-                  console.log(rawResponse);
-                  return JSON.parse(rawResponse);
-                }
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const response1 = JSON.parse(rawResponse) as any;
-                console.log(response1);
-                return response1;
-              })
               .then((resss) => {
                 if (resss) {
                   store.dispatch({
@@ -106,14 +88,14 @@ export class Button extends Block {
                   console.log(store.getState());
                 }
               })
-          }})
-        }
+           }
 
           if (document.querySelector(`.button__login`)) {
             console.log(`.button__login`);
             inputs.forEach((item) => {
               validateItem(item);
             });
+            console.log(res);
             return new HTTPTransport()
             .post('https://ya-praktikum.tech/api/v2/auth/signin', {
               credentials: 'include',

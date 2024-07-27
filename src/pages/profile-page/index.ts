@@ -1,6 +1,6 @@
 import './profile-page.scss';
 import Block from '../../tools/Block';
-import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link } from '../../components';
+import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link, FileInputProfileField } from '../../components';
 import ProfilePageRaw from './profile-page.hbs?raw';
 
 type TUser = {
@@ -94,22 +94,36 @@ export class ProfilePage extends Block {
         spanclass: "span_profile_phone",
         spanid: "span_profile_phone",
       }),
-      avatarInput: new InputProfileField({
+      avatarInput: new FileInputProfileField({
         className: "profile-page__input", 
         placeholder: "Avatar", 
         name: "avatar",
-        value: "",
+        //value: "",
         title: "Avatar:",
-        disabled: "disabled",
-        readonly: "readonly",
+        /*disabled: "disabled",
+        readonly: "readonly",*/
         span: 'edit',
+        spanident: 'avatarButton',
+      }),
+      oldpasswordinput: new InputProfileField({
+        className: "profile-page__input",
+        placeholder: "Old password",
+        name: "oldPassword",
+        type: "password",
+        min: "8",
+        max: "40",
+        title: "Change password:",
+        autocomplete: "password",
+        errormessage: "От 8 до 40 символов (обязательна хотя бы одна заглавная буква и цифра)",
+        spanclass: "span_profile_oldPassword",
+        spanid: "span_profile_oldPassword",
       }),
       newpasswordinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "New password",
         name: "newPassword",
         type: "password",
-        title: "Change password:",
+        title: "",
         min: "8",
         max: "40",
         autocomplete: "new-password",
@@ -117,6 +131,8 @@ export class ProfilePage extends Block {
         spanclass: "span_profile_newPassword",
         spanid: "span_profile_newPassword",
         span: 'edit',
+        spanident: 'newPasswordButton',
+        classNameForInput: 'input-profile-field__input-last-raw',
       }),
       button: new Button({
         text: "Save changes",

@@ -1,17 +1,17 @@
-import './input-profile-field.scss';
-import InputProfileFieldRaw from './input-profile-field.hbs?raw';
+import './fileinput-profile-field.scss';
+import FileInputProfileFieldRaw from './fileinput-profile-field.hbs?raw';
 import Block from '../../tools/Block';
-import { ProfileInput, InputButton } from '../../components';
+import { InputButton, ProfileFileInput } from '..';
 
 interface Props {
   [key: string]: string;
 }
 
-export class InputProfileField extends Block {
+export class FileInputProfileField extends Block {
   constructor(props: Props) {
     super({
       ...props,
-        input: new ProfileInput({
+        inputFile: new ProfileFileInput({
           className: props.className,
           placeholder: props.placeholder,
           name: props.name,
@@ -32,8 +32,6 @@ export class InputProfileField extends Block {
       })
     }
   render() {
-    return InputProfileFieldRaw;
+    return FileInputProfileFieldRaw;
   }
 }
-
-//{{{ buttonDiv }}}

@@ -1,12 +1,13 @@
 import './input-button.scss';
 import Block from '../../tools/Block';
 import InputButtonRaw from './input-button.hbs?raw';
-import { validateProfileItem } from '../../utils/validation';
+import { validateProfilePassword } from '../../utils/validation';
 import { RegisterAPI } from '../../api/auth-api';
 import HTTPTransport, { TOptions } from '../../utils/api';
 import store from '../../tools/Store';
 import Router from '../../tools/Router';
 import cloneDeep from '../../utils/clone-deep';
+import { anyBigLetterPattern, anyDigitPattern } from '../../utils/constants';
 
 interface Props {
   [key: string]: string;
@@ -26,92 +27,80 @@ export class InputButton extends Block {
   constructor(props: Props) {
     super({ ...props,
       events: {
-        click: (e: SubmitEvent) => {
+        click: (e: Event) => {
+          if ((e.target as HTMLElement)!.id === 'newPasswordButton') {
+          console.log(e.target);
+          const input1 = document.getElementById('newPassword') as HTMLInputElement;
+          const input2 = document.getElementById('oldPassword') as HTMLInputElement;
           e.preventDefault();
-          /*const input1 = document.getElementsByName(props.name);
-          let isValid;
-          if (input1[0].name === 'newPassword') {
-            isValid = (i.value === '' || (i.validity.valid && anyBigLetterPattern.test(i.value) && anyDigitPattern.test(i.value)))
+          console.log('input-button');
+          validateProfilePassword(e, input1);
+          validateProfilePassword(e, input2);
+          const res = {
+            oldPassword: input2.value,
+            newPassword: input1.value,
           };
-
-          const inputs = document.querySelectorAll('input');
-          type MyType = {
-            [key: string]: string;
-          };
-          const res: MyType = {};
-          inputs.forEach((item) => {
-            res[item.name] = item.value;
-          });
-
-          if (document.querySelector(`.button__profile`)) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const aaa: HTMLInputElement[] = [];
-            inputs.forEach((item) => {
-              if (item.name !=="newPassword" && item.name !== 'avatar' && item.name !== 'search' && item.name !== 'message' && item.name !== 'password') {
-                aaa.push(item)
-              }
-            })
-            console.log(aaa);
-            aaa.forEach((item) => {
-              validateProfileItem(item);
-            });
-            const res1: MyType = {};
-            aaa.forEach((item) => {
-              res1[item.name] = item.value;
-            });
-            res1.display_name = `${res1.first_name} ${res1.second_name}`;
-            /*res1.id = storeData.user.id;
-            res1.avatar = '';*/
-            /*console.log(res1);
-            return new HTTPTransport()
-            .post('https://ya-praktikum.tech/api/v2/user/profile', {
+          console.log(res);
+          return new HTTPTransport()
+            .put('https://ya-praktikum.tech/api/v2/user/password', {
               credentials: 'include',
               mode: 'cors',
+              withCredentials: true,
               headers: {
                 'Content-Type': 'application/json',
               },
-              data: res1
+              data: res
             })
             .then((xhr) => {
               const rawResponse = (xhr as XMLHttpRequest).responseText;
               if (typeof rawResponse === 'string') {
-                return rawResponse;
+                console.log(JSON.parse(rawResponse));
+                return JSON.parse(rawResponse);
               }
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              const response = JSON.parse(rawResponse) as any;
-              return response;
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const response1 = JSON.parse(rawResponse) as any;
+              console.log(response1);
+              return response1;
             })
-            .then((response) => {
-              if (response === "OK") {
-                return new HTTPTransport()
-              .get('https://ya-praktikum.tech/api/v2/auth/user', {
-                credentials: 'include',
-                mode: 'cors',
-                withCredentials: true
-              })
-              .then((xhr) => {
-                const rawResponse = (xhr as XMLHttpRequest).responseText;
-                if (typeof rawResponse === 'string') {
-                  console.log(rawResponse);
-                  return JSON.parse(rawResponse);
-                }
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                const response1 = JSON.parse(rawResponse) as any;
-                console.log(response1);
-                return response1;
-              })
-              .then((resss) => {
-                if (resss) {
-                  store.dispatch({
-                    type: 'SET_USER',
-                    user: resss
-                  });
-                  console.log(store.getState());
-                }
-              })
-          }})}
-      },*/
-  }}});
+           }
+        if ((e.target as HTMLElement)!.id === 'avatarButton')  {
+          e.preventDefault();
+          const avatar = document.getElementById('avatar') as HTMLInputElement;
+          const form = document.querySelector('.fileinput-profile-field__input-raw');
+          const formdata = new FormData(form as HTMLFormElement);
+
+
+          const input = (<HTMLInputElement>document.querySelector('input[type="file"]'));
+          if (input !== null && input instanceof HTMLInputElement && input.files) {
+            console.log ('file');
+            console.log()
+            formdata.append('file', input.files[0]);
+          }
+          return new HTTPTransport()
+            .put('https://ya-praktikum.tech/api/v2/user/profile/avatar', {
+              credentials: 'include',
+              mode: 'cors',
+              withCredentials: true,
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+              body: formdata
+            })
+            .then((xhr) => {
+              const rawResponse = (xhr as XMLHttpRequest).responseText;
+              if (typeof rawResponse === 'string') {
+                console.log(JSON.parse(rawResponse));
+                return JSON.parse(rawResponse);
+              }
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              const response1 = JSON.parse(rawResponse) as any;
+              console.log(response1);
+              return response1;
+            })
+          }
+        }
+        }          
+        })
   }
   render() {
     return InputButtonRaw;

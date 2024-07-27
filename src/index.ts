@@ -75,21 +75,6 @@ const connectedProfilePage = connect(Pages.ProfilePage, (st: any) => {
         spanclass: "span_profile_phone",
         spanid: "span_profile_phone",
       }),
-      newpasswordinput: new InputProfileField({
-        className: "profile-page__input",
-        placeholder: "New password",
-        name: "newPassword",
-        type: "password",
-        value: st.user.password,
-        title: "Change password:",
-        min: "8",
-        max: "40",
-        autocomplete: "new-password",
-        errormessage: "От 8 до 40 символов (обязательна хотя бы одна заглавная буква и цифра)",
-        spanclass: "span_profile_newPassword",
-        spanid: "span_profile_newPassword",
-        span: 'edit',
-      }),
     }
   }
 }) as unknown as typeof Block;

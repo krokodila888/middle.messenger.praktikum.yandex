@@ -104,25 +104,6 @@ export class RegisterPage extends Block {
         text: "И вот еще ", 
         link: "Ошибка 5**", 
       }),
-      /*events: {
-        submit: (e: SubmitEvent) => {
-          e.preventDefault();
-          const signupAPI = new SignupAPI; 
-          const reg = new RegisterAPI;
-          const inputs = document.querySelectorAll('input');
-          type MyType = {
-            [key: string]: boolean;
-          };
-          const res: MyType = {};
-          inputs.forEach((item) => {
-            res[item.name] = item.validity.valid;
-          });
-          console.log(res);
-          if (res.email && res.phone && res.login && res.password && res.first_name && res.second_name) {
-            reg.request(res as unknown as TSignupRequest);
-          }
-        }
-      },*/
     });
   }
 
