@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Router from '../tools/Router';
 import store from '../tools/Store';
-import { TSigninRequest, TSigninResponse, TUserDataResponce, TChatInfo } from '../types/types';
+import { TSigninRequest, TSigninResponse, TUserDataResponce, TChatInfo, TErrorMessage } from '../types/types';
 import HTTPTransport from '../utils/api';
 import { BaseAPI } from './baze-api';
 
@@ -40,13 +40,20 @@ export default class SigninAPI extends BaseAPI {
             return response;
           })
           .then((response) => {
-            if (response) {
+            if (response.reason) {
+              store.dispatch({
+                type: 'SET_USER_ERROR',
+                error: response
+              })
+            }
+            else {
               store.dispatch({
                 type: 'SET_USER',
                 user: response
               });
               console.log(store.getState());
             }
+            console.log(store.getState());
             return getchatsAPIInstance
             .get('https://ya-praktikum.tech/api/v2/chats', {
               credentials: 'include',
@@ -55,17 +62,30 @@ export default class SigninAPI extends BaseAPI {
             })
             .then((xhr) => {
               const rawResponse = (xhr as XMLHttpRequest).responseText;
-              const response = JSON.parse(rawResponse) as (TChatInfo[] | []);
+              const response = JSON.parse(rawResponse) as (TChatInfo[] | [] | TErrorMessage);
               return response;
             })
             .then((response) => {
-              if (response) {
+              /*if (response) {
                 store.dispatch({
                   type: 'SET_CHATS',
                   chats: response
                 });
                 console.log(store.getState());
-              }
+              }*/
+                if ((response as TErrorMessage).reason ) {
+                  store.dispatch({
+                    type: 'SET_CHATS_ERROR',
+                    error: response
+                  });
+                  console.log(store.getState());
+                } else {
+                  store.dispatch({
+                    type: 'SET_CHATS',
+                    chats: response
+                  });
+                  console.log(store.getState());
+                }
             })
             .then(() => {
               const router = new Router("app");

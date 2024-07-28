@@ -41,7 +41,6 @@ class Route {
     if (!this.block) {
         this.block = new this.blockClass({});
         this.block.preRender();
-        //есть подозрение, что тут пререндер. Иметь в виду, если не заведется
         render(this.props.rootQuery, this.block!);
         return;
     }

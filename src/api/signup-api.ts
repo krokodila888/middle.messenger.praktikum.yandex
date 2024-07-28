@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import Router from '../tools/Router';
 import store from '../tools/Store';
-import { TSigninRequest, TUserDataResponce, TChatInfo, TSignupResponse, TUserRequest } from '../types/types';
+import { TUserDataResponce, TChatInfo, TSignupResponse, TUserRequest, TErrorMessage } from '../types/types';
 import HTTPTransport from '../utils/api';
 import { BaseAPI } from './baze-api';
 
 const signupAPIInstance = new HTTPTransport();
-const getuserAPIInstance = new HTTPTransport();
-const getchatsAPIInstance = new HTTPTransport();
+const getuserAPIInstance1 = new HTTPTransport();
+const getchatsAPIInstance1 = new HTTPTransport();
 
 export default class SignupAPI extends BaseAPI {
   request(user: TUserRequest) {
@@ -30,8 +30,8 @@ export default class SignupAPI extends BaseAPI {
             error: response
           });
         }
-        if (response.id) {
-          return getuserAPIInstance
+        /*if (response.id) {
+          return getuserAPIInstance1
           .get('https://ya-praktikum.tech/api/v2/auth/user', {
             credentials: 'include',
             mode: 'cors',
@@ -43,14 +43,20 @@ export default class SignupAPI extends BaseAPI {
             return response;
           })
           .then((response) => {
-            if (response) {
+            if (response.reason) {
+              store.dispatch({
+                type: 'SET_USER_ERROR',
+                error: response
+              })
+            }
+            else {
               store.dispatch({
                 type: 'SET_USER',
                 user: response
               });
               console.log(store.getState());
             }
-            return getchatsAPIInstance
+            return getchatsAPIInstance1
             .get('https://ya-praktikum.tech/api/v2/chats', {
               credentials: 'include',
               mode: 'cors',
@@ -58,11 +64,17 @@ export default class SignupAPI extends BaseAPI {
             })
             .then((xhr) => {
               const rawResponse = (xhr as XMLHttpRequest).responseText;
-              const response = JSON.parse(rawResponse) as (TChatInfo[] | []);
+              const response = JSON.parse(rawResponse) as (TChatInfo[] | [] | {reason: string} );
               return response;
             })
             .then((response) => {
-              if (response) {
+              if ((response as TErrorMessage).reason ) {
+                store.dispatch({
+                  type: 'SET_CHATS_ERROR',
+                  error: response
+                });
+                console.log(store.getState());
+              } else {
                 store.dispatch({
                   type: 'SET_CHATS',
                   chats: response
@@ -75,7 +87,7 @@ export default class SignupAPI extends BaseAPI {
               router.go("/messenger")
             })
         }
-      )}
+      )}*/
     })
   }
 }

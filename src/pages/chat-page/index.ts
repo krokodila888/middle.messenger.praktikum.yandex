@@ -11,7 +11,9 @@ export class ChatPage extends Block {
       searchinput: new SearchInput({
         name: "search",
       }),
-      chaticon: new ChatIcon({ }),
+      chaticon: new ChatIcon({
+        src: `/assets/avatar.png`
+      }),
       linktologin: new Link({
         page: "login", 
         link: "Back to login",

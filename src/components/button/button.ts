@@ -29,7 +29,10 @@ export class Button extends Block {
       events: {
         click: (e: SubmitEvent) => {
           e.preventDefault();
-          const inputs = document.querySelectorAll('input');
+
+          if (document.querySelector(`.button__profile`)) {
+            console.log(`.button__profile`);
+            const inputs = document.querySelectorAll('input');
           console.log(inputs);
           type MyType = {
             [key: string]: string;
@@ -38,9 +41,6 @@ export class Button extends Block {
           inputs.forEach((item) => {
             res[item.name] = item.value;
           });
-
-          if (document.querySelector(`.button__profile`)) {
-            console.log(`.button__profile`);
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             const aaa: HTMLInputElement[] = [];
             inputs.forEach((item) => {
@@ -90,6 +90,16 @@ export class Button extends Block {
            }
 
           if (document.querySelector(`.button__login`)) {
+            console.log(`.button__login`);
+            const inputs = document.querySelectorAll('input');
+          console.log(inputs);
+          type MyType = {
+            [key: string]: string;
+          };
+          const res: MyType = {};
+          inputs.forEach((item) => {
+            res[item.name] = item.value;
+          });
             inputs.forEach((item) => {
               validateItem(item);
             });
@@ -98,6 +108,16 @@ export class Button extends Block {
           };
 
           if (document.querySelector(`.button__register`)) {
+            console.log(`.button__register`);
+            const inputs = document.querySelectorAll('input');
+          console.log(inputs);
+          type MyType = {
+            [key: string]: string;
+          };
+          const res: MyType = {};
+          inputs.forEach((item) => {
+            res[item.name] = item.value;
+          });
             inputs.forEach((item) => {
               validateItem(item);
             });

@@ -2,6 +2,7 @@ import * as Pages from './pages';
 import Router from './tools/Router';
 import { connect } from './tools/Hoc';
 import Block from './tools/Block';
+import GetUserAPI from './api/get-user-api';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
@@ -13,7 +14,6 @@ const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
     }
   }
 }) as unknown as typeof Block;
-
 
 const connectedLoginPage = connect(Pages.LoginPage) as unknown as typeof Block;
 const connectedRegisterPage = connect(Pages.RegisterPage) as unknown as typeof Block;
@@ -44,3 +44,5 @@ router
   .use("/error404", connectedError404Page)
   .use("/error500", connectedError500Page)
   .start()
+const getuserapi = new GetUserAPI;
+getuserapi.request();
