@@ -4,6 +4,8 @@ import Router from './tools/Router';
 import { connect } from './tools/Hoc';
 import Block from './tools/Block';
 import GetUserAPI from './api/get-user-api';
+import { ChatItem } from './components';
+import { TChatInfo } from './types/types';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
@@ -11,15 +13,24 @@ const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
   if (st.user.first_name !== '') {
     console.log('update in chats')
     return {
-      avatar: st.user.avatar,
-      lists: {lists: st.chats, lists1: st.currentChat}
+      avatar: st.user.avatar
     }
   }
-  if (st.chats) {
+  if (st.chats !== null) {
+    return {  
+      lists: {lists: st.chats.map((item: TChatInfo) =>
+      { new ChatItem({
+        title: item.title, 
+        last_message: item.last_message.content
+      })
+    }), lists1: st.currentChat}
+    }
+  }
+  /*if (st.chats) {
     return {
       lists: st.chats
     }
-  }
+  }*/
 }) as unknown as typeof Block;
 //errormessage
 

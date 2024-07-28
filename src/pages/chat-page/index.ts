@@ -25,18 +25,9 @@ export class ChatPage extends Block {
       }),
       lists: [
         new ChatItem({
-          title: 'Boss', 
-          last_message: 'Вот поэтому',
-        }),
-        new ChatItem({
-          title: 'Those fellow', 
-          last_message:'Текст текст текст Текст текст текст Текст текст текст Текст текст текст Текст текст текст',
-        }),
-        new ChatItem({
-          title: 'Oleg', 
-          last_message:'Приветики! У нас есть новые правки!!!)))', 
-          avatar: "src/assets/avatar.png",
-        }),
+          title: '', 
+          last_message: '',
+        })
       ],
       lists1: [
         new MessageItem ({
