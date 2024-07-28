@@ -30,6 +30,7 @@ const state: IState = {
   loginError: null,
   getuserError: null,
   getchatsError: null,
+  avatarError: null,
 };
 
 interface IStore<S> {
@@ -76,6 +77,10 @@ const reducer: TReducer<IState> = (state, action) => {
   } else if (action.type === 'SET_CHATS_ERROR') {
     console.log('SET_CHATS_ERROR')
     newState.getchatsError = action.error;
+    return newState;
+  } else if (action.type === 'AVATAR_ERROR') {
+    console.log('AVATAR_ERROR')
+    newState.avatarError = action.error;
     return newState;
   } else {
     return state;

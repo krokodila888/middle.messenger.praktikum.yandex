@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Pages from './pages';
 import Router from './tools/Router';
 import { connect } from './tools/Hoc';
@@ -14,10 +15,30 @@ const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
     }
   }
 }) as unknown as typeof Block;
+//errormessage
 
-const connectedLoginPage = connect(Pages.LoginPage) as unknown as typeof Block;
-const connectedRegisterPage = connect(Pages.RegisterPage) as unknown as typeof Block;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const connectedLoginPage = connect(Pages.LoginPage, (st: any) => {
+  console.log('selector', st);
+  if (st.loginError !== null && st.loginError.reason) {
+    console.log('update in login');
+    return {
+      errormessage: st.loginError.reason,
+      errorclass: 'login-page__span_valid'
+    }
+  }
+}) as unknown as typeof Block;
+
+const connectedRegisterPage = connect(Pages.RegisterPage, (st: any) => {
+  console.log('selector', st);
+  if (st.registerError !== null && st.registerError.reason) {
+    console.log('update in register');
+    return {
+      errormessage: st.registerError.reason,
+      errorclass: 'register-page__span_valid'
+    }
+  }
+}) as unknown as typeof Block;
+
 const connectedProfilePage = connect(Pages.ProfilePage, (st: any) => {
   console.log('selector', st);
   if (st.user.first_name !== '') {
@@ -46,3 +67,7 @@ router
   .start()
 const getuserapi = new GetUserAPI;
 getuserapi.request();
+
+/*console.log(document.querySelectorAll('[style="display: none;"]').forEach((item) => {
+  item.remove();
+}))*/

@@ -14,10 +14,6 @@ export class ChatPage extends Block {
       chaticon: new ChatIcon({
         src: `/assets/avatar.png`
       }),
-      linktologin: new Link({
-        page: "login", 
-        link: "Back to login",
-      }),
       interlocutoritem: new InterlocutorItem({ 
         name: "Boss" 
       }),

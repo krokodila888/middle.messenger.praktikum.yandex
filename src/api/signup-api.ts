@@ -30,7 +30,7 @@ export default class SignupAPI extends BaseAPI {
             error: response
           });
         }
-        /*if (response.id) {
+        if (response.id) {
           return getuserAPIInstance1
           .get('https://ya-praktikum.tech/api/v2/auth/user', {
             credentials: 'include',
@@ -80,14 +80,13 @@ export default class SignupAPI extends BaseAPI {
                   chats: response
                 });
                 console.log(store.getState());
-              }
-            })
-            .then(() => {
-              const router = new Router("app");
-              router.go("/messenger")
-            })
+                const router = new Router("app");
+                router.go("/messenger")
         }
-      )}*/
-    })
+      }
+    )
   }
+      )}
+      }
+  )}
 }

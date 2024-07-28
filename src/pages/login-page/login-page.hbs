@@ -6,9 +6,11 @@
       {{{ passwordinputfield }}}
     </div>
     {{{ button }}}
+    <span
+      class="login-page__span login-page__span_invalid {{#if errorclass}}{{errorclass}}{{/if}}"
+      id="login-error">
+      {{errormessage}}
+    </span>
     {{{ linktoregister }}}
   </form>
-  {{{ link1 }}}
-  {{{ link2 }}}
-  {{{ link3 }}}
 </main>

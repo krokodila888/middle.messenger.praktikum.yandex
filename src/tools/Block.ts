@@ -206,9 +206,16 @@ export default class Block {
 
   show() {
     this.getContent()!.style.display = 'block';
+    /*this.preRender();
+    this._render();
+    return this._element;*/
   }
 
   hide() {
     this.getContent()!.style.display = 'none';
+    console.log(document.querySelectorAll('[style="display: none;"]'));
+    document.querySelectorAll('[style="display: none;"]').forEach((item) => {
+      item.remove();
+    })
   }
 }

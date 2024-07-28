@@ -139,16 +139,6 @@ export class ProfilePage extends Block {
         className: "button__profile",
       }),
       exitbutton: new ExitButton({}),
-      link1: new Link({ 
-        page: "error404",
-        text: "Ошибок быть не может, но вдруг: ",
-        link: "Ошибка 404",
-      }),
-      link2: new Link({ 
-        page: "error500", 
-        text: "И вот еще ", 
-        link: "Ошибка 5**", 
-      }),
     });
   }
 

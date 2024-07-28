@@ -27,7 +27,15 @@ export default class SigninAPI extends BaseAPI {
         return response;
       })
       .then((response) => {
-        if (typeof response === 'string') {
+        //console.log(response);
+        //console.log(response !== 'OK')
+        if (/*typeof response !== 'string' && response.reason*/ response !== 'OK') {
+          store.dispatch({
+            type: 'SET_LOGIN_ERROR',
+            error: JSON.parse(response as string) as TSigninResponse
+          })
+        }
+        if (response === 'OK') {
           return getuserAPIInstance
           .get('https://ya-praktikum.tech/api/v2/auth/user', {
             credentials: 'include',
@@ -52,47 +60,34 @@ export default class SigninAPI extends BaseAPI {
                 user: response
               });
               console.log(store.getState());
-            }
-            console.log(store.getState());
-            return getchatsAPIInstance
-            .get('https://ya-praktikum.tech/api/v2/chats', {
-              credentials: 'include',
-              mode: 'cors',
-              withCredentials: true
-            })
-            .then((xhr) => {
-              const rawResponse = (xhr as XMLHttpRequest).responseText;
-              const response = JSON.parse(rawResponse) as (TChatInfo[] | [] | TErrorMessage);
-              return response;
-            })
-            .then((response) => {
-              /*if (response) {
-                store.dispatch({
-                  type: 'SET_CHATS',
-                  chats: response
-                });
-                console.log(store.getState());
-              }*/
+              console.log(store.getState());
+              return getchatsAPIInstance
+              .get('https://ya-praktikum.tech/api/v2/chats', {
+                credentials: 'include',
+                mode: 'cors',
+                withCredentials: true
+              })
+              .then((xhr) => {
+                const rawResponse = (xhr as XMLHttpRequest).responseText;
+                const response = JSON.parse(rawResponse) as (TChatInfo[] | [] | TErrorMessage);
+                return response;
+              })
+              .then((response) => {
                 if ((response as TErrorMessage).reason ) {
                   store.dispatch({
                     type: 'SET_CHATS_ERROR',
                     error: response
                   });
-                  console.log(store.getState());
                 } else {
                   store.dispatch({
                     type: 'SET_CHATS',
                     chats: response
                   });
                   console.log(store.getState());
-                }
-            })
-            .then(() => {
-              const router = new Router("app");
+                  const router = new Router("app");
               router.go("/messenger")
-            })
-        }
-      )}
+                }
+              })}
     })
   }
-}
+      })}}

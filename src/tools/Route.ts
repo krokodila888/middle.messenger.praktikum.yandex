@@ -38,13 +38,13 @@ class Route {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render() {
-    if (!this.block) {
+    //if (!this.block) {
         this.block = new this.blockClass({});
         this.block.preRender();
         render(this.props.rootQuery, this.block!);
         return;
-    }
-    this.block.show();
+    /*}
+    this.block.show();*/
 }
 }
 
