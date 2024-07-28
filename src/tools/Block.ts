@@ -3,7 +3,7 @@ import Handlebars from "handlebars";
 import {v4 as makeUUID} from 'uuid';
 import { isEqual } from "../utils/is-equal";
 
-interface IProps {
+export interface IProps {
   [key: string]: unknown;
   events?: Record<string, EventListenerOrEventListenerObject>;
 }

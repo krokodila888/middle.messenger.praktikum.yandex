@@ -89,7 +89,6 @@ export class InputButton extends Block {
             .then((xhr) => {
               const rawResponse = (xhr as XMLHttpRequest).responseText;
               if (typeof rawResponse === 'string') {
-                console.log(JSON.parse(rawResponse));
                 return JSON.parse(rawResponse);
               }
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -97,6 +96,14 @@ export class InputButton extends Block {
               console.log(response1);
               return response1;
             })
+            .then((resss) => {
+              if (resss) {
+                store.dispatch({
+                  type: 'SET_USER',
+                  user: resss
+                });
+                console.log(store.getState());
+              }})
           }
         }
         }          

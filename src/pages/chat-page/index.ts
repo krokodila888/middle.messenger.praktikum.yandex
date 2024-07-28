@@ -1,5 +1,5 @@
 import './chat-page.scss';
-import Block from '../../tools/Block';
+import Block, { IProps } from '../../tools/Block';
 import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput } from '../../components';
 import ChatPageRaw from './chat-page.hbs?raw';
 export class ChatPage extends Block {
@@ -68,6 +68,14 @@ export class ChatPage extends Block {
         }),
       ], 
     });
+  }
+
+  componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
+    //this.children.firstnameinput.setProps({chats: newProps.chats});
+    if (newProps.avatar !== '') {
+      this.children.chaticon.setProps({src: `https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
+    }
+    return true;
   }
 
   render() {

@@ -1,5 +1,5 @@
 import './profile-page.scss';
-import Block from '../../tools/Block';
+import Block, { IProps } from '../../tools/Block';
 import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link, FileInputProfileField } from '../../components';
 import ProfilePageRaw from './profile-page.hbs?raw';
 
@@ -24,7 +24,9 @@ export class ProfilePage extends Block {
     super({
       logo: new Logo({ }),
       chatlink: new Link({ page: "chat", link: "Your chats", className: "link__link_medium" }),
-      chaticon: new ChatIcon({ }),
+      chaticon: new ChatIcon({
+        chat: 'chat',
+      }),
       generaltitle: new Title({
         title: "Common ",
         span: "chat",
@@ -98,10 +100,7 @@ export class ProfilePage extends Block {
         className: "profile-page__input", 
         placeholder: "Avatar", 
         name: "avatar",
-        //value: "",
         title: "Avatar:",
-        /*disabled: "disabled",
-        readonly: "readonly",*/
         span: 'edit',
         spanident: 'avatarButton',
       }),
@@ -151,6 +150,20 @@ export class ProfilePage extends Block {
         link: "Ошибка 5**", 
       }),
     });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
+    this.children.firstnameinput.setProps({value: newProps.firstname});
+    this.children.lastnameinput.setProps({value: newProps.secondname});
+    this.children.logininput.setProps({value: newProps.login});
+    this.children.emailinput.setProps({value: newProps.email});
+    this.children.phoneinput.setProps({value: newProps.phone});
+    if (newProps.avatar !== '') {
+      this.children.avatar.setProps({src: `
+https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
+    }
+    return true;
   }
 
   render() {
