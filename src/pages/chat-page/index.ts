@@ -1,6 +1,6 @@
 import './chat-page.scss';
 import Block, { IProps } from '../../tools/Block';
-import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput } from '../../components';
+import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput, NewChatInput } from '../../components';
 import ChatPageRaw from './chat-page.hbs?raw';
 export class ChatPage extends Block {
   constructor() {
@@ -21,18 +21,20 @@ export class ChatPage extends Block {
         placeholder: "Type something there", 
         name: "message"
       }),
+      newchatinput: new NewChatInput({
+      }),
       lists: [
         new ChatItem({
-          name: 'Boss', 
-          message: 'Вот поэтому',
+          title: 'Boss', 
+          last_message: 'Вот поэтому',
         }),
         new ChatItem({
-          name: 'Those fellow', 
-          message:'Текст текст текст Текст текст текст Текст текст текст Текст текст текст Текст текст текст',
+          title: 'Those fellow', 
+          last_message:'Текст текст текст Текст текст текст Текст текст текст Текст текст текст Текст текст текст',
         }),
         new ChatItem({
-          name: 'Oleg', 
-          message:'Приветики! У нас есть новые правки!!!)))', 
+          title: 'Oleg', 
+          last_message:'Приветики! У нас есть новые правки!!!)))', 
           avatar: "src/assets/avatar.png",
         }),
       ],
@@ -77,6 +79,10 @@ export class ChatPage extends Block {
     } else {
       this.children.chaticon.setProps({src: `/assets/avatar.png`})
     }
+    console.log(newProps.lists);
+    /*if (newProps.chats) {
+      this.lists = newProps.chats
+    }*/
     return true;
   }
 

@@ -14,6 +14,11 @@ const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
       avatar: st.user.avatar,
     }
   }
+  if (st.chats) {
+    return {
+      lists: st.chats
+    }
+  }
 }) as unknown as typeof Block;
 //errormessage
 

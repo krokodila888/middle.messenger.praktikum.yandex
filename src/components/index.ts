@@ -20,3 +20,4 @@ export { InputProfileField } from './input-profile-field/input-profile-field';
 export { InputButton } from './input_button/input-button';
 export { ProfileFileInput } from './profile-file-input/profile-file-input';
 export { FileInputProfileField} from './fileinput-profile-field/fileinput-profile-field'
+export { NewChatInput } from './new-chat-input/new-chat-input';

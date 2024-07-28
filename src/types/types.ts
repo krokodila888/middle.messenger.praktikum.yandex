@@ -11,6 +11,10 @@ export type TSigninRequest = {
   login: string;
   password: string;
 };
+
+export type TCreareChatRequest = {
+  title: string;
+};
   
 export type TUserRequest = {
   login: string;

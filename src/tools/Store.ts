@@ -32,6 +32,7 @@ const initialState: IState = {
   getuserError: null,
   getchatsError: null,
   avatarError: null,
+  createChatError: null,
 };
 
 const state: IState = {
@@ -54,6 +55,7 @@ const state: IState = {
   getuserError: null,
   getchatsError: null,
   avatarError: null,
+  createChatError: null,
 };
 
 interface IStore<S> {
@@ -107,6 +109,10 @@ const reducer: TReducer<IState> = (state, action) => {
   } else if (action.type === 'AVATAR_ERROR') {
     console.log('AVATAR_ERROR')
     newState.avatarError = action.error;
+    return newState;
+  } else if (action.type === 'CREATE_CHAT_ERROR') {
+    console.log('CREATE_CHAT_ERROR')
+    newState.createChatError = action.error;
     return newState;
   } else if (action.type === 'LOGOUT') {
     console.log('LOGOUT')
