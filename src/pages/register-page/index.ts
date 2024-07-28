@@ -2,16 +2,7 @@ import './register-page.scss';
 import Block from '../../tools/Block';
 import { PageTitle, InputField, Button, Link } from '../../components';
 import RegisterPageRaw from './register-page.hbs?raw';
-import SignupAPI, { RegisterAPI } from '../../api/auth-api';
 
-type TSignupRequest = {
-  email: string;
-  login: string;
-  first_name: string;
-  second_name: string;
-  phone: string;
-  password: string;
-};
 export class RegisterPage extends Block {
   constructor() {
     super({

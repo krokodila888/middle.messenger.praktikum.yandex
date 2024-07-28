@@ -2,11 +2,12 @@ import './button.scss';
 import Block from '../../tools/Block';
 import ButtonRaw from './button.hbs?raw';
 import { validateItem, validateProfileItem } from '../../utils/validation';
-import { RegisterAPI } from '../../api/auth-api';
 import HTTPTransport, { TOptions } from '../../utils/api';
 import store from '../../tools/Store';
 import Router from '../../tools/Router';
-import cloneDeep from '../../utils/clone-deep';
+import SigninAPI from '../../api/signin-api'
+import { TSigninRequest, TUserRequest } from '../../types/types';
+import SignupAPI from '../../api/signup-api';
 
 interface Props {
   [key: string]: string;
@@ -55,8 +56,6 @@ export class Button extends Block {
               res1[item.name] = item.value;
             });
             res1.display_name = `${res1.first_name} ${res1.second_name}`;
-            /*res1.id = storeData.user.id;
-            res1.avatar = '';*/
             console.log(res1);
             return new HTTPTransport()
             .put('https://ya-praktikum.tech/api/v2/user/profile', {
@@ -77,7 +76,6 @@ export class Button extends Block {
               }
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
               const response1 = JSON.parse(rawResponse) as any;
-              console.log(response1);
               return response1;
             })
               .then((resss) => {
@@ -92,94 +90,22 @@ export class Button extends Block {
            }
 
           if (document.querySelector(`.button__login`)) {
-            console.log(`.button__login`);
             inputs.forEach((item) => {
               validateItem(item);
             });
-            console.log(res);
-            return new HTTPTransport()
-            .post('https://ya-praktikum.tech/api/v2/auth/signin', {
-              credentials: 'include',
-              mode: 'cors',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              data: res
-            })
-            .then((xhr) => {
-              const rawResponse = (xhr as XMLHttpRequest).responseText;
-              if (typeof rawResponse === 'string') {
-                return rawResponse;
-              }
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              const response = JSON.parse(rawResponse) as any;
-              return response;
-            })
-            .then((response) => {
-              if (response === "OK") {
-                return new HTTPTransport()
-                  .get('https://ya-praktikum.tech/api/v2/auth/user', {
-                    credentials: 'include',
-                    mode: 'cors',
-                    withCredentials: true
-                  })
-                  .then((xhr) => {
-                    const rawResponse = (xhr as XMLHttpRequest).responseText;
-                    if (typeof rawResponse === 'string') {
-                      return JSON.parse(rawResponse);
-                    }
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const response1 = JSON.parse(rawResponse) as any;
-                    console.log(response1);
-                    return response1;
-                  })
-                  .then((resss) => {
-                    if (resss) {
-                      store.dispatch({
-                        type: 'SET_USER',
-                        user: resss
-                      });
-                      console.log(store.getState());
-                    }
-                      return new HTTPTransport()
-                        .get('https://ya-praktikum.tech/api/v2/chats', {
-                          credentials: 'include',
-                          mode: 'cors',
-                          withCredentials: true
-                        })
-                        .then((xhr) => {
-                          const rawResponse = (xhr as XMLHttpRequest).responseText;
-                          if (typeof rawResponse === 'string') {
-                            return JSON.parse(rawResponse);
-                          }
-                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                          const response2 = JSON.parse(rawResponse) as any;
-                          console.log(response2);
-                          return response2;
-                        })
-                        .then((resss) => {
-                          if (resss) {
-                            store.dispatch({
-                              type: 'SET_CHATS',
-                              chats: resss
-                            });
-                            console.log(store.getState());
-                          }
-                        })
-                .then(() => {
-                  const router = new Router("app");
-                  router.go("/messenger")
-                })
-              }
-            )} })
-            };
-
+            const signinapi = new SigninAPI;
+            signinapi.request(res as TSigninRequest);
+          };
 
           if (document.querySelector(`.button__register`)) {
             inputs.forEach((item) => {
               validateItem(item);
             });
-            return new HTTPTransport()
+            const signupapi = new SignupAPI;
+            signupapi.request(res as TUserRequest);
+
+
+            /*return new HTTPTransport()
             .post('https://ya-praktikum.tech/api/v2/auth/signup', {
               credentials: 'include',
               mode: 'cors',
@@ -235,9 +161,8 @@ export class Button extends Block {
             router.go("/messenger")
           })
           }
-        })
-          } 
-          
+        })*/
+          }
         },
       },
     });

@@ -2,7 +2,6 @@ import './input-button.scss';
 import Block from '../../tools/Block';
 import InputButtonRaw from './input-button.hbs?raw';
 import { validateProfilePassword } from '../../utils/validation';
-import { RegisterAPI } from '../../api/auth-api';
 import HTTPTransport, { TOptions } from '../../utils/api';
 import store from '../../tools/Store';
 import Router from '../../tools/Router';

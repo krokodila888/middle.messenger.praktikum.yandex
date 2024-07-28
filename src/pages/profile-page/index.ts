@@ -154,14 +154,17 @@ export class ProfilePage extends Block {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
+    console.log(newProps.avatar);
     this.children.firstnameinput.setProps({value: newProps.firstname});
     this.children.lastnameinput.setProps({value: newProps.secondname});
     this.children.logininput.setProps({value: newProps.login});
     this.children.emailinput.setProps({value: newProps.email});
     this.children.phoneinput.setProps({value: newProps.phone});
-    if (newProps.avatar !== '') {
+    if (newProps.avatar !== null && newProps.avatar !== '' && newProps.avatar !== undefined) {
       this.children.avatar.setProps({src: `
 https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
+    }  else {
+      this.children.chaticon.setProps({src: `/assets/avatar.png`})
     }
     return true;
   }
@@ -169,5 +172,4 @@ https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
   render() {
     return ProfilePageRaw;
   }
-
 }

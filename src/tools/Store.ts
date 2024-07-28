@@ -15,7 +15,7 @@ interface IState {
 const state: IState = {
   buttonText: 'Initial text',
   user: {
-    avatar: '',
+    avatar: null,
     email: "",
     first_name: "",
     id: null, 
@@ -25,6 +25,9 @@ const state: IState = {
   },
   first_name: '',
   chats: null,
+  currentChat: null,
+  registerError: null,
+  loginError: null,
 };
 
 interface IStore<S> {
@@ -51,6 +54,18 @@ const reducer: TReducer<IState> = (state, action) => {
   } else if (action.type === 'SET_PASSWORD') {
     console.log('SET_PASSWORD')
     newState.user.password = action.password;
+    return newState;
+  } else if (action.type === 'SET_CURRENT_CHAT') {
+    console.log('SET_CURRENT_CHAT')
+    newState.currentchat = action.currentchat;
+    return newState;
+  } else if (action.type === 'SET_REGISTER_ERROR') {
+    console.log('SET_REGISTER_ERROR')
+    newState.registerError = action.error;
+    return newState;
+  } else if (action.type === 'SET_LOGIN_ERROR') {
+    console.log('SET_LOGIN_ERROR')
+    newState.loginError = action.error;
     return newState;
   } else {
     return state;

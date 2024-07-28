@@ -71,9 +71,13 @@ export class ChatPage extends Block {
   }
 
   componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
+    console.log(newProps.avatar);
     //this.children.firstnameinput.setProps({chats: newProps.chats});
-    if (newProps.avatar !== '') {
+    if (newProps.avatar !== null && newProps.avatar !== '' && newProps.avatar !== undefined) {
+      console.log(newProps.avatar);
       this.children.chaticon.setProps({src: `https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
+    } else {
+      this.children.chaticon.setProps({src: `/assets/avatar.png`})
     }
     return true;
   }
