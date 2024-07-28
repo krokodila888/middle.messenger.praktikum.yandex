@@ -80,6 +80,9 @@ export class ChatPage extends Block {
       this.children.chaticon.setProps({src: `/assets/avatar.png`})
     }
     console.log(newProps.lists);
+    console.log(this.lists);
+    console.log(this.lists.lists);
+
     /*if (newProps.chats) {
       this.lists = newProps.chats
     }*/

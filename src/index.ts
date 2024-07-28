@@ -12,6 +12,7 @@ const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
     console.log('update in chats')
     return {
       avatar: st.user.avatar,
+      lists: {lists: st.chats, lists1: st.currentChat}
     }
   }
   if (st.chats) {

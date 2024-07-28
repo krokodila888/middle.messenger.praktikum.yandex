@@ -33,10 +33,6 @@ export class InputProfileField extends Block {
     return true;
   }
 
-  componentDidMount(_oldProps?: IProps): void {
-    console.log('profile mount!')
-  }
-
   render() {
     return InputProfileFieldRaw;
   }
