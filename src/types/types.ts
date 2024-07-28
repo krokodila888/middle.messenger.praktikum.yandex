@@ -12,14 +12,38 @@ export type TSigninRequest = {
   password: string;
 };
   
-  export type TUserRequest = {
-    login: string;
-    first_name: string;
-    second_name: string;
-    email: string;
-    phone: string;
-    password: string;
-  };
+export type TUserRequest = {
+  login: string;
+  first_name: string;
+  second_name: string;
+  email: string;
+  phone: string;
+  password: string;
+};
+
+export type TEditPasswordRequest = {
+  oldPassword: string;
+  newPassword: string;
+}
+
+export type TEditUserRequest = {
+  login: string;
+  first_name: string;
+  second_name: string;
+  email: string;
+  phone: string;
+};
+
+export type TUpdateUserResponce = {
+  login: string;
+  first_name: string;
+  second_name: string;
+  email: string;
+  phone: string;
+  id: number;
+  avatar: string;
+  display_name: string;
+}
   
   export type TChatUserData = {
     login: string;

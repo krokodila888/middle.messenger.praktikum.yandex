@@ -12,6 +12,28 @@ interface IState {
   [key: string]: any;
 }
 
+const initialState: IState = {
+  buttonText: 'Initial text',
+  user: {
+    avatar: null,
+    email: "",
+    first_name: "",
+    id: null, 
+    login: "",
+    phone: "",
+    second_name: "",
+    display_name: '',
+  },
+  first_name: '',
+  chats: null,
+  currentChat: null,
+  registerError: null,
+  loginError: null,
+  getuserError: null,
+  getchatsError: null,
+  avatarError: null,
+};
+
 const state: IState = {
   buttonText: 'Initial text',
   user: {
@@ -22,6 +44,7 @@ const state: IState = {
     login: "",
     phone: "",
     second_name: "",
+    display_name: '',
   },
   first_name: '',
   chats: null,
@@ -48,6 +71,9 @@ const reducer: TReducer<IState> = (state, action) => {
   } else if (action.type === 'SET_USER') {
     console.log('SET_USER')
     newState.user = action.user;
+    newState.registerError = null;
+    newState.loginError = null;
+    newState.getuserError = null;
     newState.first_name = action.user.first_name;
     return newState;
   } else if (action.type === 'SET_CHATS') {
@@ -82,6 +108,9 @@ const reducer: TReducer<IState> = (state, action) => {
     console.log('AVATAR_ERROR')
     newState.avatarError = action.error;
     return newState;
+  } else if (action.type === 'LOGOUT') {
+    console.log('LOGOUT')
+    return initialState;
   } else {
     return state;
   }

@@ -27,9 +27,7 @@ export default class SigninAPI extends BaseAPI {
         return response;
       })
       .then((response) => {
-        //console.log(response);
-        //console.log(response !== 'OK')
-        if (/*typeof response !== 'string' && response.reason*/ response !== 'OK') {
+        if (response !== 'OK') {
           store.dispatch({
             type: 'SET_LOGIN_ERROR',
             error: JSON.parse(response as string) as TSigninResponse
