@@ -89,3 +89,34 @@ export type TErrorMessage = {
 }
 
 export type TChatResponse = TChatInfo[] | [] | TErrorMessage;
+
+export type TDeleteCharResponce = {
+  userId: number,
+  result: {
+    id: number,
+    title: string,
+    avatar: string,
+    created_by: number
+  }
+}
+
+export type TChatDeleteRequest = {
+  chatId: number
+}
+
+export type TUserChatData = {
+  chatid?: number,
+  login?: string,
+}
+
+export type TSearchUserResponse = [
+  {login: string;
+  first_name: string;
+  second_name: string;
+  email: string;
+  phone: string;
+  id: number;
+  avatar: string;
+  display_name: string;
+  reason?: string;
+}];

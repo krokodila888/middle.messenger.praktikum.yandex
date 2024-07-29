@@ -60,7 +60,7 @@ export default class HTTPTransport {
   };
 
   delete = (url: string, options:TOptions = {}) => { 
-    return this.request(url, {...options, method: METHOD.DELETE}, options.timeout), options.withCredentials;
+    return this.request(url, {...options, method: METHOD.DELETE}, options.timeout, options.withCredentials);
   };
 
   request = (url: string, options:TOptions = {}, timeout = 5000, withCredentials = true) => {

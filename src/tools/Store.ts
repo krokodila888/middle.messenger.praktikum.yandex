@@ -27,7 +27,18 @@ const initialState: IState = {
   },
   first_name: '',
   chats: null,
-  currentChat: null,
+  currentChat: {
+    id: null,
+    title: null,
+    avatar: null,
+    unread_count: null,
+    created_by: null,
+    last_message: {
+      user: null,
+      time: null,
+      content: null,
+    },
+  },
   registerError: null,
   loginError: null,
   getuserError: null,
@@ -132,6 +143,9 @@ const reducer: TReducer<IState> = (state, action) => {
     console.log(newState.chats);
     newState.currentChat = newState.chats.find((item: TChatInfo) => item.id === action.id);
     return newState;
+  } else if (action.type === 'DELETE_CHAT') {
+    newState.currentChat = initialState.currentChat;
+    return newState
   } else if (action.type === 'LOGOUT') {
     console.log('LOGOUT')
     return initialState;

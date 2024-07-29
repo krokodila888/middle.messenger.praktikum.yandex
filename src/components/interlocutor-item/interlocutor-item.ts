@@ -1,5 +1,6 @@
 import './interlocutor-item.scss';
 import InterlocutorItemRaw from './interlocutor-item.hbs?raw';
+import { DeleteChatButton, AddUserInput } from './../../components';
 import Block from '../../tools/Block';
 
 interface Props {
@@ -9,8 +10,10 @@ interface Props {
 export class InterlocutorItem extends Block {
   constructor(props: Props) {
     super({
-      ...props
-    });
+      ...props,
+      deletechatbutton: new DeleteChatButton({}),
+      adduserinput: new AddUserInput({}),
+    })
   }
   render() {
     return InterlocutorItemRaw;

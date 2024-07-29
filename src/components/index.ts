@@ -21,3 +21,5 @@ export { InputButton } from './input_button/input-button';
 export { ProfileFileInput } from './profile-file-input/profile-file-input';
 export { FileInputProfileField} from './fileinput-profile-field/fileinput-profile-field'
 export { NewChatInput } from './new-chat-input/new-chat-input';
+export { DeleteChatButton } from './delete-chat-button/delete-chat-button';
+export { AddUserInput } from './add-user-input/add-user-input';

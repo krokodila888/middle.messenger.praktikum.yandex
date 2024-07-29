@@ -15,12 +15,9 @@
   background-color: $white-color;
   border-radius: 16px 30px 30px 16px;
   cursor: pointer;
+  justify-content: space-between;
 
   @include shadow-inside;
-
-  &:hover {
-    @include shadow-small-hovered;
-  }
   
   &__avatar {
     flex-shrink: 0;
