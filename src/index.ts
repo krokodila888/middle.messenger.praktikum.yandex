@@ -10,22 +10,43 @@ import { TChatInfo } from './types/types';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
   console.log('selector', st);
-  if (st.user.first_name !== '') {
+  if (st.user.first_name !== '' && st.chats !== null) {
     console.log('update in chats')
     return {
-      avatar: st.user.avatar
+      avatar: st.user.avatar,
+      id1: st.chats[0].id,
+      title1: st.chats[0].title,
+      last_message1: st.chats[0].last_message,
+      avatar1: st.chats[0].avatar,
+      id2: st.chats[1].id,
+      title2: st.chats[1].title,
+      last_message2: st.chats[1].last_message,
+      avatar2: st.chats[1].avatar,
+      currentid: st.currentChat.id,
+      currenttitle: st.currentChat.title,
+      currentavatar: st.currentChat.avatar,
     }
   }
+  /*console.log(st.chats !== null);
+  console.log(st.chats && st.chats.length > 0);
   if (st.chats !== null) {
-    return {  
-      lists: {lists: st.chats.map((item: TChatInfo) =>
+    return { 
+      id1: st.chats[0].id,
+      title1: st.chats[0].title,
+      last_message1: st.chats[0].last_message,
+      avatar1: st.chats[0].avatar,
+      id2: st.chats[1].id,
+      title2: st.chats[1].title,
+      last_message2: st.chats[1].last_message,
+      avatar2: st.chats[1].avatar,
+      /*lists: {lists: st.chats.map((item: TChatInfo) =>
       { new ChatItem({
         title: item.title, 
         last_message: item.last_message.content
       })
     }), lists1: st.currentChat}
     }
-  }
+  }*/
   /*if (st.chats) {
     return {
       lists: st.chats
@@ -85,6 +106,3 @@ router
 const getuserapi = new GetUserAPI;
 getuserapi.request();
 
-/*console.log(document.querySelectorAll('[style="display: none;"]').forEach((item) => {
-  item.remove();
-}))*/

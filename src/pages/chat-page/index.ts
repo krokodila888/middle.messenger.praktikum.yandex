@@ -21,14 +21,22 @@ export class ChatPage extends Block {
         placeholder: "Type something there", 
         name: "message"
       }),
+      chatitem1: new ChatItem({
+        title: '', 
+        last_message: '',
+      }),
+      chatitem2: new ChatItem({
+        title: '', 
+        last_message: '',
+      }), 
       newchatinput: new NewChatInput({
       }),
-      lists: [
+      /*lists: [
         new ChatItem({
           title: '', 
           last_message: '',
         })
-      ],
+      ],*/
       lists1: [
         new MessageItem ({
           time: "06:20",
@@ -65,14 +73,24 @@ export class ChatPage extends Block {
     console.log(newProps.avatar);
     //this.children.firstnameinput.setProps({chats: newProps.chats});
     if (newProps.avatar !== null && newProps.avatar !== '' && newProps.avatar !== undefined) {
-      console.log(newProps.avatar);
       this.children.chaticon.setProps({src: `https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
     } else {
       this.children.chaticon.setProps({src: `/assets/avatar.png`})
     }
-    console.log(newProps.lists);
+    /*console.log(newProps.lists);
     console.log(this.lists);
-    console.log(this.lists.lists);
+    console.log(this.lists.lists);*/
+    if (newProps.title1 !== null && newProps.title1 !== undefined) {
+      this.children.chatitem1.setProps({ title: newProps.title1, id: newProps.id1, last_message: newProps.last_message1, avatar: newProps.avatar1 })
+      this.children.chatitem2.setProps({ title: newProps.title2, id: newProps.id2, last_message: newProps.last_message2, avatar: newProps.avatar2})
+    }
+    if (newProps.currenttitle !== undefined) {
+      console.log(newProps.currenttitle)
+      this.children.interlocutoritem.setProps({ 
+        name: newProps.currenttitle,
+        avatar: newProps.currentavatar,
+      })
+    }
 
     /*if (newProps.chats) {
       this.lists = newProps.chats

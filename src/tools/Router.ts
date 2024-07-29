@@ -46,6 +46,11 @@ export default class Router {
 
     this._currentRoute = route;
     route.render();
+    console.log(document.querySelectorAll('.page'));
+    document.querySelectorAll('.page').forEach((item, i) => {
+      if(i !== 0)
+      item.remove();
+    })
   }
 
   go(pathname: string) {

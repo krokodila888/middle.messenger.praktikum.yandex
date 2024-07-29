@@ -23,6 +23,10 @@
   &:hover {
     @include shadow-small-hovered;
   }
+
+  &_chosen {
+    @include shadow-small-hovered;
+  }
   
   &__avatar {
     flex-shrink: 0;

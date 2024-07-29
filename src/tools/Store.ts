@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { TChatInfo } from "../types/types";
 import cloneDeep from "../utils/clone-deep";
 
 type TAction = {
@@ -49,7 +50,18 @@ const state: IState = {
   },
   first_name: '',
   chats: null,
-  currentChat: null,
+  currentChat: {
+    id: null,
+    title: null,
+    avatar: null,
+    unread_count: null,
+    created_by: null,
+    last_message: {
+      user: null,
+      time: null,
+      content: null,
+    },
+  },
   registerError: null,
   loginError: null,
   getuserError: null,
@@ -113,6 +125,12 @@ const reducer: TReducer<IState> = (state, action) => {
   } else if (action.type === 'CREATE_CHAT_ERROR') {
     console.log('CREATE_CHAT_ERROR')
     newState.createChatError = action.error;
+    return newState;
+  } else if (action.type === 'SET_CURRENTCHAT') {
+    console.log('SET_CURRENTCHAT');
+    console.log(action.id + typeof action.id);
+    console.log(newState.chats);
+    newState.currentChat = newState.chats.find((item: TChatInfo) => item.id === action.id);
     return newState;
   } else if (action.type === 'LOGOUT') {
     console.log('LOGOUT')

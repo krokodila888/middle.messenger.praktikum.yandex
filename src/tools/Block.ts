@@ -209,6 +209,10 @@ export default class Block {
     /*this.preRender();
     this._render();
     return this._element;*/
+    document.querySelectorAll('.page').forEach((item, i) => {
+      if(i !== 0)
+      item.remove();
+    })
   }
 
   hide() {
