@@ -38,6 +38,7 @@ body {
     overflow: hidden;
     background: $light-grey-color;
     border-radius: 16px 0 0 16px;
+    overflow-y: auto;
 
     @include shadow-inside
   }

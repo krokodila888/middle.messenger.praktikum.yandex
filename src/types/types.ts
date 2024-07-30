@@ -84,6 +84,16 @@ export type TUpdateUserResponce = {
     reason?: string;
   };
 
+export type TChatInfo1 = {
+  id: number;
+  title: string;
+  avatar: string | null;
+  unread_count: number;
+  created_by: number;
+  last_message: TLastMessage;
+  reason?: string;
+};
+
 export type TErrorMessage = {
   reason: string
 }

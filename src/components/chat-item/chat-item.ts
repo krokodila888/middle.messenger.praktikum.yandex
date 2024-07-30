@@ -17,11 +17,13 @@ export class ChatItem extends Block {
           document.querySelectorAll('.chat-item').forEach((item) => {
             item.classList.remove('chat-item_chosen')
           });
-          (e.target as HTMLDivElement).classList.add('chat-item_chosen')
+          console.log(e.target as HTMLDivElement);
+          
           store.dispatch({
             type: 'SET_CURRENTCHAT',
             id: id
-          })
+          });
+          (e.target as HTMLDivElement).classList.add('.chat-item_chosen')
         }}
     });
   }

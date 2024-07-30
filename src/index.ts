@@ -22,36 +22,11 @@ const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
       title2: st.chats[1].title,
       last_message2: st.chats[1].last_message,
       avatar2: st.chats[1].avatar,
-      currentid: st.currentChat.id,
+      currentid: st.currentChat.id as string,
       currenttitle: st.currentChat.title,
       currentavatar: st.currentChat.avatar,
     }
   }
-  /*console.log(st.chats !== null);
-  console.log(st.chats && st.chats.length > 0);
-  if (st.chats !== null) {
-    return { 
-      id1: st.chats[0].id,
-      title1: st.chats[0].title,
-      last_message1: st.chats[0].last_message,
-      avatar1: st.chats[0].avatar,
-      id2: st.chats[1].id,
-      title2: st.chats[1].title,
-      last_message2: st.chats[1].last_message,
-      avatar2: st.chats[1].avatar,
-      /*lists: {lists: st.chats.map((item: TChatInfo) =>
-      { new ChatItem({
-        title: item.title, 
-        last_message: item.last_message.content
-      })
-    }), lists1: st.currentChat}
-    }
-  }*/
-  /*if (st.chats) {
-    return {
-      lists: st.chats
-    }
-  }*/
 }) as unknown as typeof Block;
 //errormessage
 

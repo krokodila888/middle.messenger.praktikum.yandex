@@ -2,6 +2,8 @@ import './chat-page.scss';
 import Block, { IProps } from '../../tools/Block';
 import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput, NewChatInput } from '../../components';
 import ChatPageRaw from './chat-page.hbs?raw';
+import store from '../../tools/Store';
+import { TChatInfo1 } from '../../types/types';
 export class ChatPage extends Block {
   constructor() {
     super({
@@ -21,22 +23,10 @@ export class ChatPage extends Block {
         placeholder: "Type something there", 
         name: "message"
       }),
-      chatitem1: new ChatItem({
-        title: '', 
-        last_message: '',
-      }),
-      chatitem2: new ChatItem({
-        title: '', 
-        last_message: '',
-      }), 
       newchatinput: new NewChatInput({
       }),
-      /*lists: [
-        new ChatItem({
-          title: '', 
-          last_message: '',
-        })
-      ],*/
+      lists: [
+      ],
       lists1: [
         new MessageItem ({
           time: "06:20",
@@ -70,31 +60,34 @@ export class ChatPage extends Block {
   }
 
   componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
-    console.log(newProps.avatar);
-    //this.children.firstnameinput.setProps({chats: newProps.chats});
     if (newProps.avatar !== null && newProps.avatar !== '' && newProps.avatar !== undefined) {
       this.children.chaticon.setProps({src: `https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
     } else {
       this.children.chaticon.setProps({src: `/assets/avatar.png`})
     }
-    /*console.log(newProps.lists);
-    console.log(this.lists);
-    console.log(this.lists.lists);*/
-    if (newProps.title1 !== null && newProps.title1 !== undefined) {
-      this.children.chatitem1.setProps({ title: newProps.title1, id: newProps.id1, last_message: newProps.last_message1, avatar: newProps.avatar1 })
-      this.children.chatitem2.setProps({ title: newProps.title2, id: newProps.id2, last_message: newProps.last_message2, avatar: newProps.avatar2})
-    }
-    if (newProps.currenttitle !== undefined) {
-      console.log(newProps.currenttitle)
+    if (newProps.title1 !== null && newProps.title1 !== undefined) { 
+      console.log('store!!')
+      const aaa = store.getState().chats.map((item: TChatInfo1) => {
+        return new ChatItem({
+          title: `${item.title}`,
+          id: `${item.id}`, 
+          last_message: `${item.last_message}`, 
+          avatar: `${item.avatar}`
+        })
+      })
+      this.lists.lists = aaa;
+    };
+    if (newProps.currenttitle !== undefined 
+      && newProps.currentid! 
+      && newProps.currentid !== null
+      && newProps.currentid !== undefined) {
+
       this.children.interlocutoritem.setProps({ 
         name: newProps.currenttitle,
         avatar: newProps.currentavatar,
-      })
+      });
+      (document.getElementById(newProps.currentid as string) as HTMLDivElement).classList.add('.chat-item_chosen');
     }
-
-    /*if (newProps.chats) {
-      this.lists = newProps.chats
-    }*/
     return true;
   }
 

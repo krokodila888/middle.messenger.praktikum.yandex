@@ -104,7 +104,7 @@ export default class Block {
       if (value instanceof Block) {
         children[key] = value as typeof this;
       } else if (Array.isArray(value)) {
-        lists[key] = value;
+        lists[key] = value as typeof this[];
       } else {
         props[key] = value;
       }
