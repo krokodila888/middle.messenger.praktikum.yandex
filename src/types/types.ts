@@ -130,3 +130,7 @@ export type TSearchUserResponse = [
   display_name: string;
   reason?: string;
 }];
+
+export type TTokenResponce = {
+  token: string
+}

@@ -3,7 +3,7 @@
   {{#if avatar}}
   <img 
     class="interlocutor-item__avatar" 
-    src="/assets/avatar.png"
+    src={{avatar}}
     alt="User avatar" />
   {{else }}
   <img 
@@ -12,9 +12,11 @@
     alt="Icon with question sign for users withour avatar pictures"/>
   {{/if}}
   <p class="interlocutor-item__name">
-    {{ name }}
+    {{#if name}} {{ name }} {{else }} Выберите чат {{/if}}
   </p>
+  {{#if name}} 
   {{{ adduserinput }}}
   {{{ deletechatbutton}}}
+  {{/if}}
 
 </div>

@@ -17,7 +17,6 @@ export class ChatPage extends Block {
         src: `/assets/avatar.png`
       }),
       interlocutoritem: new InterlocutorItem({ 
-        name: "Boss" 
       }),
       messageinput: new MessageInput({
         placeholder: "Type something there", 
@@ -28,7 +27,7 @@ export class ChatPage extends Block {
       lists: [
       ],
       lists1: [
-        new MessageItem ({
+        /*new MessageItem ({
           time: "06:20",
           date: "10.06.2024",
           text: "Посмотри правки, они на почте",
@@ -54,7 +53,7 @@ export class ChatPage extends Block {
           date: "10.06.2024",
           toMe: "message-item__not-my-message",
           text: "Вот поэтому",
-        }),
+        }),*/
       ], 
     });
   }
@@ -67,26 +66,35 @@ export class ChatPage extends Block {
     }
     if (newProps.title1 !== null && newProps.title1 !== undefined) { 
       console.log('store!!')
-      const aaa = store.getState().chats.map((item: TChatInfo1) => {
+      const newchats = store.getState().chats.map((item: TChatInfo1) => {
         return new ChatItem({
           title: `${item.title}`,
           id: `${item.id}`, 
-          last_message: `${item.last_message}`, 
-          avatar: `${item.avatar}`
+          last_message: (item.last_message === null) ? 'Сообщений нет' : item.last_message.content, 
+          avatar: `${item.avatar}`,
+          current: (store.getState().currentChat.id === item.id) ? 'chat-item_chosen' : ''
         })
-      })
-      this.lists.lists = aaa;
-    };
+      });
+
+      this.lists.lists = newchats;
+    } 
     if (newProps.currenttitle !== undefined 
-      && newProps.currentid! 
+      && newProps.currentid 
       && newProps.currentid !== null
       && newProps.currentid !== undefined) {
-
       this.children.interlocutoritem.setProps({ 
         name: newProps.currenttitle,
         avatar: newProps.currentavatar,
       });
-      (document.getElementById(newProps.currentid as string) as HTMLDivElement).classList.add('.chat-item_chosen');
+      console.log(document.getElementById(newProps.currentid as string) as HTMLDivElement);
+      (document.getElementById(newProps.currentid as string) as HTMLDivElement).classList.add('chat-item_chosen');
+    }
+    if (newProps.currentid === null) {
+      console.log('current chat = null');
+      this.children.interlocutoritem.setProps({ 
+        name: null,
+        avatar: "/assets/no-avatar-icon.png",
+      });
     }
     return true;
   }
