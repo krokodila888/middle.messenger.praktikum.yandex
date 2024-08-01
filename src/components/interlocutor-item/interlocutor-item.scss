@@ -15,7 +15,7 @@
   background-color: $white-color;
   border-radius: 16px 30px 30px 16px;
   cursor: pointer;
-  justify-content: space-between;
+  justify-content: flex-start;
 
   @include shadow-inside;
   
@@ -35,6 +35,17 @@
     margin: 0;
     font-weight: bold;
     font-size: 18px;
+  }
+
+  &__text {
+    margin: 0;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  &__button-block {
+    display: flex;
+    margin-left: auto;
   }
 
   &__delete {

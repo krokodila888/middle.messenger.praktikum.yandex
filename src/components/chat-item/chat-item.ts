@@ -25,11 +25,11 @@ export class ChatItem extends Block {
             id: id
           });
           (e.target as HTMLDivElement).classList.add('.chat-item_chosen');
-          const openChatApi = new OpenChatAPI;
+          /*const openChatApi = new OpenChatAPI;
           openChatApi.request({
             id: id,
             userid: store.getState().id
-          });
+          });*/
         }}
     });
   }

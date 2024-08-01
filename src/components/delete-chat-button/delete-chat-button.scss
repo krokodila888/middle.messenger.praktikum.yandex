@@ -4,6 +4,8 @@
 
   border: none;
   border-radius: 50%;
+  margin-left: auto;
+  
   &:hover {
     @include shadow-small-hovered;
     opacity: 0.4;

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TChatInfo } from "../types/types";
+import { TChatInfo, TChatInfo2, TOtherUserType } from "../types/types";
 import cloneDeep from "../utils/clone-deep";
 
 type TAction = {
@@ -13,7 +13,7 @@ interface IState {
   [key: string]: any;
 }
 
-const initialState: IState = {
+/*const initialState: IState = {
   buttonText: 'Initial text',
   user: {
     avatar: null,
@@ -45,7 +45,7 @@ const initialState: IState = {
   getchatsError: null,
   avatarError: null,
   createChatError: null,
-};
+};*/
 
 const state: IState = {
   buttonText: 'Initial text',
@@ -79,6 +79,7 @@ const state: IState = {
   getchatsError: null,
   avatarError: null,
   createChatError: null,
+  getUsersError: null,
 };
 
 interface IStore<S> {
@@ -137,18 +138,28 @@ const reducer: TReducer<IState> = (state, action) => {
     console.log('CREATE_CHAT_ERROR')
     newState.createChatError = action.error;
     return newState;
+  } else if (action.type === 'GET_USERS_ERROR') {
+    console.log('GET_USERS_ERROR')
+    newState.getUsersError = action.error;
+    return newState;
   } else if (action.type === 'SET_CURRENTCHAT') {
     console.log('SET_CURRENTCHAT');
-    console.log(action.id + typeof action.id);
     console.log(newState.chats);
-    newState.currentChat = newState.chats.find((item: TChatInfo) => item.id === action.id);
+    newState.currentChat = newState.chats.find((item: TChatInfo2) => item.id === action.id);
+    return newState;
+  } else if (action.type === 'SET_USERS') {
+    console.log('SET_USERS');
+    const item = newState.chats.find((item: TChatInfo) =>
+    item.id === action.id);
+    item.users = action.users;
+    console.log(item);
     return newState;
   } else if (action.type === 'DELETE_CHAT') {
-    newState.currentChat = initialState.currentChat;
+    newState.currentChat = state.currentChat;
     return newState
   } else if (action.type === 'LOGOUT') {
     console.log('LOGOUT')
-    return initialState;
+    return state;
   } else {
     return state;
   }

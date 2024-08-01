@@ -34,11 +34,14 @@
     background:url("/assets/send-icon.png");
     background-size: cover;
     border-radius: 50%;
-
-    @include shadow-small;
+    border: none;
+    @include shadow-small-hovered;
+    /*@include shadow-small;*/
+   
 
     &:hover {
-      @include shadow-small-hovered1;
+      @include shadow-inside;
+      
     }
   }
 }

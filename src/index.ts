@@ -5,18 +5,19 @@ import { connect } from './tools/Hoc';
 import Block from './tools/Block';
 import GetUserAPI from './api/get-user-api';
 import { ChatItem } from './components';
-import { TChatInfo } from './types/types';
+import { TChatInfo, TChatInfo2 } from './types/types';
+import OpenChatAPI from './api/open-chat-api';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
   console.log('selector', st);
   if (st.user.first_name !== '' && st.chats !== null) {
-    console.log('update in chats')
+    console.log('update in chats');
     return {
       avatar: st.user.avatar,
       id1: st.chats[0].id,
       title1: st.chats[0].title,
-      currentid: st.currentChat.id as string | null,
+      currentid: st.currentChat.id as number | null,
       currenttitle: st.currentChat.title,
       currentavatar: st.currentChat.avatar,
     }

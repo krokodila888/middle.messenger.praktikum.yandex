@@ -3,7 +3,7 @@ import Block, { IProps } from '../../tools/Block';
 import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput, NewChatInput } from '../../components';
 import ChatPageRaw from './chat-page.hbs?raw';
 import store from '../../tools/Store';
-import { TChatInfo1 } from '../../types/types';
+import { TChatInfo1, TChatInfo2 } from '../../types/types';
 export class ChatPage extends Block {
   constructor() {
     super({
@@ -65,7 +65,7 @@ export class ChatPage extends Block {
       this.children.chaticon.setProps({src: `/assets/avatar.png`})
     }
     if (newProps.title1 !== null && newProps.title1 !== undefined) { 
-      console.log('store!!')
+      //console.log('store!!')
       const newchats = store.getState().chats.map((item: TChatInfo1) => {
         return new ChatItem({
           title: `${item.title}`,
@@ -82,15 +82,22 @@ export class ChatPage extends Block {
       && newProps.currentid 
       && newProps.currentid !== null
       && newProps.currentid !== undefined) {
-      this.children.interlocutoritem.setProps({ 
+        const users = (store.getState().chats as TChatInfo2[]).find((item) => item.id === newProps.currentid);
+        let aaa;
+        
+        if (users !== undefined) {
+          aaa = users.users!.length;
+        }
+        this.children.interlocutoritem.setProps({ 
         name: newProps.currenttitle,
         avatar: newProps.currentavatar,
+        users: aaa,
       });
-      console.log(document.getElementById(newProps.currentid as string) as HTMLDivElement);
+      //console.log(document.getElementById(newProps.currentid as string) as HTMLDivElement);
       (document.getElementById(newProps.currentid as string) as HTMLDivElement).classList.add('chat-item_chosen');
     }
     if (newProps.currentid === null) {
-      console.log('current chat = null');
+      //console.log('current chat = null');
       this.children.interlocutoritem.setProps({ 
         name: null,
         avatar: "/assets/no-avatar-icon.png",

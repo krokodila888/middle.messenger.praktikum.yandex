@@ -134,3 +134,23 @@ export type TSearchUserResponse = [
 export type TTokenResponce = {
   token: string
 }
+
+export type TOtherUserType = {
+  id: number;
+  first_name: string,
+  second_name: string,
+  display_name: string,
+  login: string,
+  avatar: string,
+  role: string
+}
+
+export type TChatInfo2 = {
+  id: number;
+  title: string;
+  avatar: string | null;
+  unread_count: number;
+  created_by: number;
+  last_message: TLastMessage;
+  users?: TOtherUserType[]
+};

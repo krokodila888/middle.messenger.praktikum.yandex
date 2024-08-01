@@ -12,7 +12,7 @@ export class WSTransport extends EventBus {
   socket?: WebSocket;
   url: string;  
   pingInterval?: ReturnType<typeof setInterval>;
-  pingTime = 10000;
+  pingTime = 5000;
 
   constructor(url: string) {
     super();
