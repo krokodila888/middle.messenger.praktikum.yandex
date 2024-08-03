@@ -51,11 +51,11 @@
 }
 
 .add-user-input:hover {
-  width: 300px;
+  width: 200px;
 }
 
 .add-user-input:focus, .add-user-input:focus-visible, .add-user-input:active {
-  width: 300px;
+  width: 200px;
 }
 
 .add-user-input:hover .add-user-input__element {
@@ -71,5 +71,5 @@
 }
 
 .add-user-input__element:focus-visible .add-user-input {
-  width: 300px;
+  width: 200px;
 }

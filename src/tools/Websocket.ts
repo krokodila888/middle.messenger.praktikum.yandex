@@ -2,7 +2,7 @@ import { isArrayOrObject } from '../utils/is-plain-object';
 import EventBus from './EventBus';
 import store from './Store';
 
-enum WSACTIONS {
+export enum WSACTIONS {
   WS_CONNECTION_START = 'WS_CONNECTION_START',
   WS_CONNECTION_CLOSED = 'WS_CONNECTION_CLOSED',
   WS_CONNECTION_ERROR = 'WS_CONNECTION_ERROR',
@@ -18,16 +18,6 @@ export class WSTransport extends EventBus {
   constructor(url: string) {
     super();
     this.url = url;
-  }
-
-  send(data: string | number | object) {
-    if (!this.socket) {
-      throw new Error('Not connected');
-    }
-    if (this.socket.readyState !== 0) {
-
-    this.socket.send(JSON.stringify(data));
-    }
   }
 
   connect(): Promise<void> {
@@ -47,10 +37,16 @@ export class WSTransport extends EventBus {
       })
     })
   }
-  close() {
-    this.socket?.close();
-    clearInterval(this.pingInterval);
+
+  send(data: string | number | object) {
+    if (!this.socket) {
+      throw new Error('Not connected');
     }
+    if (this.socket.readyState !== 0) {
+
+    this.socket.send(JSON.stringify(data));
+    }
+  }
 
   setupPing() {
     this.pingInterval = setInterval(() => {
@@ -63,6 +59,11 @@ export class WSTransport extends EventBus {
       clearInterval(this.pingInterval);
       this.pingInterval = undefined;
     })
+  }
+
+  close() {
+    this.socket?.close();
+    clearInterval(this.pingInterval);
   }
 
   subscribe(socket: WebSocket) {
@@ -81,7 +82,6 @@ export class WSTransport extends EventBus {
         else {
           //console.log(message);
           //console.log(JSON.parse(message.data));
-
           return JSON.parse(message.data)
         }
        // this.emit(WSACTIONS.WS_GET_MESSAGE, data);

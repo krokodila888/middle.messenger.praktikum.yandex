@@ -5,6 +5,7 @@ import ChatPageRaw from './chat-page.hbs?raw';
 import store from '../../tools/Store';
 import { TChatInfo1, TChatInfo2 } from '../../types/types';
 import { chatController } from '../../controllers/chats-controller';
+import { WSACTIONS } from '../../tools/Websocket';
 export class ChatPage extends Block {
   constructor() {
     super({
@@ -33,28 +34,7 @@ export class ChatPage extends Block {
           date: "10.06.2024",
           text: "Посмотри правки, они на почте",
         }),
-        new MessageItem({
-          time: "06:26",
-          date: "10.06.2024",
-          text: "????",
-        }),
-        new MessageItem({
-          time: "06:28",
-          date: "10.06.2024",
-          text: "Значит, премия тебе не нужна",
-        }),
-        new MessageItem({
-          time: "10:42",
-          date: "10.06.2024",
-          toMe: "message-item__not-my-message",
-          text: "Я у вас уже втрой день не работаю!!",
-        }),
-        new MessageItem({
-          time: "10:43",
-          date: "10.06.2024",
-          toMe: "message-item__not-my-message",
-          text: "Вот поэтому",
-        }),*/
+       */
       ], 
     });
   }
@@ -83,11 +63,23 @@ export class ChatPage extends Block {
       && newProps.currentid 
       && newProps.currentid !== null
       && newProps.currentid !== undefined) {
-        console.log(chatController.getConnectionById(newProps.currentid as number));
-        chatController.getConnectionById(newProps.currentid as number)!.send({
+        //console.log(chatController.getConnectionById(newProps.currentid as number));
+        /*chatController.getConnectionById(newProps.currentid as number)!.send({
           content: "0",
           type: "get old"
-        });
+        });*/
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        /*chatController.getConnectionById(newProps.currentid as number)!.on(WSACTIONS.WS_GET_MESSAGE, async (data: any) => {
+          //const сhats = store.getState().chats;
+          //const chat1 = chats.find((item: TChatInfo2) => item.id === chat.id);
+          console.log('data');
+          console.log(data);
+          store.dispatch({
+            type: 'SET_CHAT_MESSAGES',
+            data: data,
+            id: newProps.currentid
+          });
+        })*/
 
         const users = (store.getState().chats as TChatInfo2[]).find((item) => item.id === newProps.currentid);
         let aaa;
@@ -101,7 +93,7 @@ export class ChatPage extends Block {
         users: aaa,
       });
       //console.log(document.getElementById(newProps.currentid as string) as HTMLDivElement);
-      (document.getElementById(newProps.currentid as string) as HTMLDivElement).classList.add('chat-item_chosen');
+      (document.getElementById(newProps.currentid as string) as HTMLDivElement)?.classList.add('chat-item_chosen');
     }
     if (newProps.currentid === null) {
       //console.log('current chat = null');
@@ -110,9 +102,9 @@ export class ChatPage extends Block {
         avatar: "/assets/no-avatar-icon.png",
       });
     }
-    if (newProps.currentid !== null && newProps.currentid !== undefined) {
+    /*if (newProps.currentid !== null && newProps.currentid !== undefined) {
       console.log(chatController.getConnectionById(newProps.currentid as number))
-    }
+    }*/
     return true;
   }
 

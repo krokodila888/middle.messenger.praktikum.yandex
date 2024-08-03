@@ -1,5 +1,5 @@
 <form class="message-input{{#if className}} {{className}}{{/if}}">
-  <input
+  <textarea
     class="message-input__element"
     type="{{ type }}" 
     placeholder="{{ placeholder }}" 
@@ -7,6 +7,7 @@
     value="{{ value }}"
     required="true"
     minlength="1"
-    id="message"/>
+    id="message">
+    </textarea>
   <button class="message-input__icon"></button>
 </form>

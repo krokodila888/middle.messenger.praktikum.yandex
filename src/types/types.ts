@@ -159,4 +159,6 @@ export type TChatInfo2 = {
 
 export type Chats = TChatInfo2[]
 
-export type WSConnection = Record<TChatInfo2['id'], WSTransport>
+export type WSConnection = /*Record<TChatInfo2['id'], WSTransport>*/ {
+  [key: number]: WSTransport
+}
