@@ -1,3 +1,4 @@
+import { isArrayOrObject } from '../utils/is-plain-object';
 import EventBus from './EventBus';
 import store from './Store';
 
@@ -23,8 +24,10 @@ export class WSTransport extends EventBus {
     if (!this.socket) {
       throw new Error('Not connected');
     }
+    if (this.socket.readyState !== 0) {
 
     this.socket.send(JSON.stringify(data));
+    }
   }
 
   connect(): Promise<void> {
@@ -67,14 +70,21 @@ export class WSTransport extends EventBus {
     socket.addEventListener('open', () => this.emit(WSACTIONS.WS_CONNECTION_START))
     socket.addEventListener('message', (message) => {
       try {
-        /*if (typeof message === 'string') {
+        if (typeof message === 'string') {
+          //console.log(message);
           return message;
-        }*/
+        }
         const data = JSON.parse(message.data);
         if (['pong', 'user connected'].includes(data?.type)) {
           return
         }
-        this.emit(WSACTIONS.WS_GET_MESSAGE, data);
+        else {
+          //console.log(message);
+          //console.log(JSON.parse(message.data));
+
+          return JSON.parse(message.data)
+        }
+       // this.emit(WSACTIONS.WS_GET_MESSAGE, data);
       } catch (error) {
         console.log(error);
       }

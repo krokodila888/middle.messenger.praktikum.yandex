@@ -4,6 +4,7 @@ import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, M
 import ChatPageRaw from './chat-page.hbs?raw';
 import store from '../../tools/Store';
 import { TChatInfo1, TChatInfo2 } from '../../types/types';
+import { chatController } from '../../controllers/chats-controller';
 export class ChatPage extends Block {
   constructor() {
     super({
@@ -82,10 +83,16 @@ export class ChatPage extends Block {
       && newProps.currentid 
       && newProps.currentid !== null
       && newProps.currentid !== undefined) {
+        console.log(chatController.getConnectionById(newProps.currentid as number));
+        chatController.getConnectionById(newProps.currentid as number)!.send({
+          content: "0",
+          type: "get old"
+        });
+
         const users = (store.getState().chats as TChatInfo2[]).find((item) => item.id === newProps.currentid);
         let aaa;
         
-        if (users !== undefined) {
+        if (users !== undefined && users !== null) {
           aaa = users.users!.length;
         }
         this.children.interlocutoritem.setProps({ 
@@ -102,6 +109,9 @@ export class ChatPage extends Block {
         name: null,
         avatar: "/assets/no-avatar-icon.png",
       });
+    }
+    if (newProps.currentid !== null && newProps.currentid !== undefined) {
+      console.log(chatController.getConnectionById(newProps.currentid as number))
     }
     return true;
   }

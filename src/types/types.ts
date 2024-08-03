@@ -1,3 +1,5 @@
+import { WSTransport } from './../tools/Websocket';
+
 export type TSigninResponse = {
   reason?: string;
 } | string;
@@ -154,3 +156,7 @@ export type TChatInfo2 = {
   last_message: TLastMessage;
   users?: TOtherUserType[]
 };
+
+export type Chats = TChatInfo2[]
+
+export type WSConnection = Record<TChatInfo2['id'], WSTransport>

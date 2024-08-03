@@ -35,8 +35,9 @@ export default class OpenChatAPI extends BaseAPI {
         });
     }})
     .then(() => {
+      const id = `${data.id}`
       return openChatAPIInstance
-      .post(`https://ya-praktikum.tech/api/v2/chats/token/${data.id}`, {
+      .post(`https://ya-praktikum.tech/api/v2/chats/token/${id}`, {
         credentials: 'include',
         mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
@@ -47,8 +48,12 @@ export default class OpenChatAPI extends BaseAPI {
         return response;
       })
       .then((response) => {
-        console.log('socket');
-        const socket = new WSTransport(`wss://ya-praktikum.tech/ws/chats/${data.userid}/${data.id}/${response}`);
+        const id = `${data.id}`;
+        const userid = `${data.userid}`;
+        const token = response.token;
+        //console.log(token);
+        //console.log('socket');
+        const socket = new WSTransport(`wss://ya-praktikum.tech/ws/chats/${userid}/${id}/${token}`);
         socket.connect()
       })
     })

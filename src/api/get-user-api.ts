@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { chatController } from '../controllers/chats-controller';
 import Router from '../tools/Router';
 import store from '../tools/Store';
 import { WSTransport } from '../tools/Websocket';
@@ -96,34 +97,14 @@ export default class GetUserAPI extends BaseAPI {
                             users: response,
                             id: item.id,
                           });
-                        }
-
-                        return item.id;                      
+                        }                    
                       })
-                      .then((id) => {
-                          return openChatAPIInstance
-                          .post(`https://ya-praktikum.tech/api/v2/chats/token/${id}`, {
-                            credentials: 'include',
-                            mode: 'cors',
-                            headers: { 'Content-Type': 'application/json' },
-                          })
-                          .then((xhr) => {
-                            const rawResponse = (xhr as XMLHttpRequest).responseText;
-                            const response = JSON.parse(rawResponse) as TTokenResponce;
-                            return response;
-                          })
-                          .then((response) => {
-                            console.log('socket');
-                            const socket = new WSTransport(`wss://ya-praktikum.tech/ws/chats/${store.getState().user.id}/${id}/${response}`);
-                            socket.connect()
-                          })
-                        })
-                      
-                });
+                    })
                 Promise.all(chatsWithUsers)
                 .catch(error => {
                   console.error(error)
                 })
+                chatController.createConnections()
                 }
               })
             }})
