@@ -99,7 +99,7 @@ export default class GetUserAPI extends BaseAPI {
           .catch(error => {
             console.error(error)
           })
-          chatController.createConnections()
+          chatController.createConnections();
         }
       })
     }})

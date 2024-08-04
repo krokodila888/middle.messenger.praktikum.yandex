@@ -11,6 +11,7 @@ export class ProfileFileInput extends Block {
     super({ ...props,
       events: {
         change: (e: Event) => {
+          e.preventDefault();
           const input = (<HTMLInputElement>document.querySelector('input[type="file"]'));
           const label = document.querySelector('.fileinput-profile-field__input');
           console.log(label);

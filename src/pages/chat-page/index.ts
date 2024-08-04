@@ -74,6 +74,22 @@ export class ChatPage extends Block {
           });
           this.lists.users = users1;
         }
+
+        if (store.getState().currentChat.id) {
+          const chat = store.getState().currentChat;
+          let usersCount;
+          if (chat !== undefined && chat !== null && chat.users && chat.users !== undefined && chat.users !== null) {
+           usersCount = chat.users!.length;
+          } else {
+            usersCount = 0;
+          }
+          this.children.interlocutoritem.setProps({ 
+            name: newProps.currenttitle,
+            avatar: newProps.currentavatar === null ? `/assets/avatar.png` : `https://ya-praktikum.tech/api/v2/resources${newProps.currentavatar}`,
+            id: newProps.currentid
+          });
+          (document.getElementById(newProps.currentid as string) as HTMLDivElement)?.classList.add('chat-item_chosen');
+        }
         
       //make messegaitems
         if (store.getState().messages !== null 
@@ -93,20 +109,7 @@ export class ChatPage extends Block {
               name: Number(item.user_id) === store.getState().user.id ? `${store.getState().user.first_name} ${store.getState().user.second_name}` : `${user1.first_name} ${user1.second_name}`,
             });
           })
-        this.lists.lists1 = newmessages.reverse();
-        const chat = store.getState().currentChat;
-        let usersCount;
-        if (chat !== undefined && chat !== null && chat.users && chat.users !== undefined && chat.users !== null) {
-          usersCount = chat.users!.length;
-        } else {
-          usersCount = 0;
-        }
-        this.children.interlocutoritem.setProps({ 
-          name: newProps.currenttitle,
-          avatar: newProps.currentavatar === null ? `/assets/avatar.png` : `https://ya-praktikum.tech/api/v2/resources${newProps.currentavatar}`,
-          id: newProps.currentid
-        });
-        (document.getElementById(newProps.currentid as string) as HTMLDivElement)?.classList.add('chat-item_chosen');
+          this.lists.lists1 = newmessages.reverse();
         }
       if (store.getState().messages.length === 0) {
         this.lists.lists1 = []
