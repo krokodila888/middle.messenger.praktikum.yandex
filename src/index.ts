@@ -19,6 +19,7 @@ const connectedChatPage = connect(Pages.ChatPage, (st: TStore) => {
       otherusers: (st.currentChat.id !== null && st.currentChat.users && st.currentChat.users !== null) ? st.currentChat.users.length : 0,
     }
   }
+  return
 }) as unknown as typeof Block;
 
 const connectedLoginPage = connect(Pages.LoginPage, (st: TStore) => {
@@ -30,6 +31,7 @@ const connectedLoginPage = connect(Pages.LoginPage, (st: TStore) => {
       errorclass: 'login-page__span_valid'
     }
   }
+  return
 }) as unknown as typeof Block;
 
 const connectedRegisterPage = connect(Pages.RegisterPage, (st: TStore) => {
@@ -41,6 +43,7 @@ const connectedRegisterPage = connect(Pages.RegisterPage, (st: TStore) => {
       errorclass: 'register-page__span_valid'
     }
   }
+  return
 }) as unknown as typeof Block;
 
 const connectedProfilePage = connect(Pages.ProfilePage, (st: TStore) => {
@@ -56,6 +59,7 @@ const connectedProfilePage = connect(Pages.ProfilePage, (st: TStore) => {
       avatar: st.user.avatar,
     }
   }
+  return
 }) as unknown as typeof Block;
 const connectedError404Page = connect(Pages.Error404Page);
 const connectedError500Page = connect(Pages.Error500Page);

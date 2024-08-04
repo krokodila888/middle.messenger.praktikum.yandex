@@ -30,6 +30,7 @@ export default class CreareChatAPI extends BaseAPI {
           type: 'CREATE_CHAT_ERROR',
           error: response,
         });
+        return
       }
       if (response.id) {
         newchatid = response.id;
@@ -77,12 +78,14 @@ export default class CreareChatAPI extends BaseAPI {
                     type: 'GET_USERS_ERROR',
                     error: response
                   });
+                  return
                 } else {
                   store.dispatch({
                     type: 'SET_USERS',
                     users: response,
                     id: item.id,
                   });
+                  return
                 } 
               })
             })
@@ -100,6 +103,7 @@ export default class CreareChatAPI extends BaseAPI {
         }
         })
       }
+      return
     }
   )}
 }
