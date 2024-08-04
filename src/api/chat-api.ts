@@ -83,7 +83,7 @@ export default class CreareChatAPI extends BaseAPI {
                     users: response,
                     id: item.id,
                   });
-                }                    
+                } 
               })
             })
             Promise.all(chatsWithUsers)
