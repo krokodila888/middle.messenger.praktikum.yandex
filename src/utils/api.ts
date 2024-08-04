@@ -63,6 +63,7 @@ export default class HTTPTransport {
     return this.request(url, {...options, method: METHOD.DELETE}, options.timeout, options.withCredentials);
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   request = (url: string, options:TOptions = {}, timeout = 5000, withCredentials = true) => {
     const {headers = {}, method, data} = options;
 
