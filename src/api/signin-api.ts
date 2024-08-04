@@ -31,6 +31,7 @@ export default class SigninAPI extends BaseAPI {
           type: 'SET_LOGIN_ERROR',
           error: JSON.parse(response as string) as TSigninResponse
         })
+        return
       }
       if (response === 'OK') {
         return getuserAPIInstance
@@ -50,6 +51,7 @@ export default class SigninAPI extends BaseAPI {
               type: 'SET_USER_ERROR',
               error: response
             })
+            return
           }
           else {
             store.dispatch({

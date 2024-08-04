@@ -28,6 +28,7 @@ export default class SignupAPI extends BaseAPI {
             type: 'SET_REGISTER_ERROR',
             error: response
           });
+          return
         }
         if (response.id) {
           return getuserAPIInstance1

@@ -32,6 +32,7 @@ export default class GetUserAPI extends BaseAPI {
         if (window.location.pathname === '/settings' || window.location.pathname === '/messenger') {
           router.go("/")
         }
+        return
       }
       else {
         store.dispatch({
@@ -102,7 +103,8 @@ export default class GetUserAPI extends BaseAPI {
           chatController.createConnections();
         }
       })
-    }})
+    }
+  })
     .then(() => {
       console.log(window.location);
       console.log(store.getState());
