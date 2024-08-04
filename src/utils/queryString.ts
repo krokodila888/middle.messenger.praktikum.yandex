@@ -42,7 +42,7 @@ function queryStringify(data: StringIndexed): string | never {
         }),
         {}
       );
-
+      console.log(typeof obj);
       return `${result}${queryStringify(objValue)}${endLine}`;
     }
 
