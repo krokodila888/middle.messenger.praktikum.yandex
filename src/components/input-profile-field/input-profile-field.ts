@@ -28,7 +28,7 @@ export class InputProfileField extends Block {
       })
     })
   }
-  componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
+  componentDidUpdate(/*oldProps: IProps, */newProps: IProps): boolean {
     this.children.input.setProps({value: newProps.value});
     return true;
   }

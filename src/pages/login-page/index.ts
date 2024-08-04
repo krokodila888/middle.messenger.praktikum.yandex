@@ -1,5 +1,5 @@
 import './login-page.scss';
-import Block, { IProps } from '../../tools/Block';
+import Block from '../../tools/Block';
 import { PageTitle, Button, Link, InputField } from '../../components';
 import LoginPageRaw from './login-page.hbs?raw';
 export class LoginPage extends Block {
@@ -48,7 +48,6 @@ export class LoginPage extends Block {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidUpdate(/*oldProps: IProps, newProps: IProps*/): boolean {
     return true;
   }

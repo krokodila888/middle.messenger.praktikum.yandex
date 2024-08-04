@@ -92,6 +92,7 @@ export class ChatPage extends Block {
             id: newProps.currentid
           });
           (document.getElementById(newProps.currentid as string) as HTMLDivElement)?.classList.add('chat-item_chosen');
+          console.log('users' + usersCount)
         }
         
       //make messegaitems

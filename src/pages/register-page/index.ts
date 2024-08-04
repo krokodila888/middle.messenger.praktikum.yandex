@@ -1,5 +1,5 @@
 import './register-page.scss';
-import Block, { IProps } from '../../tools/Block';
+import Block from '../../tools/Block';
 import { PageTitle, InputField, Button, Link } from '../../components';
 import RegisterPageRaw from './register-page.hbs?raw';
 

@@ -48,23 +48,22 @@ function queryStringify(data: Record<string, unknown>): string  {
 export default class HTTPTransport {
 
   get = (url: string, options:TOptions = {}) => {
-    return this.request(url, {...options, method: METHOD.GET}, options.timeout, options.withCredentials);
+    return this.request(url, {...options, method: METHOD.GET}, options.timeout/*, options.withCredentials*/);
   };
 
   post = (url: string, options:TOptions = {}) => {
-    return this.request(url, {...options, method: METHOD.POST}, options.timeout, options.withCredentials);
+    return this.request(url, {...options, method: METHOD.POST}, options.timeout/*, options.withCredentials*/);
   };
 
   put = (url: string, options:TOptions = {}) => {
-    return this.request(url, {...options, method: METHOD.PUT}, options.timeout, options.withCredentials);
+    return this.request(url, {...options, method: METHOD.PUT}, options.timeout/*, options.withCredentials*/);
   };
 
   delete = (url: string, options:TOptions = {}) => { 
-    return this.request(url, {...options, method: METHOD.DELETE}, options.timeout, options.withCredentials);
+    return this.request(url, {...options, method: METHOD.DELETE}, options.timeout/*, options.withCredentials*/);
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  request = (url: string, options:TOptions = {}, timeout = 5000, withCredentials = true) => {
+  request = (url: string, options:TOptions = {}, timeout = 5000/*, withCredentials = true*/) => {
     const {headers = {}, method, data} = options;
 
   return new Promise(function(resolve, reject) {
