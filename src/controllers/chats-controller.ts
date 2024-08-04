@@ -73,6 +73,50 @@ class ChatController {
     }
 
 
+
+    /*updateDialogsListItem(chat: Chat, dialogItem: DialogItem) {
+        const chatId = chat.id
+        const connection = this.getConnectionById(chatId)
+
+        connection?.on(WSTransportEvents.MESSAGE, async (data: WSMessageData) => {
+            const newChats = store.getState().chats
+
+            if (data.type === 'message') {
+                if (Array.isArray(newChats)) {
+                    newChats.forEach(async (newChat) => {
+                        if (newChat.id === chatId) {
+                            const lastMessageUsers = await chatAPI.getChatUsers(chatId) as unknown as User[]
+                            const lastMessageUser = lastMessageUsers.find((user) => {
+                                if (user.id && user.id === Number(data.user_id)) {
+                                    return user
+                                }
+                                return null
+                            })
+
+                            console.log(lastMessageUser);
+                            if (lastMessageUser) {
+                                const unreadCount = await chatAPI.getUnreadMessagesCount(chatId) as unknown as { unread_count: number }
+                                const messageName = lastMessageUser.display_name
+                                    ? `${lastMessageUser.display_name}: `
+                                    : `${lastMessageUser.first_name}: `
+
+                                dialogItem.setProps({
+                                    message: data.content,
+                                    time: getMessageTime(data.time),
+                                    count: unreadCount.unread_count,
+                                    messageName,
+                                })
+                            }
+                        }
+                    })
+                }
+            }
+        })
+    }*/
+
+    /*async deleteUserFromChat(chatId: number, userId: number) {
+        await chatAPI.removeUser(chatId, userId)
+    }*/
 }
 
 export const chatController = new ChatController()

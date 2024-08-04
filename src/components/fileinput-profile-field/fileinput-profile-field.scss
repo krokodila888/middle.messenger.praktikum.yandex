@@ -61,10 +61,11 @@
     height: 44px;
     margin-top: 16px;
     padding: 4px 14px;
-    color: $dark-grey-color;
+    color: $middle-grey-color;
     background-color: $light-beige-color;
     border: none;
     border-radius: 16px;
+    align-content: center;
   
     @include shadow-inside;
   

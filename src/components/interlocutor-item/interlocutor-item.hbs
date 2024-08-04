@@ -15,7 +15,11 @@
     {{#if name}} {{ name }} {{else }} Выберите чат {{/if}}
   </p>
   {{#if name}} 
-  <p class="interlocutor-item__text">Юзеров: {{users}} </p>
+  <div class="interlocutor-item__users">
+
+    {{{ lists }}}
+  </div>
+  
   <div class="interlocutor-item__button-block">
     {{{ adduserinput }}}
     {{{ deletechatbutton}}}

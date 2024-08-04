@@ -12,23 +12,26 @@
     </div>
     <div class="chat-page__content">
       <div class="chat-page__list">
-          {{{ lists }}}
+        {{{ lists }}}
         {{{ chatitem1 }}}
         {{{ chatitem2 }}}
         {{{ newchatinput }}}
       </div>
       <div class="current-chat">
-        {{#if text}}
-          <p class="current-chat__text">{{text}}</p>
-        {{else}}
           <div class="current-chat__message-block">
-            {{{ interlocutoritem }}}
-            <div class="current-chat__message-block">
+            <div class="current-chat__message-row">
+              {{{ interlocutoritem }}}
+              <div class="current-chat__users">
+                <p class="current-chat__text1">Users: {{otherusers}} </p>
+                {{{ users }}} 
+              </div>
+            </div>
+            <div class="current-chat__message-block1">
               {{{ lists1 }}}
             </div>
           </div>
         {{{ messageinput }}}
-        {{/if}}
+
       </div>
     </div>
   </div>

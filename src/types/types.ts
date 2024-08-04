@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { WSTransport } from './../tools/Websocket';
 
 export type TSigninResponse = {
@@ -159,6 +160,46 @@ export type TChatInfo2 = {
 
 export type Chats = TChatInfo2[]
 
-export type WSConnection = /*Record<TChatInfo2['id'], WSTransport>*/ {
+export type WSConnection = {
   [key: number]: WSTransport
 }
+
+export type TDeleteUserRequest = {
+  users: number[],
+  chatId: number
+}
+
+export type TStore = {
+    user: {
+      avatar: string,
+      email: string,
+      first_name: string,
+      id: number, 
+      login: string,
+      phone: string,
+      second_name: string,
+      display_name: string,
+    },
+    first_name: string,
+    chats: TChatInfo2,
+    currentChat: {
+      id: number,
+      title: string,
+      avatar: string,
+      unread_count: number,
+      created_by: string,
+      last_message: {
+        id: number,
+        time: string,
+        content: string,
+      },
+      users: TOtherUserType[]
+    },
+    registerError: string,
+    loginError: string,
+    getuserError: string,
+    getchatsError: string,
+    avatarError: string,
+    createChatError: string,
+    getUsersError: string,
+};

@@ -7,6 +7,7 @@ import { BaseAPI } from './baze-api';
 
 const searchUserAPIInstance = new HTTPTransport();
 const addUserAPIInstance = new HTTPTransport();
+const getChatUsersAPIInstance = new HTTPTransport();
 
 export default class AddUserAPI extends BaseAPI {
   request(data: TUserChatData) {
@@ -31,11 +32,6 @@ export default class AddUserAPI extends BaseAPI {
             }
             else {
               const aaa = response[0];
-              /*store.dispatch({
-                type: 'SET_USER',
-                user: response
-              });
-              console.log(store.getState());*/
               return addUserAPIInstance
               .put('https://ya-praktikum.tech/api/v2/chats/users', {
                 credentials: 'include',
@@ -57,35 +53,34 @@ export default class AddUserAPI extends BaseAPI {
                 return response;
               })
               .then((response) => {
-                if (response !== 'OK') {
-                  store.dispatch({
-                    type: 'SET_LOGIN_ERROR',
-                    error: JSON.parse(response as string) as TErrorMessage
+                if (response === 'OK') {
+                  return getChatUsersAPIInstance
+                  .get(`https://ya-praktikum.tech/api/v2/chats/${data.chatid}/users`, {
+                    credentials: 'include',
+                    mode: 'cors',
+                    withCredentials: true
                   })
+                  .then((xhr) => {
+                    const rawResponse = (xhr as XMLHttpRequest).responseText;
+                    const response = JSON.parse(rawResponse) as TUserDataResponce;
+                    return response;
+                  })
+                  .then((response) => {
+                    if (response.reason) {
+                      store.dispatch({
+                        type: 'GET_USERS_ERROR',
+                        error: response
+                      });
+                    }
+                    else {
+                      store.dispatch({
+                        type: 'SET_USERS',
+                        users: response,
+                        id: data.chatid,
+                      });
+                    }})
+
+                }})
                 }
               })
-              /*.then((response) => {
-                if ((response as TErrorMessage).reason ) {
-                  store.dispatch({
-                    type: 'SET_CHATS_ERROR',
-                    error: response
-                  });
-                } else {
-                  store.dispatch({
-                    type: 'SET_CHATS',
-                    chats: response
-                  });
-                  console.log(store.getState());
-                }
-              })
-              .then(() => {
-                console.log(window.location);
-                const router = new Router("app");
-                if (window.location.pathname === '/' || window.location.pathname === '/sign-up') {
-                  router.go("/messenger");
-                }
-              })
-        }*/
-      }
-      }
-)}}
+  }}

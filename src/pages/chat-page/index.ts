@@ -1,14 +1,15 @@
 import './chat-page.scss';
 import Block, { IProps } from '../../tools/Block';
-import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput, NewChatInput } from '../../components';
+import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput, NewChatInput, UserItem } from '../../components';
 import ChatPageRaw from './chat-page.hbs?raw';
 import store from '../../tools/Store';
-import { TChatInfo1, TChatInfo2 } from '../../types/types';
+import { TChatInfo1, TChatInfo2, TOtherUserType } from '../../types/types';
 import { chatController } from '../../controllers/chats-controller';
 import { WSACTIONS } from '../../tools/Websocket';
 export class ChatPage extends Block {
   constructor() {
     super({
+      chatusersblock: null,
       logo: new Logo({ }),
       generaltitle: new Title({ title: "Common ", span: "chat" }),
       profilelink: new Link({ page: "profile", link: "Your profile", className: "link__link_medium" }),
@@ -28,6 +29,9 @@ export class ChatPage extends Block {
       }),
       lists: [
       ],
+      users: [
+
+      ],
       lists1: [
         /*new MessageItem ({
           time: "06:20",
@@ -35,7 +39,8 @@ export class ChatPage extends Block {
           text: "Посмотри правки, они на почте",
         }),
        */
-      ], 
+      ],
+
     });
   }
 
@@ -56,13 +61,25 @@ export class ChatPage extends Block {
           current: (store.getState().currentChat.id === item.id) ? 'chat-item_chosen' : ''
         })
       });
-
       this.lists.lists = newchats;
-    } 
+    }
+
     if (newProps.currenttitle !== undefined 
       && newProps.currentid 
       && newProps.currentid !== null
       && newProps.currentid !== undefined) {
+        if (store.getState().currentChat.users) {
+        const users1 = store.getState().currentChat.users.map((item: TOtherUserType) => {
+          return new UserItem({
+            name: `${item.first_name} ${item.second_name}`,
+            id: `${item.id}`, 
+            avatar: item.avatar !== null ? `	https://ya-praktikum.tech/api/v2/resources${item.avatar}` : `/assets/avatar.png`,
+          })
+        });
+        this.lists.users = users1;
+
+      }
+
         //console.log(chatController.getConnectionById(newProps.currentid as number));
         /*chatController.getConnectionById(newProps.currentid as number)!.send({
           content: "0",
@@ -90,10 +107,12 @@ export class ChatPage extends Block {
         this.children.interlocutoritem.setProps({ 
         name: newProps.currenttitle,
         avatar: newProps.currentavatar,
-        users: aaa,
+        //users: newProps.users,
+        id: newProps.currentid
       });
       //console.log(document.getElementById(newProps.currentid as string) as HTMLDivElement);
       (document.getElementById(newProps.currentid as string) as HTMLDivElement)?.classList.add('chat-item_chosen');
+
     }
     if (newProps.currentid === null) {
       //console.log('current chat = null');
@@ -102,9 +121,6 @@ export class ChatPage extends Block {
         avatar: "/assets/no-avatar-icon.png",
       });
     }
-    /*if (newProps.currentid !== null && newProps.currentid !== undefined) {
-      console.log(chatController.getConnectionById(newProps.currentid as number))
-    }*/
     return true;
   }
 

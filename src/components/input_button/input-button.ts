@@ -35,6 +35,8 @@ export class InputButton extends Block {
             formdata.append('avatar', input.files[0], input.files[0].name);
             const getavatarApi = new SetAvatarAPI;
             getavatarApi.request(formdata);
+            const label = document.querySelector('.fileinput-profile-field__input');
+            (<HTMLLabelElement>label).textContent = 'Add your file';
           }
         }
       }

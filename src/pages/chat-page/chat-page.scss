@@ -103,4 +103,30 @@ body {
     flex-direction: column;
     overflow-y: auto;
   }
+  &__message-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__users {
+    display: flex;
+    flex-direction: column;
+    height: 50px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    width: 80px;
+
+    &:hover {
+      height: fit-content;
+      width: 180px;
+      transition: 0.5s;
+    }
+  }
+
+  &__text1 {
+    font-size: 16px;
+    padding: 26px 0 26px 24px;
+    margin: 0;
+    text-decoration: underline;
+  }
 }

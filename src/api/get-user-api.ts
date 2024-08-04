@@ -3,14 +3,13 @@ import { chatController } from '../controllers/chats-controller';
 import Router from '../tools/Router';
 import store from '../tools/Store';
 import { WSTransport } from '../tools/Websocket';
-import { TUserDataResponce, TChatInfo, TErrorMessage, TChatInfo2, TTokenResponce, TOtherUserType } from '../types/types';
+import { TUserDataResponce, TChatInfo, TErrorMessage, TChatInfo2, TOtherUserType } from '../types/types';
 import HTTPTransport from '../utils/api';
 import { BaseAPI } from './baze-api';
 
 const getuserAPIInstance = new HTTPTransport();
 const getchatsAPIInstance = new HTTPTransport();
 const getUsersAPIInstance = new HTTPTransport();
-const openChatAPIInstance = new HTTPTransport();
 
 export default class GetUserAPI extends BaseAPI {
   request() {

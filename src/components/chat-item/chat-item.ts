@@ -14,17 +14,18 @@ export class ChatItem extends Block {
       events: {
         click: (e: Event) => {
           e.preventDefault();
-          const id =  Number((e.target as HTMLDivElement).id);
+          const current = (e.target as HTMLElement).closest('.chat-item');
+          const id =  Number((current as HTMLDivElement).id);
           document.querySelectorAll('.chat-item').forEach((item) => {
             item.classList.remove('chat-item_chosen')
           });
-          console.log(e.target as HTMLDivElement);
+          console.log(current as HTMLDivElement);
           
           store.dispatch({
             type: 'SET_CURRENTCHAT',
             id: id
           });
-          (e.target as HTMLDivElement).classList.add('.chat-item_chosen');
+          (current as HTMLDivElement).classList.add('.chat-item_chosen');
           /*const openChatApi = new OpenChatAPI;
           openChatApi.request({
             id: id,

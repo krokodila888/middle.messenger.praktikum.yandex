@@ -13,42 +13,7 @@ interface IState {
   [key: string]: any;
 }
 
-/*const initialState: IState = {
-  buttonText: 'Initial text',
-  user: {
-    avatar: null,
-    email: "",
-    first_name: "",
-    id: null, 
-    login: "",
-    phone: "",
-    second_name: "",
-    display_name: '',
-  },
-  first_name: '',
-  chats: null,
-  currentChat: {
-    id: null,
-    title: null,
-    avatar: null,
-    unread_count: null,
-    created_by: null,
-    last_message: {
-      user: null,
-      time: null,
-      content: null,
-    },
-  },
-  registerError: null,
-  loginError: null,
-  getuserError: null,
-  getchatsError: null,
-  avatarError: null,
-  createChatError: null,
-};*/
-
 const state: IState = {
-  buttonText: 'Initial text',
   user: {
     avatar: null,
     email: "",
@@ -68,10 +33,11 @@ const state: IState = {
     unread_count: null,
     created_by: null,
     last_message: {
-      user: null,
+      id: null,
       time: null,
       content: null,
     },
+    users: null
   },
   registerError: null,
   loginError: null,
@@ -144,15 +110,24 @@ const reducer: TReducer<IState> = (state, action) => {
     return newState;
   } else if (action.type === 'SET_CURRENTCHAT') {
     console.log('SET_CURRENTCHAT');
-    console.log(newState.chats);
     newState.currentChat = newState.chats.find((item: TChatInfo2) => item.id === action.id);
+    return newState;
+  } else if (action.type === 'DELETE_USER') {
+    console.log('DELETE_USER');
+    newState.currentChat.users = newState.currentChat.users.filter((item: TOtherUserType) => item.id !== action.user);
+    console.log(newState.currentChat.users);
+    newState.chats.find((item: TChatInfo2) => item.id === action.chatid).users = newState.chats.find((item: TChatInfo2) => item.id === action.chatid).users.filter((item: TOtherUserType) => item.id !== action.user);
+    newState.currentChat.id = action.chatid;
+    console.log(newState);
     return newState;
   } else if (action.type === 'SET_USERS') {
     console.log('SET_USERS');
     const item = newState.chats.find((item: TChatInfo) =>
     item.id === action.id);
     item.users = action.users;
-    console.log(item);
+    newState.currentChat.users = action.users;
+    newState.currentChat.id = action.id;
+    //console.log(item);
     return newState;
   } else if (action.type === 'DELETE_CHAT') {
     newState.currentChat = state.currentChat;
