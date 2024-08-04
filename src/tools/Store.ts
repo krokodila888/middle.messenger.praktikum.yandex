@@ -130,7 +130,22 @@ const reducer: TReducer<IState> = (state, action) => {
     newState.currentChat.users = action.users;
     return newState;
   } else if (action.type === 'DELETE_CHAT') {
-    newState.currentChat = state.currentChat;
+    console.log('DELETE_CHAT');
+    newState.currentChat = {
+      id: null,
+      title: null,
+      avatar: null,
+      unread_count: null,
+      created_by: null,
+      last_message: {
+        id: null,
+        time: null,
+        content: null,
+      },
+      users: null
+    };
+    newState.messages = [];
+    newState.chats = (newState.chats as TChatInfo2[]).filter((item) => item.id !== action.deletedChat)
     return newState
   } else if (action.type === 'SET_CHAT_AVATAR') {
     console.log('SET_CHAT_AVATAR');

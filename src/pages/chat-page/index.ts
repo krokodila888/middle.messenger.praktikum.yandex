@@ -3,9 +3,7 @@ import Block, { IProps } from '../../tools/Block';
 import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput, NewChatInput, UserItem, AddMessagesButton } from '../../components';
 import ChatPageRaw from './chat-page.hbs?raw';
 import store from '../../tools/Store';
-import { TChatInfo1, TChatInfo2, TMessage, TOtherUserType } from '../../types/types';
-import { chatController } from '../../controllers/chats-controller';
-import { WSACTIONS } from '../../tools/Websocket';
+import { TChatInfo1, TMessage, TOtherUserType } from '../../types/types';
 export class ChatPage extends Block {
   constructor() {
     super({
@@ -39,7 +37,6 @@ export class ChatPage extends Block {
       ],
       lists1: [
       ],
-
     });
   }
 
@@ -50,7 +47,6 @@ export class ChatPage extends Block {
       this.children.chaticon.setProps({src: `/assets/avatar.png`})
     }
     if (newProps.title1 !== null && newProps.title1 !== undefined) { 
-      //console.log('store!!')
       const newchats = store.getState().chats.map((item: TChatInfo1) => {
         return new ChatItem({
           title: `${item.title}`,
@@ -67,16 +63,22 @@ export class ChatPage extends Block {
       && newProps.currentid 
       && newProps.currentid !== null
       && newProps.currentid !== undefined) {
+      //make chatitems  
         if (store.getState().currentChat.users) {
-        const users1 = store.getState().currentChat.users.map((item: TOtherUserType) => {
-          return new UserItem({
-            name: `${item.first_name} ${item.second_name}`,
-            id: `${item.id}`, 
-            avatar: item.avatar !== null ? `https://ya-praktikum.tech/api/v2/resources${item.avatar}` : `/assets/avatar.png`,
-          })
-        });
-        this.lists.users = users1;
-        if (store.getState().messages !== null && store.getState().messages !== undefined) {
+          const users1 = store.getState().currentChat.users.map((item: TOtherUserType) => {
+            return new UserItem({
+              name: `${item.first_name} ${item.second_name}`,
+              id: `${item.id}`, 
+              avatar: item.avatar !== null ? `https://ya-praktikum.tech/api/v2/resources${item.avatar}` : `/assets/avatar.png`,
+            })
+          });
+          this.lists.users = users1;
+        }
+        
+      //make messegaitems
+        if (store.getState().messages !== null 
+        && store.getState().messages !== undefined 
+        && store.getState().messages.length !== 0) {
           const newmessages = store.getState().messages.map((item: TMessage) => {
             const users = store.getState().currentChat.users as TOtherUserType[];
             const user1 = users.find((user) => Number(user.id) === item.user_id) as TOtherUserType;
@@ -87,36 +89,37 @@ export class ChatPage extends Block {
               text: `${item.content}`,
               date: `${item.time.substring(0,10)}`,
               toMe: Number(item.user_id) === store.getState().user.id ? 'message-item__not-my-message' : '',
-              avatar:  Number(item.user_id) === store.getState().user.id ? userAvatar : otherUserAvatar,
+              avatar: Number(item.user_id) === store.getState().user.id ? userAvatar : otherUserAvatar,
               name: Number(item.user_id) === store.getState().user.id ? `${store.getState().user.first_name} ${store.getState().user.second_name}` : `${user1.first_name} ${user1.second_name}`,
-          });
-      })
+            });
+          })
         this.lists.lists1 = newmessages.reverse();
-      }
-      }
-
-    const chat = store.getState().currentChat;/*(store.getState().chats as TChatInfo2[]).find((item) => item.id === newProps.currentid);*/
-    let aaa;
-    if (chat !== undefined && chat !== null && chat.users && chat.users !== undefined && chat.users !== null) {
-      aaa = chat.users!.length;
-    } else aaa = 0;
+        const chat = store.getState().currentChat;
+        let usersCount;
+        if (chat !== undefined && chat !== null && chat.users && chat.users !== undefined && chat.users !== null) {
+          usersCount = chat.users!.length;
+        } else {
+          usersCount = 0;
+        }
         this.children.interlocutoritem.setProps({ 
-        name: newProps.currenttitle,
-        avatar: newProps.currentavatar === null ? `/assets/avatar.png` : `https://ya-praktikum.tech/api/v2/resources${newProps.currentavatar}`,
-        //users: newProps.users,
-        id: newProps.currentid
-      });
-      //console.log(document.getElementById(newProps.currentid as string) as HTMLDivElement);
-      (document.getElementById(newProps.currentid as string) as HTMLDivElement)?.classList.add('chat-item_chosen');
-
+          name: newProps.currenttitle,
+          avatar: newProps.currentavatar === null ? `/assets/avatar.png` : `https://ya-praktikum.tech/api/v2/resources${newProps.currentavatar}`,
+          id: newProps.currentid
+        });
+        (document.getElementById(newProps.currentid as string) as HTMLDivElement)?.classList.add('chat-item_chosen');
+        }
+      if (store.getState().messages.length === 0) {
+        this.lists.lists1 = []
+      }
     }
+    
     if (newProps.currentid === null) {
-      //console.log('current chat = null');
       this.children.interlocutoritem.setProps({ 
         name: null,
         avatar: "/assets/no-avatar-icon.png",
       });
-    }
+      this.lists.lists1 = [];
+    }    
     return true;
   }
 

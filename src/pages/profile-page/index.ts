@@ -3,22 +3,6 @@ import Block, { IProps } from '../../tools/Block';
 import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link, FileInputProfileField } from '../../components';
 import ProfilePageRaw from './profile-page.hbs?raw';
 
-type TUser = {
-  avatar: string,
-  email: string,
-  first_name: string,
-  id: number 
-  login: string,
-  phone: string,
-  second_name: string,
-};
-
-type TStore = {
-  user: TUser;
-  buttonText: string,
-  first_name: string,
-}
-
 export class ProfilePage extends Block {
   constructor() {
     super({

@@ -17,7 +17,6 @@ export class AddMessagesButton extends Block {
           const id = store.getState().currentChat.id;
           const num = store.getState().messages.length;
           const currentSocket = chatController.WSConnections.find((connection) => connection[id]);
-            console.log (currentSocket);
             currentSocket![id].send({
               content: `${num}`,
               type: "get old"

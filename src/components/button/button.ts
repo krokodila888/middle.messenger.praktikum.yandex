@@ -48,7 +48,6 @@ export class Button extends Block {
            }
 
           if (document.querySelector(`.button__login`)) {
-            //console.log(`.button__login`);
             const inputs = document.querySelectorAll('input');
             const res: MyType = {};
             inputs.forEach((item) => {
@@ -62,7 +61,6 @@ export class Button extends Block {
           };
 
           if (document.querySelector(`.button__register`)) {
-            //console.log(`.button__register`);
             const inputs = document.querySelectorAll('input');
             const res: MyType = {};
             inputs.forEach((item) => {

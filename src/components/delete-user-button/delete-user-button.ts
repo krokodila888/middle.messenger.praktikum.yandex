@@ -15,10 +15,8 @@ export class DeleteUserButton extends Block {
       ...props,
       events: {
         click: (e: Event) => {
-          //e.preventDefault();
           const id = store.getState().currentChat.id;
           const data = {chatId: id, users: [Number((e.target as HTMLElement)?.id)]};
-
           const deleteuserApi = new DeleteUserAPI;
           deleteuserApi.request(data as TDeleteUserRequest);
         }}})

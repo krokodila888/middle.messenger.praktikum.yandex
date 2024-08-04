@@ -1,6 +1,5 @@
 import Block from './Block';
 import { isEqual, PlainObject } from '../utils/is-equal';
-//import { PlainObject } from '../types';
 import render from '../utils/render';
 
 type Props = { rootQuery: string };
@@ -28,7 +27,6 @@ class Route {
   leave(): void {
     if (this.block) {
       this.block.hide();
-      //this.block = null;
     }
   }
 
@@ -36,16 +34,12 @@ class Route {
     return isEqual(pathname as unknown as PlainObject, this.pathname as unknown as PlainObject);
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   render() {
-    //if (!this.block) {
-        this.block = new this.blockClass({});
-        this.block.preRender();
-        render(this.props.rootQuery, this.block!);
-        return;
-    /*}
-    this.block.show();*/
-}
+    this.block = new this.blockClass({});
+    this.block.preRender();
+    render(this.props.rootQuery, this.block!);
+    return;
+  }
 }
 
 export default Route;

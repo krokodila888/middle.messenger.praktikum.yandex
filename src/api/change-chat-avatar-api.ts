@@ -1,5 +1,5 @@
 import store from '../tools/Store';
-import { TChangeChatAvatarRequest, TChatInfo, TErrorMessage, TUpdateUserResponce } from '../types/types';
+import { TChatInfo, TErrorMessage, TUpdateUserResponce } from '../types/types';
 import HTTPTransport from '../utils/api';
 import { BaseAPI } from './baze-api';
 
@@ -7,7 +7,7 @@ const setChatAvatarAPIInstance = new HTTPTransport();
 const getchatsAPIInstance = new HTTPTransport();
 
 export default class SetChatAvatarAPI extends BaseAPI {
-  request(data: /*TChangeChatAvatarRequest*/FormData) {
+  request(data: FormData) {
     return setChatAvatarAPIInstance
     .put('https://ya-praktikum.tech/api/v2/chats/avatar', {
       data: data,
@@ -56,7 +56,6 @@ export default class SetChatAvatarAPI extends BaseAPI {
           }
           return response
         })
-        
       }
     })
   }

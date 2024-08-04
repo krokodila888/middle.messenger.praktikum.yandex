@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import Router from '../tools/Router';
 import store from '../tools/Store';
 import { TErrorMessage } from '../types/types';
 import HTTPTransport from '../utils/api';

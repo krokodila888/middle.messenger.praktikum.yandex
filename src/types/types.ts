@@ -181,7 +181,7 @@ export type TStore = {
       display_name: string,
     },
     first_name: string,
-    chats: TChatInfo2,
+    chats: TChatInfo2[],
     currentChat: {
       id: number,
       title: string,
@@ -195,13 +195,14 @@ export type TStore = {
       },
       users: TOtherUserType[]
     },
-    registerError: string,
-    loginError: string,
-    getuserError: string,
-    getchatsError: string,
-    avatarError: string,
-    createChatError: string,
-    getUsersError: string,
+    messages: TMessage,
+    registerError: TErrorMessage,
+    loginError: TErrorMessage,
+    getuserError: TErrorMessage,
+    getchatsError: TErrorMessage,
+    avatarError: TErrorMessage,
+    createChatError: TErrorMessage,
+    getUsersError: TErrorMessage,
 };
 
 export type TChangeChatAvatarRequest = {

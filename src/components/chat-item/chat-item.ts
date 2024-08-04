@@ -2,10 +2,7 @@ import './chat-item.scss';
 import Block from '../../tools/Block';
 import ChatItemRaw from './chat-item.hbs?raw';
 import store from '../../tools/Store';
-import OpenChatAPI from '../../api/open-chat-api';
 import { chatController } from '../../controllers/chats-controller';
-import { WSACTIONS } from '../../tools/Websocket';
-import { TChatInfo2 } from '../../types/types';
 import { isArray } from '../../utils/is-plain-object';
 
 interface Props {

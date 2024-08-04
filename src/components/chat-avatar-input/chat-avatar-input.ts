@@ -1,9 +1,6 @@
 import './chat-avatar-input.scss';
 import ChatAvatarInputRaw from './chat-avatar-input.hbs?raw';
 import Block from '../../tools/Block';
-import CreareChatAPI from '../../api/chat-api';
-import { TCreareChatRequest, TUserChatData } from '../../types/types';
-import AddUserAPI from '../../api/add-user-api';
 import store from '../../tools/Store';
 import SetChatAvatarAPI from '../../api/change-chat-avatar-api';
 

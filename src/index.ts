@@ -1,32 +1,27 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Pages from './pages';
 import Router from './tools/Router';
 import { connect } from './tools/Hoc';
 import Block from './tools/Block';
 import GetUserAPI from './api/get-user-api';
-import { ChatItem } from './components';
-import { TChatInfo, TChatInfo2 } from './types/types';
-import OpenChatAPI from './api/open-chat-api';
+import { TChatInfo2, TStore } from './types/types';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
+const connectedChatPage = connect(Pages.ChatPage, (st: TStore) => {
   console.log('selector', st);
   if (st.user.first_name !== '' && st.chats !== null) {
     console.log('update in chats');
     return {
       avatar: st.user.avatar,
       id1: st.chats[0].id,
-      title1: st.chats[0].title,
-      currentid: st.currentChat.id/* as number | null*/,
+      title1: (st.chats[0] as TChatInfo2).title,
+      currentid: st.currentChat.id,
       currenttitle: st.currentChat.title,
       currentavatar: st.currentChat.avatar,
       otherusers: (st.currentChat.id !== null && st.currentChat.users && st.currentChat.users !== null) ? st.currentChat.users.length : 0,
     }
   }
 }) as unknown as typeof Block;
-//errormessage
 
-const connectedLoginPage = connect(Pages.LoginPage, (st: any) => {
+const connectedLoginPage = connect(Pages.LoginPage, (st: TStore) => {
   console.log('selector', st);
   if (st.loginError !== null && st.loginError.reason) {
     console.log('update in login');
@@ -37,7 +32,7 @@ const connectedLoginPage = connect(Pages.LoginPage, (st: any) => {
   }
 }) as unknown as typeof Block;
 
-const connectedRegisterPage = connect(Pages.RegisterPage, (st: any) => {
+const connectedRegisterPage = connect(Pages.RegisterPage, (st: TStore) => {
   console.log('selector', st);
   if (st.registerError !== null && st.registerError.reason) {
     console.log('update in register');
@@ -48,7 +43,7 @@ const connectedRegisterPage = connect(Pages.RegisterPage, (st: any) => {
   }
 }) as unknown as typeof Block;
 
-const connectedProfilePage = connect(Pages.ProfilePage, (st: any) => {
+const connectedProfilePage = connect(Pages.ProfilePage, (st: TStore) => {
   console.log('selector', st);
   if (st.user.first_name !== '') {
     console.log('update in profile')

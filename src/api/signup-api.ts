@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import Router from '../tools/Router';
 import store from '../tools/Store';
 import { TUserDataResponce, TChatInfo, TSignupResponse, TUserRequest, TErrorMessage } from '../types/types';
@@ -73,20 +72,19 @@ export default class SignupAPI extends BaseAPI {
                   type: 'SET_CHATS_ERROR',
                   error: response
                 });
-                console.log(store.getState());
-              } else {
-                store.dispatch({
-                  type: 'SET_CHATS',
-                  chats: response
-                });
-                console.log(store.getState());
-                const router = new Router("app");
-                router.go("/messenger")
-        }
-      }
-    )
-  }
+              console.log(store.getState());
+            } else {
+              store.dispatch({
+                type: 'SET_CHATS',
+                chats: response
+              });
+              console.log(store.getState());
+              const router = new Router("app");
+              router.go("/messenger")
+            }
+          }
+        )}
       )}
-      }
+    }
   )}
 }

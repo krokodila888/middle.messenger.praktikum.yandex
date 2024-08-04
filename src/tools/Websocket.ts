@@ -1,6 +1,4 @@
-import { isArrayOrObject } from '../utils/is-plain-object';
 import EventBus from './EventBus';
-import store from './Store';
 
 export enum WSACTIONS {
   WS_CONNECTION_START = 'connected',
@@ -67,7 +65,6 @@ export class WSTransport extends EventBus {
   }
 
   subscribe(socket: WebSocket) {
-    //socket.addEventListener('message', onMessage);
     socket.addEventListener('open', () => this.emit(WSACTIONS.WS_CONNECTION_START))
     socket.addEventListener('message', (mesage) => {
       try {

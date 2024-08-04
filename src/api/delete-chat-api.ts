@@ -26,29 +26,32 @@ const getchatsAPIInstance = new HTTPTransport();
               type: 'DELETE_CHAT',
               deletedChat: response.result.id
             });
-            return getchatsAPIInstance
-              .get('https://ya-praktikum.tech/api/v2/chats', {
-                credentials: 'include',
-                mode: 'cors',
-                withCredentials: true
-              })
-              .then((xhr) => {
-                const rawResponse = (xhr as XMLHttpRequest).responseText;
-                const response = JSON.parse(rawResponse) as (TChatInfo[] | [] | TErrorMessage);
-                return response;
-              })
-              .then((response) => {
-                if ((response as TErrorMessage).reason ) {
-                  store.dispatch({
-                    type: 'SET_CHATS_ERROR',
-                    error: response
-                  });
-                } else {
-                  store.dispatch({
-                    type: 'SET_CHATS',
-                    chats: response
-                  });
-                }
-              })}
-          })}}
-          
+            /*return getchatsAPIInstance
+            .get('https://ya-praktikum.tech/api/v2/chats', {
+              credentials: 'include',
+              mode: 'cors',
+              withCredentials: true
+            })
+            .then((xhr) => {
+              const rawResponse = (xhr as XMLHttpRequest).responseText;
+              const response = JSON.parse(rawResponse) as (TChatInfo[] | [] | TErrorMessage);
+              return response;
+            })
+            .then((response) => {
+              if ((response as TErrorMessage).reason ) {
+                store.dispatch({
+                  type: 'SET_CHATS_ERROR',
+                  error: response
+                });
+              } else {
+                store.dispatch({
+                  type: 'SET_CHATS',
+                  chats: response
+                });
+              }*/
+            }
+          }
+          )}
+    }
+/*  )}
+}*/

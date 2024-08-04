@@ -1,7 +1,6 @@
 import './link.scss';
 import Block from '../../tools/Block';
 import LinkRaw from './link.hbs?raw';
-import Router from '../../tools/Router';
 import { router } from '../..';
 
 interface Props {

@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import Router from '../tools/Router';
 import store from '../tools/Store';
 import {TDeleteUserRequest, TErrorMessage } from '../types/types';
 import HTTPTransport from '../utils/api';
 import { BaseAPI } from './baze-api';
 
 const searchUserAPIInstance = new HTTPTransport();
-const deleteUserAPIInstance = new HTTPTransport();
 
 export default class DeleteUserAPI extends BaseAPI {
   request(data: TDeleteUserRequest) {
@@ -39,5 +36,6 @@ export default class DeleteUserAPI extends BaseAPI {
             chatid: data.chatId
           });
       }
-      }
-)}}
+    }
+  )}
+}

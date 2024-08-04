@@ -206,9 +206,6 @@ export default class Block {
 
   show() {
     this.getContent()!.style.display = 'block';
-    /*this.preRender();
-    this._render();
-    return this._element;*/
     document.querySelectorAll('.page').forEach((item, i) => {
       if(i !== 0)
       item.remove();
