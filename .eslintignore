@@ -5,3 +5,5 @@ build
 dist
 package*.json
 *.d.ts
+./tsconfig.json
+tsconfig.json
