@@ -40,7 +40,7 @@ export class ChatPage extends Block {
     });
   }
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
+  componentDidUpdate(/*oldProps: IProps, */newProps: IProps): boolean {
     if (newProps.avatar !== null && newProps.avatar !== '' && newProps.avatar !== undefined) {
       this.children.chaticon.setProps({src: `https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
     } else {
