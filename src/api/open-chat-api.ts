@@ -52,12 +52,9 @@ export default class OpenChatAPI extends BaseAPI {
         const id = `${data.id}`;
         const userid = `${data.userid}`;
         const token = response.token;
-        //console.log(token);
-        //console.log('socket');
         const socket = new WSTransport(`wss://ya-praktikum.tech/ws/chats/${userid}/${id}/${token}`);
         socket.connect()
       })
     })
   }
 }
-

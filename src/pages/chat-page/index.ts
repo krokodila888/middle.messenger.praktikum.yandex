@@ -1,9 +1,9 @@
 import './chat-page.scss';
 import Block, { IProps } from '../../tools/Block';
-import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput, NewChatInput, UserItem } from '../../components';
+import { Logo, Title, ChatItem, Link, ChatIcon, SearchInput, InterlocutorItem, MessageItem, MessageInput, NewChatInput, UserItem, AddMessagesButton } from '../../components';
 import ChatPageRaw from './chat-page.hbs?raw';
 import store from '../../tools/Store';
-import { TChatInfo1, TChatInfo2, TOtherUserType } from '../../types/types';
+import { TChatInfo1, TChatInfo2, TMessage, TOtherUserType } from '../../types/types';
 import { chatController } from '../../controllers/chats-controller';
 import { WSACTIONS } from '../../tools/Websocket';
 export class ChatPage extends Block {
@@ -32,18 +32,12 @@ export class ChatPage extends Block {
       }),
       newchatinput: new NewChatInput({
       }),
+      addmessagesbutton: new AddMessagesButton({}),
       lists: [
       ],
       users: [
-
       ],
       lists1: [
-        /*new MessageItem ({
-          time: "06:20",
-          date: "10.06.2024",
-          text: "Посмотри правки, они на почте",
-        }),
-       */
       ],
 
     });
@@ -82,33 +76,30 @@ export class ChatPage extends Block {
           })
         });
         this.lists.users = users1;
-
+        if (store.getState().messages !== null && store.getState().messages !== undefined) {
+          const newmessages = store.getState().messages.map((item: TMessage) => {
+            const users = store.getState().currentChat.users as TOtherUserType[];
+            const user1 = users.find((user) => Number(user.id) === item.user_id) as TOtherUserType;
+            const userAvatar = (store.getState().user.avatar !== null && store.getState().user.avatar !== undefined) ? `https://ya-praktikum.tech/api/v2/resources${store.getState().user.avatar}` : `/assets/avatar.png`;
+            const otherUserAvatar = (user1 && user1.avatar && user1.avatar !== null && user1.avatar !== undefined) ? `https://ya-praktikum.tech/api/v2/resources${user1.avatar}` : "/assets/no-avatar-icon.png";
+            return new MessageItem({
+              time: `${item.time.substring(11,16)}`,
+              text: `${item.content}`,
+              date: `${item.time.substring(0,10)}`,
+              toMe: Number(item.user_id) === store.getState().user.id ? 'message-item__not-my-message' : '',
+              avatar:  Number(item.user_id) === store.getState().user.id ? userAvatar : otherUserAvatar,
+              name: Number(item.user_id) === store.getState().user.id ? `${store.getState().user.first_name} ${store.getState().user.second_name}` : `${user1.first_name} ${user1.second_name}`,
+          });
+      })
+        this.lists.lists1 = newmessages.reverse();
+      }
       }
 
-        //console.log(chatController.getConnectionById(newProps.currentid as number));
-        /*chatController.getConnectionById(newProps.currentid as number)!.send({
-          content: "0",
-          type: "get old"
-        });*/
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        /*chatController.getConnectionById(newProps.currentid as number)!.on(WSACTIONS.WS_GET_MESSAGE, async (data: any) => {
-          //const сhats = store.getState().chats;
-          //const chat1 = chats.find((item: TChatInfo2) => item.id === chat.id);
-          console.log('data');
-          console.log(data);
-          store.dispatch({
-            type: 'SET_CHAT_MESSAGES',
-            data: data,
-            id: newProps.currentid
-          });
-        })*/
-
-        const users = (store.getState().chats as TChatInfo2[]).find((item) => item.id === newProps.currentid);
-        let aaa;
-        
-        if (users !== undefined && users !== null) {
-          aaa = users.users!.length;
-        }
+    const chat = store.getState().currentChat;/*(store.getState().chats as TChatInfo2[]).find((item) => item.id === newProps.currentid);*/
+    let aaa;
+    if (chat !== undefined && chat !== null && chat.users && chat.users !== undefined && chat.users !== null) {
+      aaa = chat.users!.length;
+    } else aaa = 0;
         this.children.interlocutoritem.setProps({ 
         name: newProps.currenttitle,
         avatar: newProps.currentavatar === null ? `/assets/avatar.png` : `https://ya-praktikum.tech/api/v2/resources${newProps.currentavatar}`,

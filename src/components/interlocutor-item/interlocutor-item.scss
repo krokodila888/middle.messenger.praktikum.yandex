@@ -43,6 +43,7 @@
 
     &:hover {
       width: fit-content;
+      transition: 0.5s;
     }
   }
 
@@ -77,6 +78,7 @@
 
     &:hover {
       @include shadow-small-hovered;
+      transition: 0.5s;
     }
   }
 
@@ -87,6 +89,7 @@
 
     &:hover {
       height: fit-content;
+      transition: 0.5s;
     }
   }
 }

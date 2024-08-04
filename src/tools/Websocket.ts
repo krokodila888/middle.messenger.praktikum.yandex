@@ -3,10 +3,10 @@ import EventBus from './EventBus';
 import store from './Store';
 
 export enum WSACTIONS {
-  WS_CONNECTION_START = 'WS_CONNECTION_START',
-  WS_CONNECTION_CLOSED = 'WS_CONNECTION_CLOSED',
-  WS_CONNECTION_ERROR = 'WS_CONNECTION_ERROR',
-  WS_GET_MESSAGE = 'WS_GET_MESSAGE'
+  WS_CONNECTION_START = 'connected',
+  WS_CONNECTION_CLOSED = 'close',
+  WS_CONNECTION_ERROR = 'error',
+  WS_GET_MESSAGE = 'message'
 };
 
 export class WSTransport extends EventBus {
@@ -69,25 +69,16 @@ export class WSTransport extends EventBus {
   subscribe(socket: WebSocket) {
     //socket.addEventListener('message', onMessage);
     socket.addEventListener('open', () => this.emit(WSACTIONS.WS_CONNECTION_START))
-    socket.addEventListener('message', (message) => {
+    socket.addEventListener('message', (mesage) => {
       try {
-        if (typeof message === 'string') {
-          //console.log(message);
-          return message;
-        }
-        const data = JSON.parse(message.data);
+        const data = JSON.parse(mesage.data)
         if (['pong', 'user connected'].includes(data?.type)) {
           return
         }
-        else {
-          //console.log(message);
-          //console.log(JSON.parse(message.data));
-          return JSON.parse(message.data)
+        this.emit(WSACTIONS.WS_GET_MESSAGE, data)
+      } catch (e) {
+        console.log(e)
         }
-       // this.emit(WSACTIONS.WS_GET_MESSAGE, data);
-      } catch (error) {
-        console.log(error);
-      }
     })
     socket.addEventListener('close', event => {
       if (event.wasClean) {

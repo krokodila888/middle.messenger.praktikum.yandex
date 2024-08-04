@@ -6,6 +6,7 @@ import OpenChatAPI from '../../api/open-chat-api';
 import { chatController } from '../../controllers/chats-controller';
 import { WSACTIONS } from '../../tools/Websocket';
 import { TChatInfo2 } from '../../types/types';
+import { isArray } from '../../utils/is-plain-object';
 
 interface Props {
   [key: string]: string;
@@ -37,15 +38,23 @@ export class ChatItem extends Block {
             });
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             currentSocket![id].on('message', async (data: any) => {
-              const chats = store.getState().chats;
-              const chat1 = chats.find((item: TChatInfo2) => item.id === id);
-              console.log('data');
               console.log(data);
-              store.dispatch({
-                type: 'SET_CHAT_MESSAGES',
-                data: data,
-                id: id
-              });
+              if (isArray(data)) {
+                console.log(data);
+                store.dispatch({
+                  type: 'SET_CHAT_MESSAGES',
+                  messages: data
+                })
+              };
+              if (data.type === 'message') {
+                console.log(data);
+                store.dispatch({
+                  type: 'SET_CHAT_MESSAGE',
+                  message: data,
+                })
+              }
+              const messagesblock = document.querySelector(".current-chat__message-block");
+              (messagesblock as HTMLDivElement).scrollTop = (messagesblock as HTMLDivElement).scrollHeight;
             })
         }}
     });

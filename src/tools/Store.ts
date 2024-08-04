@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TChatInfo, TChatInfo2, TOtherUserType } from "../types/types";
+import { TChatInfo, TChatInfo2, TMessage, TOtherUserType } from "../types/types";
 import cloneDeep from "../utils/clone-deep";
 
 type TAction = {
@@ -39,6 +39,7 @@ const state: IState = {
     },
     users: null
   },
+  messages: [],
   registerError: null,
   loginError: null,
   getuserError: null,
@@ -111,6 +112,7 @@ const reducer: TReducer<IState> = (state, action) => {
   } else if (action.type === 'SET_CURRENTCHAT') {
     console.log('SET_CURRENTCHAT');
     newState.currentChat = newState.chats.find((item: TChatInfo2) => item.id === action.id);
+    newState.messages = [];
     return newState;
   } else if (action.type === 'DELETE_USER') {
     console.log('DELETE_USER');
@@ -136,6 +138,33 @@ const reducer: TReducer<IState> = (state, action) => {
     newState.chats.find((item: TChatInfo) =>
       item.id === Number(action.chatId)).avatar = chat.avatar;
     newState.currentChat.avatar = chat.avatar;
+    return newState;
+  } else if (action.type === 'SET_CHAT_MESSAGES') {
+    console.log('SET_CHAT_MESSAGES');
+    const aaa = [...newState.messages, ...action.messages];
+    const res: TMessage[] = [];
+    aaa.forEach((item) => {
+      if (res.length === 0) {res.push(item)}
+      if (res.length > 0 && res.find((i: TMessage) => i.id === item.id) === undefined ) {
+        res.push(item)
+      }
+    })
+    newState.messages = res;
+
+    return newState;
+  } else if (action.type === 'SET_CHAT_MESSAGE') {
+    console.log('SET_CHAT_MESSAGE');
+    const aaa = [action.message, ...newState.messages];
+    const res: TMessage[] = [];
+    aaa.forEach((item) => {
+      if (res.length === 0) {res.push(item)}
+      if (res.length > 0 && res.find((i: TMessage) => i.id === item.id) === undefined ) {
+        res.push(item)
+      }
+    })
+    newState.messages = res;
+    newState.chats.find((item: TChatInfo) =>
+      item.id === newState.currentChat.id).last_message = action.message;
     return newState;
   } else if (action.type === 'LOGOUT') {
     console.log('LOGOUT')

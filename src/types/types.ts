@@ -208,3 +208,14 @@ export type TChangeChatAvatarRequest = {
   avatar: FormData;
   chatId: number;
 }
+
+export type TMessage = {
+  chat_id: number,
+  content: string,
+  file: string,
+  id: number,
+  is_read: boolean,
+  time: string,
+  type: string,
+  user_id: number,
+}

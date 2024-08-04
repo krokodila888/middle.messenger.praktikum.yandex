@@ -117,4 +117,3 @@ export default class GetUserAPI extends BaseAPI {
               })
         }
       }
-
