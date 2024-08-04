@@ -5,4 +5,3 @@ build
 dist
 package*.json
 *.d.ts
-.vite.config.ts

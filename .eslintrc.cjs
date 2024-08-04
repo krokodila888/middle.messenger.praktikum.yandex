@@ -38,4 +38,5 @@ module.exports = {
     eqeqeq: ["error", "smart"],
   },
   ignorePatterns: ["dist", ".eslintrc.js", "vite.config.ts"],
+  include: [".vite.config.ts"],
 };
