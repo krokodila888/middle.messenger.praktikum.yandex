@@ -10,6 +10,7 @@ module.exports = {
     sourceType: "module",
     warnOnUnsupportedTypeScriptVersion: false,
     project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
   },
 
   settings: {
