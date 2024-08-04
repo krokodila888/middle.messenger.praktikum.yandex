@@ -27,6 +27,7 @@ export default class AddUserAPI extends BaseAPI {
           type: 'SEARCH_USER_ERROR',
           error: response
         });
+        return
       }
       else {
         const aaa = response[0];
@@ -69,6 +70,7 @@ export default class AddUserAPI extends BaseAPI {
                   type: 'GET_USERS_ERROR',
                   error: response
                 });
+                return
               }
               else {
                 store.dispatch({
@@ -76,8 +78,10 @@ export default class AddUserAPI extends BaseAPI {
                   users: response,
                   id: data.chatid,
                 });
+                return
               }})
             }
+            return
           })
         }
       })
