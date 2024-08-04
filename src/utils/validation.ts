@@ -198,6 +198,7 @@ export function validateProfile(e: Event) {
 };
 
 export function validateProfilePassword(e: Event, i: HTMLInputElement) {
+  console.log(e);
   if (i instanceof HTMLInputElement) {
     const isValid = validateProfileItem(i);
     const buttonForPassword = document.getElementById('newPasswordButton') as HTMLButtonElement;

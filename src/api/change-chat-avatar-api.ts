@@ -26,6 +26,7 @@ export default class SetChatAvatarAPI extends BaseAPI {
           type: 'SET_CHAT_AVATAR_ERROR',
           error: response
         });
+        return
       } else {
         return getchatsAPIInstance
         .get('https://ya-praktikum.tech/api/v2/chats', {
@@ -53,6 +54,7 @@ export default class SetChatAvatarAPI extends BaseAPI {
               chatId: data.get('chatId'),
             });
           }
+          return
           }
           return response
         })
