@@ -126,7 +126,7 @@ export class ProfilePage extends Block {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
     console.log(newProps.avatar);
     this.children.firstnameinput.setProps({value: newProps.firstname});

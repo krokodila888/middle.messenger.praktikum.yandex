@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type StringIndexed = Record<string, any>;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const obj: StringIndexed = {
   key: 1,
   key2: "test",

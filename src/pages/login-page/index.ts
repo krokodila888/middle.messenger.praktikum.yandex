@@ -48,6 +48,7 @@ export class LoginPage extends Block {
     });
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
     return true;
   }

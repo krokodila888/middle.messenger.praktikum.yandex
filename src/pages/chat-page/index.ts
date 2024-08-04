@@ -39,7 +39,7 @@ export class ChatPage extends Block {
       ],
     });
   }
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidUpdate(oldProps: IProps, newProps: IProps): boolean {
     if (newProps.avatar !== null && newProps.avatar !== '' && newProps.avatar !== undefined) {
       this.children.chaticon.setProps({src: `https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
@@ -77,10 +77,13 @@ export class ChatPage extends Block {
 
         if (store.getState().currentChat.id) {
           const chat = store.getState().currentChat;
-          let usersCount;
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+          let usersCount: number;
           if (chat !== undefined && chat !== null && chat.users && chat.users !== undefined && chat.users !== null) {
-           usersCount = chat.users!.length;
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            usersCount = chat.users!.length;
           } else {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             usersCount = 0;
           }
           this.children.interlocutoritem.setProps({ 
