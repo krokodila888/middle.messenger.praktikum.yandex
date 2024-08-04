@@ -37,6 +37,5 @@ module.exports = {
     "@typescript-eslint/unified-signatures": "warn",
     eqeqeq: ["error", "smart"],
   },
-  ignorePatterns: ["dist", ".eslintrc.js", "vite.config.ts"],
-  include: [".vite.config.ts"],
+  ignorePatterns: ["dist", ".eslintrc.js", "vite.config.js", ".vite.config.js",],
 };
