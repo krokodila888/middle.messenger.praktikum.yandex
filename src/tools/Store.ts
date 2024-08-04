@@ -126,12 +126,17 @@ const reducer: TReducer<IState> = (state, action) => {
     item.id === action.id);
     item.users = action.users;
     newState.currentChat.users = action.users;
-    newState.currentChat.id = action.id;
-    //console.log(item);
     return newState;
   } else if (action.type === 'DELETE_CHAT') {
     newState.currentChat = state.currentChat;
     return newState
+  } else if (action.type === 'SET_CHAT_AVATAR') {
+    console.log('SET_CHAT_AVATAR');
+    const chat = action.chats.find((item: TChatInfo) => item.id === Number(action.chatId));
+    newState.chats.find((item: TChatInfo) =>
+      item.id === Number(action.chatId)).avatar = chat.avatar;
+    newState.currentChat.avatar = chat.avatar;
+    return newState;
   } else if (action.type === 'LOGOUT') {
     console.log('LOGOUT')
     return state;

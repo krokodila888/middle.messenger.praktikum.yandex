@@ -28,6 +28,7 @@ export class AddUserInput extends Block {
           res.chatid = store.getState().currentChat.id;
           const adduserApi = new AddUserAPI;
           adduserApi.request(res as TUserChatData);
+          input.value = '';
         }
       },
     });

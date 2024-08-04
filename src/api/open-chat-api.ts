@@ -16,25 +16,26 @@ export default class OpenChatAPI extends BaseAPI {
         mode: 'cors',
         headers: { 'Content-Type': 'application/json' },
         })
-    .then((xhr) => {
-      const rawResponse = (xhr as XMLHttpRequest).responseText;
-      const response = JSON.parse(rawResponse) as TTokenResponce;
-      return response;
-    })
-    .then((response) => {
-      if ((response as unknown as TErrorMessage).reason ) {
-        store.dispatch({
-          type: 'GET_USERS_ERROR',
-          error: response
-        });
-      } else {
-        store.dispatch({
-          type: 'SET_USERS',
-          users: response,
-          id: data.id,
-        });
-    }})
-    .then(() => {
+      .then((xhr) => {
+        const rawResponse = (xhr as XMLHttpRequest).responseText;
+        const response = JSON.parse(rawResponse) as TTokenResponce;
+        return response;
+      })
+      .then((response) => {
+        if ((response as unknown as TErrorMessage).reason ) {
+          store.dispatch({
+            type: 'GET_USERS_ERROR',
+            error: response
+          });
+        } else {
+          store.dispatch({
+            type: 'SET_USERS',
+            users: response,
+            id: data.id,
+          });
+       }
+      })
+      .then(() => {
       const id = `${data.id}`
       return openChatAPIInstance
       .post(`https://ya-praktikum.tech/api/v2/chats/token/${id}`, {

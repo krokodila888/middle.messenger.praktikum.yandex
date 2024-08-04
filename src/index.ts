@@ -20,7 +20,7 @@ const connectedChatPage = connect(Pages.ChatPage, (st: any) => {
       currentid: st.currentChat.id/* as number | null*/,
       currenttitle: st.currentChat.title,
       currentavatar: st.currentChat.avatar,
-      otherusers: (st.currentChat.users && st.currentChat.users !== null) ? st.currentChat.users.length : 0,
+      otherusers: (st.currentChat.id !== null && st.currentChat.users && st.currentChat.users !== null) ? st.currentChat.users.length : 0,
     }
   }
 }) as unknown as typeof Block;

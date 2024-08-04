@@ -1,9 +1,9 @@
 <div 
-  class="chat-item{{#if current}} chat-item_chosen{{/if}}" id="{{id}}">
+  class="chat-item{{#if current}} {{current}}{{/if}}" id="{{id}}">
   {{#if avatar}}
   <img 
     class="chat-item__avatar" 
-    src="/assets/avatar.png"
+    src="{{avatar}}"
     alt="User avatar" />
   {{else }}
   <img 

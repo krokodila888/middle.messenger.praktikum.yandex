@@ -1,6 +1,6 @@
 import './interlocutor-item.scss';
 import InterlocutorItemRaw from './interlocutor-item.hbs?raw';
-import { DeleteChatButton, AddUserInput, UserItem } from './../../components';
+import { DeleteChatButton, AddUserInput, UserItem, ChatAvatarInput } from './../../components';
 import Block, { IProps } from '../../tools/Block';
 import store from '../../tools/Store';
 import { TChatInfo1, TChatInfo2, TOtherUserType } from '../../types/types';
@@ -15,6 +15,7 @@ export class InterlocutorItem extends Block {
       ...props,
       deletechatbutton: new DeleteChatButton({}),
       adduserinput: new AddUserInput({}),
+      changechatavataritem: new ChatAvatarInput({})
     })
   }
 

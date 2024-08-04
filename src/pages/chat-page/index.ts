@@ -11,8 +11,13 @@ export class ChatPage extends Block {
     super({
       chatusersblock: null,
       logo: new Logo({ }),
-      generaltitle: new Title({ title: "Common ", span: "chat" }),
-      profilelink: new Link({ page: "profile", link: "Your profile", className: "link__link_medium" }),
+      generaltitle: new Title({ 
+        title: "Common ", 
+        span: "chat" }),
+      profilelink: new Link({ 
+        page: "profile", 
+        link: "Your profile", 
+        className: "link__link_medium" }),
       searchinput: new SearchInput({
         name: "search",
       }),
@@ -57,8 +62,8 @@ export class ChatPage extends Block {
           title: `${item.title}`,
           id: `${item.id}`, 
           last_message: (item.last_message === null) ? 'Сообщений нет' : item.last_message.content, 
-          avatar: `${item.avatar}`,
-          current: (store.getState().currentChat.id === item.id) ? 'chat-item_chosen' : ''
+          avatar: item.avatar !== null ? `https://ya-praktikum.tech/api/v2/resources${item.avatar}` : `/assets/avatar.png`,
+          current: (store.getState().currentChat.id !== null && store.getState().currentChat.id === item.id) ? 'chat-item_chosen' : ''
         })
       });
       this.lists.lists = newchats;
@@ -73,7 +78,7 @@ export class ChatPage extends Block {
           return new UserItem({
             name: `${item.first_name} ${item.second_name}`,
             id: `${item.id}`, 
-            avatar: item.avatar !== null ? `	https://ya-praktikum.tech/api/v2/resources${item.avatar}` : `/assets/avatar.png`,
+            avatar: item.avatar !== null ? `https://ya-praktikum.tech/api/v2/resources${item.avatar}` : `/assets/avatar.png`,
           })
         });
         this.lists.users = users1;
@@ -106,7 +111,7 @@ export class ChatPage extends Block {
         }
         this.children.interlocutoritem.setProps({ 
         name: newProps.currenttitle,
-        avatar: newProps.currentavatar,
+        avatar: newProps.currentavatar === null ? `/assets/avatar.png` : `https://ya-praktikum.tech/api/v2/resources${newProps.currentavatar}`,
         //users: newProps.users,
         id: newProps.currentid
       });

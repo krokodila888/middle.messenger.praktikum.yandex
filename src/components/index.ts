@@ -25,3 +25,6 @@ export { DeleteChatButton } from './delete-chat-button/delete-chat-button';
 export { DeleteUserButton } from './delete-user-button/delete-user-button';
 export { AddUserInput } from './add-user-input/add-user-input';
 export { UserItem } from './user-item/user-item';
+/*export { ChangeChatAvatar } from './change-chat-avatar/change-chat-avatar';
+export { ChangeChatAvatarButton } from './change-chat-avatar-button/change-chat-avatar-button';*/
+export { ChatAvatarInput } from './chat-avatar-input/chat-avatar-input';

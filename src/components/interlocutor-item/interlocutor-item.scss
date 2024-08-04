@@ -32,6 +32,20 @@
     @include shadow-small;
   }
 
+  &__avatar-block {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    gap: 12px;
+    width: 48px;
+    height: 58px;
+    align-items: center;
+
+    &:hover {
+      width: fit-content;
+    }
+  }
+
   &__name {
     margin: 0;
     font-weight: bold;

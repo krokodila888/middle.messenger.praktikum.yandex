@@ -203,3 +203,8 @@ export type TStore = {
     createChatError: string,
     getUsersError: string,
 };
+
+export type TChangeChatAvatarRequest = {
+  avatar: FormData;
+  chatId: number;
+}

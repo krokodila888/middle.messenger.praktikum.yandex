@@ -3,6 +3,9 @@ import Block from '../../tools/Block';
 import ChatItemRaw from './chat-item.hbs?raw';
 import store from '../../tools/Store';
 import OpenChatAPI from '../../api/open-chat-api';
+import { chatController } from '../../controllers/chats-controller';
+import { WSACTIONS } from '../../tools/Websocket';
+import { TChatInfo2 } from '../../types/types';
 
 interface Props {
   [key: string]: string;
@@ -26,11 +29,24 @@ export class ChatItem extends Block {
             id: id
           });
           (current as HTMLDivElement).classList.add('.chat-item_chosen');
-          /*const openChatApi = new OpenChatAPI;
-          openChatApi.request({
-            id: id,
-            userid: store.getState().id
-          });*/
+          const currentSocket = chatController.WSConnections.find((connection) => connection[id]);
+            console.log (currentSocket);
+            currentSocket![id].send({
+              content: "0",
+              type: "get old"
+            });
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            currentSocket![id].on('message', async (data: any) => {
+              const chats = store.getState().chats;
+              const chat1 = chats.find((item: TChatInfo2) => item.id === id);
+              console.log('data');
+              console.log(data);
+              store.dispatch({
+                type: 'SET_CHAT_MESSAGES',
+                data: data,
+                id: id
+              });
+            })
         }}
     });
   }
