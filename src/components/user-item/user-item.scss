@@ -3,6 +3,7 @@
 .user-item {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: flex-start;
   align-items: center;
   gap: 8px;
@@ -14,7 +15,6 @@
   background-color: $white-color;
   border-radius: 16px 30px 30px 16px;
   cursor: pointer;
-  justify-content: flex-start;
 
   @include shadow-inside;
   
@@ -32,9 +32,9 @@
 
   &__name {
     margin: 0;
+    overflow-y: hidden;
     font-weight: bold;
     font-size: 14px;
-    overflow-y: hidden;
   }
 
   &__text {

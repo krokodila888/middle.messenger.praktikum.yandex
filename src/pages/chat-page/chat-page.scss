@@ -36,9 +36,9 @@ body {
     height: 100%;
     padding: 12px;
     overflow: hidden;
+    overflow-y: auto;
     background: $light-grey-color;
     border-radius: 16px 0 0 16px;
-    overflow-y: auto;
 
     @include shadow-inside
   }
@@ -103,33 +103,33 @@ body {
     flex-direction: column;
     overflow-y: auto;
   }
+
   &__message-row {
-    display: flex;
-    flex-direction: row;
     position: sticky;
     top: 0;
+    display: flex;
+    flex-direction: row;
     background-color: #C2C2C2;
   }
 
   &__users {
     display: flex;
     flex-direction: column;
-    height: 50px;
-    overflow-y: hidden;
-    overflow-x: hidden;
     width: 80px;
+    height: 50px;
+    overflow: hidden hidden;
 
     &:hover {
-      height: fit-content;
       width: 180px;
+      height: fit-content;
       transition: 0.5s;
     }
   }
 
   &__text1 {
-    font-size: 16px;
-    padding: 26px 0 26px 24px;
     margin: 0;
+    padding: 26px 0 26px 24px;
+    font-size: 16px;
     text-decoration: underline;
   }
 

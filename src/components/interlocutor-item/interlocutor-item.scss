@@ -2,7 +2,9 @@
 
 .interlocutor-item {
   display: flex;
+  flex-grow: 2;
   flex-direction: row;
+  justify-content: flex-start;
   align-items: flex-start;
   align-items: center;
   gap: 12px;
@@ -15,8 +17,6 @@
   background-color: $white-color;
   border-radius: 16px 30px 30px 16px;
   cursor: pointer;
-  justify-content: flex-start;
-  flex-grow: 2;
 
   @include shadow-inside;
   
@@ -35,11 +35,11 @@
   &__avatar-block {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
+    align-items: center;
     gap: 12px;
     width: 48px;
     height: 58px;
-    align-items: center;
+    overflow: hidden;
 
     &:hover {
       width: fit-content;
