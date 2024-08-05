@@ -109,7 +109,7 @@ export default class GetUserAPI extends BaseAPI {
       console.log(window.location);
       console.log(store.getState());
       const router = new Router("app");
-      if (window.location.pathname === '/' || window.location.pathname === '/sign-up') {
+      if ((window.location.pathname === '/' || window.location.pathname === '/sign-up') && store.getState().user.id !== null) {
         router.go("/messenger");
       }
     })
