@@ -1,17 +1,17 @@
 <div class="big-header">
   <div>
-    {{> Logo }}
-    {{> Title title="Common " span="chat" }}
+    {{{ logo }}}
+    {{{ title }}}
   </div>
   {{#if chat}}
   <div>
-    {{> Link link="Your profile" page="profile" className="link__link_medium" }}
-    {{> Avatar }}
+    {{{ link1 }}}
+    {{{ avatar }}}
   </div>
   {{else}}
   <div>
-    {{> Link link="Your chats" page="chat" className="link__link_medium" }}
-    {{> ChatIcon}}
+    {{{ link2 }}}
+    {{{ chaticon }}}
   </div>
   {{/if}}
 </div>

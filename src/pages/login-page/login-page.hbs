@@ -1,13 +1,16 @@
-{{#> Page }}
+<main class="page">
   <form class="login-page">
     <div class="login-page__content">
-      {{> PageTitle title="Common " span="chat" }}
-      {{> Input className="login-page__input" placeholder="Login" name="login" }}
-      {{> Input className="login-page__input" placeholder="Password" name="password" }}
+      {{{ pagetitle }}}
+      {{{ logininputfield }}}
+      {{{ passwordinputfield }}}
     </div>
-      {{> Button text="Enter" page="chat" next="next" }}
-      {{> Link page="register" text="Not registered? " link="Create a profile"}}
+    {{{ button }}}
+    <span
+      class="login-page__span login-page__span_invalid {{#if errorclass}}{{errorclass}}{{/if}}"
+      id="login-error">
+      {{errormessage}}
+    </span>
+    {{{ linktoregister }}}
   </form>
-  {{> Link page="error404" text="Ошибок быть не может, но вдруг: " link="Ошибка 404"}}
-  {{> Link page="error500" text="И вот еще " link="Ошибка 5**"}}
-{{/ Page }}
+</main>

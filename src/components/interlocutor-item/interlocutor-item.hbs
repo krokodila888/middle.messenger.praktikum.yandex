@@ -1,0 +1,35 @@
+<div 
+  class="interlocutor-item">
+  <div class="interlocutor-item__avatar-block">
+  {{#if avatar}}
+  <img 
+    class="interlocutor-item__avatar" 
+    src={{avatar}}
+    alt="User avatar" />
+  {{else }}
+  <img 
+    class="interlocutor-item__avatar" 
+    src="/assets/no-avatar-icon.png"
+    alt="Icon with question sign for users withour avatar pictures"/>
+  {{/if}}
+  {{#if name}}
+    {{{changechatavataritem}}}
+  {{/if}}
+  </div>
+  <p class="interlocutor-item__name">
+    {{#if name}} {{ name }} {{else }} Выберите чат {{/if}}
+  </p>
+  {{#if name}} 
+  <div class="interlocutor-item__users">
+
+    {{{ lists }}}
+  </div>
+  
+  <div class="interlocutor-item__button-block">
+    {{{ adduserinput }}}
+    {{{ deletechatbutton}}}
+  </div>
+
+  {{/if}}
+
+</div>

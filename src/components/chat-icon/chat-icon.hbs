@@ -1,4 +1,9 @@
 <img 
-  class="chat-icon {{#if current}}chat-icon__big{{/if}}" 
+  class="chat-icon {{#if current}}chat-icon__big{{/if}}"
+  {{#if chat}}
   src="/assets/chat-icon.png"
+  {{else}}
+  src={{src}}
+  {{/if}} 
+  alt="Chat icon with dialog bubbles"
 />

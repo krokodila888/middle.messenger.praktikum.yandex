@@ -1,17 +1,19 @@
 @import '../../assets/variables';
 
 .link {
-  text-align: center;
   margin: 0;
-  font: $font-small;
   color: $dark-grey-color;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
 
   &__link {
-  font: $font-small;
-  height: 40px;
   width: 100%;
-  text-align: center;
+  height: 40px;
   color: $pink-accent-color;
+  font-weight: 500;
+  font-size: 16px;
+  text-align: center;
   text-decoration: underline;
   cursor: pointer;
 

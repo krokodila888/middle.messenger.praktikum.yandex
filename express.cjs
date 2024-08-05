@@ -1,5 +1,4 @@
 const express = require('express');
-const vite = require('vite');
 const path = require('path');
 
 const app = express();

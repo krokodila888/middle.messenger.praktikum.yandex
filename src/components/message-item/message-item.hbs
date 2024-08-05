@@ -1,0 +1,23 @@
+<div class="message-item {{#if toMe}}{{toMe}}{{/if}}">
+  <div class="message-item__userinfo">
+    <div class="message-item__userBlock">
+      <img 
+        class="chat-item__avatar" 
+        src="{{avatar}}"
+        alt="User avatar" />
+      <div>
+        <p class="message-item__name-text">
+          {{ name }}
+        </p>
+        <p class="message-item__time-text">
+        {{ date }} {{ time }}
+        </p>
+
+      </div>
+
+    </div>
+  </div>
+  <p class="message-item__message-text">
+    {{ text }}
+  </p>
+</div>

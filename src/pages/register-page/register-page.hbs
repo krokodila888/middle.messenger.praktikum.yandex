@@ -1,18 +1,20 @@
-{{#> Page }}
+<main class="page">
   <form class="register-page">
     <div class="register-page__content">
-      {{> PageTitle title="Common " span="chat" logo="src/assets/logo.png" }}
-      {{> Input className="register-page__input" placeholder="First name" name="first_name" }}
-      {{> Input className="register-page__input" placeholder="Second name" name="second_name" }}
-      {{> Input className="register-page__input" placeholder="Login" name="login" }}
-      {{> Input className="register-page__input" placeholder="Email" name="email" }}
-      {{> Input className="register-page__input" placeholder="Phone number" name="phone" }}
-      {{> Input className="register-page__input" placeholder="Password" name="password" type="password" }}
+      {{{ pagetitle }}}
+      {{{ firstnameinputfield }}}
+      {{{ lastnameinputfield }}}
+      {{{ logininputfield }}}
+      {{{ emailinputfield }}}
+      {{{ phoneinputfield }}}
+      {{{ passwordinputfield }}}
     </div>
-    {{> Button text="Create a profile" page="chat" next="next" }}
-    {{> Link page="LoginPage" text="Already registered? " link="Log in"}}
+    {{{ button }}}
+    <span
+      class="register-page__span register-page__span_invalid {{#if errorclass}}{{errorclass}}{{/if}}"
+      id="register-error">
+      {{errormessage}}
+    </span>
+    {{{ linktologin }}}
   </form>
-  {{> Link page="error404" text="Ошибок быть не может, но вдруг: " link="Ошибка 404"}}
-  {{> Link page="error500" text="И вот еще " link="Ошибка 5**"}}
-{{/ Page }}
-
+</main>

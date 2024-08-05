@@ -1,0 +1,28 @@
+@import '../../assets/variables';
+
+.delete-user-button {
+  margin-left: auto;
+  border: none;
+  border-radius: 50%;
+  
+  &:hover {
+    @include shadow-small-hovered;
+    opacity: 0.4;
+    transition: 0.5s ease;
+  }
+
+  &__delete {
+    flex-shrink: 0;
+    align-self: center;
+    width: 30px;
+    height: 30px;
+    margin: 0 0 0 auto;
+    background: $middle-beige-color;
+    border-radius: 50%;
+    object-fit: contain;
+
+    @include shadow-small;
+
+    
+  }
+}

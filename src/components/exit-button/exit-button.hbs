@@ -1,5 +1,5 @@
 <div class="exit-button">
-  {{> Link page="LoginPage" link="Log out" className="link__link_medium"}}
+  {{{ link }}}
   <button 
     class="exit-button__button" 
     page="LoginPage">
@@ -7,6 +7,7 @@
       class="exit-button__img{{#if next}} button__next{{/if}}" 
       page="LoginPage"
       src="/assets/exit-icon.png"
+      alt="Icon for logout button"
     />
   </button>
 </div>

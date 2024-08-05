@@ -1,15 +1,39 @@
-{{#> Page }}
+<main class="page">
   <div class="chat-page">
-    {{> BigHeader chat="chat"}}
-    <div class="chat-page__content">
-      {{#> ChatList className="chat-page__list" }}
-        {{#each (chat-page-list)}}
-          {{> ChatItem }}
-        {{/each}}
-      {{/ ChatList }}
-      {{> CurrentChat text="Выберите чат, чтобы начать"}}
-      
+    <div class="big-header">
+      <div>
+        {{{ logo }}}
+        {{{ generaltitle }}}
+      </div>
+      <div>
+        {{{ profilelink }}}
+        {{{ chaticon }}}
+      </div>
     </div>
-    {{> Link page="LoginPage" link="Back to login"}}
+    <div class="chat-page__content">
+      <div class="chat-page__list">
+        {{{ lists }}}
+        {{{ chatitem1 }}}
+        {{{ chatitem2 }}}
+        {{{ newchatinput }}}
+      </div>
+      <div class="current-chat">
+          <div class="current-chat__message-block">
+            <div class="current-chat__message-row">
+              {{{ interlocutoritem }}}
+              <div class="current-chat__users">
+                <p class="current-chat__text1">Users: {{otherusers}} </p>
+                {{{ users }}} 
+              </div>
+            </div>
+            <div class="current-chat__message-block1">
+              {{{ addmessagesbutton }}}
+              {{{ lists1 }}}
+            </div>
+          </div>
+        {{{ messageinput }}}
+
+      </div>
+    </div>
   </div>
-{{/ Page }}
+</main>

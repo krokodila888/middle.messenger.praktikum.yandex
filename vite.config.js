@@ -1,13 +1,18 @@
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import handlebars from 'vite-plugin-handlebars';
 
 export default defineConfig({
-  //root: resolve(__dirname, 'src'),
+  root: resolve(__dirname, 'src'),
+  publicDir: "../public",
   build: {
     outDir: resolve(__dirname, 'build'),
+    emptyOutDir: true,
+    assetsDir: 'assets',
     rollupOptions: {
-      input: resolve(__dirname, './index.html'),
+      input: {
+        main: resolve(__dirname, 'src/index.html'),
+        nested: resolve(__dirname, 'src/index.ts'),
+      },
     },
     output: {
       chunkFileNames: 'assets/[name]-[hash].png',
@@ -21,14 +26,15 @@ export default defineConfig({
         if (/\.css$/.test(name ?? '')) {
             return 'assets/css/[name]-[hash][extname]';   
         }
-  
-        // default value
-        // ref: https://rollupjs.org/guide/en/#outputassetfilenames
         return 'assets/[name]-[hash][extname]';
       },
     },
   },
-  plugins: [handlebars({
-    partialDirectory: resolve(__dirname, 'src/partials'),
-  })],
+  base: './',
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+    },
+  },
+  plugins: [],
 });

@@ -1,42 +1,95 @@
 @import '../../assets/variables';
 
 .button {
-  height: 48px;
-  width: 100%;
-  border-radius: 30px;
-  background-color: $green-color;
-  color: $dark-grey-color;
-  border: 0;
-  cursor: pointer;
-  @include shadow;
-  margin: 28px auto;
   display: flex;
-  align-items: center;
   justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  margin: 28px auto;
+  color: $dark-grey-color;
+  background-color: $green-color;
+  border: 0;
+  border-radius: 30px;
+  cursor: pointer;
+
+  @include shadow;
 
   &:hover {
     transition: 0.4s ease;
+
     @include shadow-small
+  }
+
+  &__disabled {
+    box-shadow: none;
+    cursor: auto;
+    opacity: 0.7;
+
+    &:hover {
+      box-shadow: none;
+      transition: 0.6s;
+    }
   }
 
   &__text {
     margin: 0 auto;
     color: $dark-grey-color;
-    font-size: 24px;
     font-weight: 600;
+    font-size: 24px;
     text-align: center;
   }
 
   &__img {
     width: 40px;
     height: 40px;
+
     @include shadow-inside;
     border-radius: 50%;
   }
 
   &__next {
-    background:url(/src/assets/next.png);
-    border-radius: 50%;
+    background:url("/assets/next.png");
     background-size: cover;
+    border-radius: 50%;
+  }
+
+  &__login {
+    &_disabled {
+      box-shadow: none;
+      cursor: auto;
+      opacity: 0.7;
+  
+      &:hover {
+        box-shadow: none;
+        transition: 0.6s;
+      }
+    }
+  }
+
+  &__register {
+    &_disabled {
+      box-shadow: none;
+      cursor: auto;
+      opacity: 0.7;
+  
+      &:hover {
+        box-shadow: none;
+        transition: 0.6s;
+      }
+    }
+  }
+
+  &__profile {
+    &_disabled {
+      box-shadow: none;
+      cursor: auto;
+      opacity: 0.7;
+  
+      &:hover {
+        box-shadow: none;
+        transition: 0.6s;
+      }
+    }
   }
 }

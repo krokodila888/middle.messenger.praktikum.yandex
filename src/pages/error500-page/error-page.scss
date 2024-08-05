@@ -1,30 +1,45 @@
 @import '../../assets/variables';
 
-.error-page {
-  position: relative;
-  width: 360px;
+body {
+  margin: 0;
+  background: $light-grey-color;
+}
+
+.page {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 26px;
+  background: $light-grey-color;
+}
+
+.error-page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   box-sizing: border-box;
+  width: 360px;
+  margin-top: 80px;
   padding: 32px 0;
   background-color: $light-grey-color;
   border-radius: 16px;
-  margin-top: 80px;
-  align-items: center;
+
   @include shadow;
 
   &__img-left {
     position: absolute;
-    left: 6px;
     top: 120px;
+    left: 6px;
     height: 90px;
     opacity: 0.8;
   }
 
   &__img-right {
     position: absolute;
-    right: 40px;
     top: 74px;
+    right: 40px;
     height: 100px;
     opacity: 0.8;
   }

@@ -3,18 +3,17 @@
 .big-header {
   display: flex;
   flex-direction: row;
-  justify-items: flex-start;
-  align-items: center;
-  margin: 20px 0 0;
-  gap: 12px;
   justify-content: space-between;
+  place-items: center flex-start;
+  gap: 12px;
   min-width: 880px;
+  margin: 20px 0 0;
 
     & div {
       display: flex;
       flex-direction: row;
-      gap: 12px;
       align-items: center;
+      gap: 12px;
 
       & .title {
         width: 240px;
@@ -35,4 +34,3 @@
       }
     }
 }
-  

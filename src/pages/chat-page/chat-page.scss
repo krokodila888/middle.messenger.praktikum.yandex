@@ -1,5 +1,19 @@
 @import '../../assets/variables';
 
+body {
+  margin: 0;
+  background: $light-grey-color;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 26px;
+  background: $light-grey-color;
+}
+
 .chat-page {
   display: flex;
   flex-direction: column;
@@ -9,8 +23,118 @@
     display: flex;
     flex-direction: row;
     gap: 12px;
-    margin: 28px 0;
     height: 600px;
+    margin: 28px 0;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-sizing: border-box;
+    width: 540px;
+    height: 100%;
+    padding: 12px;
+    overflow: hidden;
+    overflow-y: auto;
+    background: $light-grey-color;
+    border-radius: 16px 0 0 16px;
+
+    @include shadow-inside
   }
 }
+
+.big-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  place-items: center flex-start;
+  gap: 12px;
+  min-width: 880px;
+  margin: 20px 0 0;
+
+    & div {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+
+      & .title {
+        width: 240px;
+      }
+
+      & .header__logo {
+        width: 72px;
+        height: 72px;
+      }
+
+      & .avatar {
+        width: 72px;
+        height: 72px;
+      }
+
+      & a {
+        font-size: 22px;
+      }
+    }
+}
+
+.current-chat {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  padding: 16px;
+  overflow-y: auto;
+  background-color: $middle-grey-color;
+  border-radius: 0 16px 16px 0;
+
+  @include shadow-inside;
   
+  &__text {
+    margin: 0;
+    color: $dark-grey-color;
+    font-weight: normal;
+    font-size: 24px;
+  }
+
+  &__message-block {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  &__message-row {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    background-color: #C2C2C2;
+  }
+
+  &__users {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    height: 50px;
+    overflow: hidden hidden;
+
+    &:hover {
+      width: 180px;
+      height: fit-content;
+      transition: 0.5s;
+    }
+  }
+
+  &__text1 {
+    margin: 0;
+    padding: 26px 0 26px 24px;
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+  &__message-block1 {
+    display: flex;
+    flex-direction: column;
+  }
+}

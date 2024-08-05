@@ -1,16 +1,17 @@
 @import '../../assets/variables';
 
 .chat-icon {
-  height: 80px;
-  width: 80px;
-  @include shadow-small;
-  border-radius: 50%;
-  background: $middle-beige-color;
   flex-shrink: 0;
-  object-fit: contain;
+  width: 80px;
+  height: 80px;
+  background: $middle-beige-color;
+  border-radius: 50%;
+  object-fit: cover;
+
+  @include shadow-small;
 
   &__big {
-    height: 160px;
     width: 160px;
+    height: 160px;
   }
 }
