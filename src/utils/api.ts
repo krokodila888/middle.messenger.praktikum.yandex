@@ -107,5 +107,3 @@ export default class HTTPTransport {
   });
   };
 }
-
-//export const api = new HTTPTransport();
