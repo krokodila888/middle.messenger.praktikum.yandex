@@ -1,0 +1,19 @@
+<div 
+  class="user-item">
+  {{#if avatar}}
+  <img 
+    class="user-item__avatar" 
+    src={{avatar}}
+    alt="User avatar" />
+  {{else }}
+  <img 
+    class="user-item__avatar" 
+    src="/assets/no-avatar-icon.png"
+    alt="Icon with question sign for users withour avatar pictures"/>
+  {{/if}}
+  <p class="user-item__name">
+    {{ name }}
+  </p>
+  {{{ deleteuserbutton}}}
+
+</div>

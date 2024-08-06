@@ -1,14 +1,18 @@
 import './profile-page.scss';
-import Block from '../../tools/Block';
-import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link } from '../../components';
+import Block, { IProps } from '../../tools/Block';
+import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link, FileInputProfileField } from '../../components';
 import ProfilePageRaw from './profile-page.hbs?raw';
+import store from '../../tools/Store';
+import { BASE_URL } from '../../utils/constants';
 
 export class ProfilePage extends Block {
   constructor() {
     super({
       logo: new Logo({ }),
       chatlink: new Link({ page: "chat", link: "Your chats", className: "link__link_medium" }),
-      chaticon: new ChatIcon({ }),
+      chaticon: new ChatIcon({
+        chat: 'chat',
+      }),
       generaltitle: new Title({
         title: "Common ",
         span: "chat",
@@ -21,7 +25,7 @@ export class ProfilePage extends Block {
       firstnameinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "First name", 
-        value: "Ann", 
+        value: "", 
         name: "first_name",
         title: "Name:",
         required: "true",
@@ -32,7 +36,7 @@ export class ProfilePage extends Block {
       lastnameinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "Second name",
-        value: "Doe",
+        value: "",
         name: "second_name",
         title: "Surname:",
         required: "true",
@@ -43,7 +47,7 @@ export class ProfilePage extends Block {
       logininput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "Login",
-        value: "Ann8888",
+        value: "",
         name: "login",
         title: "Login:",
         required: "true",
@@ -56,20 +60,21 @@ export class ProfilePage extends Block {
       emailinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "Email",
-        value: "ann888@ya.ru", 
+        value: "", 
         name: "email",
         title: "Email:",
         required: "true",
-        type: "email",
+        //type: "email",
         errormessage: "Проверьте написание адреса электронной почты",
         spanclass: "span_profile_email",
         spanid: "span_profile_email",
+        autocomplete: "off"
       }),
       phoneinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "Phone number",
         name: "phone",
-        value: "+79000000000",
+        value: "",
         title: "Phone:",
         required: "true",
         min: "10",
@@ -78,37 +83,42 @@ export class ProfilePage extends Block {
         spanclass: "span_profile_phone",
         spanid: "span_profile_phone",
       }),
-      avatarInput: new InputProfileField({
+      avatarInput: new FileInputProfileField({
         className: "profile-page__input", 
         placeholder: "Avatar", 
         name: "avatar",
-        value: "https//some-link.png",
         title: "Avatar:",
-        disabled: "disabled",
-        readonly: "readonly",
+        span: 'edit',
+        spanident: 'avatarButton',
       }),
-      passwordinput: new InputProfileField({
+      oldpasswordinput: new InputProfileField({
         className: "profile-page__input",
-        placeholder: "Password",
+        placeholder: "Old password",
         name: "oldPassword",
-        value: "777777777777Aaaaa",
         type: "password",
-        title: "Password:",
-        disabled: "disabled",
-        readonly: "readonly",
+        min: "8",
+        max: "40",
+        title: "Change password:",
+        autocomplete: "password",
+        errormessage: "От 8 до 40 символов (обязательна хотя бы одна заглавная буква и цифра)",
+        spanclass: "span_profile_oldPassword",
+        spanid: "span_profile_oldPassword",
       }),
       newpasswordinput: new InputProfileField({
         className: "profile-page__input",
         placeholder: "New password",
         name: "newPassword",
         type: "password",
-        title: "New password:",
+        title: "",
         min: "8",
         max: "40",
         autocomplete: "new-password",
         errormessage: "От 8 до 40 символов (обязательна хотя бы одна заглавная буква и цифра)",
         spanclass: "span_profile_newPassword",
         spanid: "span_profile_newPassword",
+        span: 'edit',
+        spanident: 'newPasswordButton',
+        classNameForInput: 'input-profile-field__input-last-raw',
       }),
       button: new Button({
         text: "Save changes",
@@ -116,20 +126,25 @@ export class ProfilePage extends Block {
         className: "button__profile",
       }),
       exitbutton: new ExitButton({}),
-      link1: new Link({ 
-        page: "error404",
-        text: "Ошибок быть не может, но вдруг: ",
-        link: "Ошибка 404",
-      }),
-      link2: new Link({ 
-        page: "error500", 
-        text: "И вот еще ", 
-        link: "Ошибка 5**", 
-      }),
     });
   }
 
-
+  componentDidUpdate(/*oldProps: IProps, */newProps: IProps): boolean {
+    console.log(newProps.avatar);
+    console.log(newProps.email);
+    const user = store.getState().user;
+    this.children.firstnameinput.setProps({value: user.first_name});
+    this.children.lastnameinput.setProps({value: user.second_name});
+    this.children.logininput.setProps({value: user.login});
+    this.children.emailinput.setProps({value: user.email});
+    this.children.phoneinput.setProps({value: user.phone});
+    if (user.avatar !== null && user.avatar !== '' && user.avatar !== undefined) {
+      this.children.avatar.setProps({src: `${BASE_URL}/resources${user.avatar}`})
+    }  else {
+      this.children.chaticon.setProps({src: `/assets/avatar.png`})
+    }
+    return true;
+  }
 
   render() {
     return ProfilePageRaw;

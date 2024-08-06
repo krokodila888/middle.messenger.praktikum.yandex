@@ -1,0 +1,32 @@
+@import '../../assets/variables';
+
+.add-messages-button {
+  flex-shrink: 0;
+  align-self: center;
+  width: 44px;
+  height: 44px;
+  margin: 8px;
+  background-size: cover;
+  border: none;
+  border-radius: 50%;
+
+  @include shadow-inside;
+
+
+  &:hover {
+    box-shadow: none;
+    transition: 0.4s ease;
+  }
+
+  &_disabled {
+    box-shadow: none;
+    cursor: auto;
+    opacity: 0.2;
+
+    &:hover {
+      box-shadow: none;
+      cursor: auto;
+      opacity: 0.2;
+    }
+  }
+}

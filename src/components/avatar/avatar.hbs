@@ -1,5 +1,9 @@
 <img 
   class="avatar {{#if current}} avatar__big{{/if}}" 
+  {{#if src}}
+  src={{src}}
+  {{else}}
   src="/assets/avatar.png"
+  {{/if}}
   alt="Your avatar"
 />

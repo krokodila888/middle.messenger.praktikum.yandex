@@ -1,0 +1,86 @@
+@import '../../assets/variables';
+
+.fileinput-profile-field {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &__input-raw {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &__input-last-raw {
+    gap: 0;
+  }
+
+  &__title {
+    min-width: fit-content;
+    margin: 20px 0 0;
+    color: $dark-green-color;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 20px;
+    right: 4px;
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    background:url("/assets/edit-icon.png");
+    background-size: cover;
+    border-radius: 50%;
+
+    @include shadow-inside;
+  }
+
+  &__span {
+    margin: 2px 0;
+    color: $pink-accent-color;
+    font-size: 12px;
+    text-align: center;
+
+    &_valid {
+      display: none;
+    }
+
+    &_invalid {
+      display: block;
+    }
+  }
+
+  &__input {
+    align-content: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    height: 44px;
+    margin-top: 16px;
+    padding: 4px 14px;
+    color: $middle-grey-color;
+    background-color: $light-beige-color;
+    border: none;
+    border-radius: 16px;
+  
+    @include shadow-inside;
+  
+    &:focus-visible {
+      border: 2px solid $dark-green-color;
+      outline: none;
+      outline-offset: 0;
+    }
+  
+    &__invalid {
+      border: 1px solid $pink-accent-color;
+  
+      &:focus-visible {
+        border: 1px solid $pink-accent-color;
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+@import '../../assets/variables';
+
+.user-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  min-width: 100px;
+  min-height: 60px;
+  padding: 8px 12px;
+  overflow: hidden;
+  background-color: $white-color;
+  border-radius: 16px 30px 30px 16px;
+  cursor: pointer;
+
+  @include shadow-inside;
+  
+  &__avatar {
+    flex-shrink: 0;
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    background: $middle-beige-color;
+    border-radius: 50%;
+    object-fit: contain;
+
+    @include shadow-small;
+  }
+
+  &__name {
+    margin: 0;
+    overflow-y: hidden;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  &__text {
+    margin: 0;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  &__button-block {
+    display: flex;
+    margin-left: auto;
+  }
+
+  &__delete {
+    flex-shrink: 0;
+    align-self: center;
+    width: 32px;
+    height: 32px;
+    margin: 0 0 0 auto;
+    background: $middle-beige-color;
+    border-radius: 50%;
+    object-fit: contain;
+
+    @include shadow-small;
+
+    &:hover {
+      @include shadow-small-hovered;
+    }
+  }
+}

@@ -7,13 +7,13 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    height: 46px;
-    min-height: 50px;
+    min-height: 80px;
     padding: 6px 20px;
     color: $dark-grey-color;
     background-color: #ffffff;
     border: none;
     border-radius: 30px 30px 0;
+    resize: none;
 
     @include shadow-inside;
 
@@ -33,12 +33,17 @@
     height: 40px;
     background:url("/assets/send-icon.png");
     background-size: cover;
+    border: none;
     border-radius: 50%;
 
-    @include shadow-small;
+    @include shadow-small-hovered;
+
+    /* @include shadow-small; */
+   
 
     &:hover {
-      @include shadow-small-hovered1;
+      @include shadow-inside;
+      
     }
   }
 }

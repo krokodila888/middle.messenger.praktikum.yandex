@@ -3,11 +3,9 @@
     {{text}}
   {{/if}}
   {{#if link}}
-    <a 
-      href="{{ url }}" 
-      class="link__link{{#if className}} {{className}}{{/if}}" 
-      page="{{ page }}">
+    <span 
+      class="link__link{{#if className}} {{className}}{{/if}}">
       {{ link }}
-    </a>
+    </span>
   {{/if}}
 </p>

@@ -32,10 +32,11 @@ body {
     flex-direction: column;
     gap: 20px;
     box-sizing: border-box;
-    min-width: 340px;
+    width: 540px;
     height: 100%;
     padding: 12px;
     overflow: hidden;
+    overflow-y: auto;
     background: $light-grey-color;
     border-radius: 16px 0 0 16px;
 
@@ -84,7 +85,7 @@ body {
   justify-content: space-between;
   width: 100%;
   padding: 16px;
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: $middle-grey-color;
   border-radius: 0 16px 16px 0;
 
@@ -98,6 +99,41 @@ body {
   }
 
   &__message-block {
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  &__message-row {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    background-color: #C2C2C2;
+  }
+
+  &__users {
+    display: flex;
+    flex-direction: column;
+    width: 80px;
+    height: 50px;
+    overflow: hidden hidden;
+
+    &:hover {
+      width: 180px;
+      height: fit-content;
+      transition: 0.5s;
+    }
+  }
+
+  &__text1 {
+    margin: 0;
+    padding: 26px 0 26px 24px;
+    font-size: 16px;
+    text-decoration: underline;
+  }
+
+  &__message-block1 {
     display: flex;
     flex-direction: column;
   }
