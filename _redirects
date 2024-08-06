@@ -1,7 +1,7 @@
 # Redirects from what the browser requests to what we serve
 /               /
-/settings    /settings  
-/error404    /error404
-/messenger   /messenger              
-/error500    /error500
-/sign-up     /sign-up
+/settings    /build/settings  
+/error404    /build/error404
+/messenger   /build/messenger              
+/error500    /build/error500
+/sign-up     /build/sign-up
