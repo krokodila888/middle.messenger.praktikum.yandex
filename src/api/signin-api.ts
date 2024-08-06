@@ -3,17 +3,15 @@ import Router from '../tools/Router';
 import store from '../tools/Store';
 import { TSigninRequest, TSigninResponse, TUserDataResponce, TChatInfo, TErrorMessage, TChatInfo2, TOtherUserType } from '../types/types';
 import HTTPTransport from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 import { BaseAPI } from './baze-api';
 
-const signinAPIInstance = new HTTPTransport();
-const getuserAPIInstance = new HTTPTransport();
-const getchatsAPIInstance = new HTTPTransport();
-const getUsersAPIInstance = new HTTPTransport();
+const api = new HTTPTransport();
 
 export default class SigninAPI extends BaseAPI {
   request(user: TSigninRequest) {
-    return signinAPIInstance
-    .post('https://ya-praktikum.tech/api/v2/auth/signin', {
+    return api
+    .post(`${BASE_URL}/auth/signin`, {
       data: user,
       credentials: 'include',
       mode: 'cors',
@@ -36,8 +34,8 @@ export default class SigninAPI extends BaseAPI {
         return
       }
       if (response === 'OK') {
-        return getuserAPIInstance
-        .get('https://ya-praktikum.tech/api/v2/auth/user', {
+        return api
+        .get(`${BASE_URL}/auth/user`, {
           credentials: 'include',
           mode: 'cors',
           withCredentials: true
@@ -61,8 +59,8 @@ export default class SigninAPI extends BaseAPI {
               user: response
             });
             console.log(store.getState());
-            return getchatsAPIInstance
-            .get('https://ya-praktikum.tech/api/v2/chats', {
+            return api
+            .get(`${BASE_URL}/chats`, {
               credentials: 'include',
               mode: 'cors',
               withCredentials: true
@@ -85,8 +83,8 @@ export default class SigninAPI extends BaseAPI {
                 });
                 console.log(store.getState());
                 const chatsWithUsers = (response as TChatInfo2[]).map((item) => {
-                  return getUsersAPIInstance
-                  .get(`https://ya-praktikum.tech/api/v2/chats/${item.id}/users`, {
+                  return api
+                  .get(`${BASE_URL}/chats/${item.id}/users`, {
                     credentials: 'include',
                     mode: 'cors',
                     headers: { 'Content-Type': 'application/json' },

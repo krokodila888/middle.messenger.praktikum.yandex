@@ -1,14 +1,15 @@
 import store from '../tools/Store';
 import { TErrorMessage, TEditUserRequest, TUpdateUserResponce } from '../types/types';
 import HTTPTransport from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 import { BaseAPI } from './baze-api';
 
-const editSettingsAPIInstance = new HTTPTransport();
+const api = new HTTPTransport();
 
 export default class EditSettingsAPI extends BaseAPI {
   request(user: TEditUserRequest) {
-    return editSettingsAPIInstance
-    .put('https://ya-praktikum.tech/api/v2/user/profile', {
+    return api
+    .put(`${BASE_URL}/user/profile`, {
       data: user,
       credentials: 'include',
       mode: 'cors',

@@ -1,14 +1,15 @@
 import store from '../tools/Store';
 import {TDeleteUserRequest, TErrorMessage } from '../types/types';
 import HTTPTransport from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 import { BaseAPI } from './baze-api';
 
-const searchUserAPIInstance = new HTTPTransport();
+const api = new HTTPTransport();
 
 export default class DeleteUserAPI extends BaseAPI {
   request(data: TDeleteUserRequest) {
-    return searchUserAPIInstance
-    .delete('https://ya-praktikum.tech/api/v2/chats/users', {
+    return api
+    .delete(`${BASE_URL}/chats/users`, {
       data: data,
       credentials: 'include',
       mode: 'cors',

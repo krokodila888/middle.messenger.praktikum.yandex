@@ -1,14 +1,15 @@
 import store from '../tools/Store';
 import { TErrorMessage } from '../types/types';
 import HTTPTransport from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 import { BaseAPI } from './baze-api';
 
-const logoutAPIInstance = new HTTPTransport();
+const api = new HTTPTransport();
 
 export default class LogoutAPI extends BaseAPI {
   request() {
-    return logoutAPIInstance
-    .post('https://ya-praktikum.tech/api/v2/auth/logout')
+    return api
+    .post(`${BASE_URL}/auth/logout`)
     .then((xhr) => {
       const rawResponse = (xhr as XMLHttpRequest).responseText;
       if (typeof rawResponse === 'string') {

@@ -1,16 +1,15 @@
 import store from '../tools/Store';
 import {TUserChatData, TUserDataResponce, TErrorMessage, TSearchUserResponse } from '../types/types';
 import HTTPTransport from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 import { BaseAPI } from './baze-api';
 
-const searchUserAPIInstance = new HTTPTransport();
-const addUserAPIInstance = new HTTPTransport();
-const getChatUsersAPIInstance = new HTTPTransport();
+const api = new HTTPTransport();
 
 export default class AddUserAPI extends BaseAPI {
   request(data: TUserChatData) {
-    return searchUserAPIInstance
-    .post('https://ya-praktikum.tech/api/v2/user/search', {
+    return api
+    .post(`${BASE_URL}/user/search`, {
       data: {login: data.login},
       credentials: 'include',
       mode: 'cors',
@@ -31,8 +30,8 @@ export default class AddUserAPI extends BaseAPI {
       }
       else {
         const aaa = response[0];
-        return addUserAPIInstance
-        .put('https://ya-praktikum.tech/api/v2/chats/users', {
+        return api
+        .put(`${BASE_URL}/chats/users`, {
           credentials: 'include',
           mode: 'cors',
           withCredentials: true,
@@ -53,8 +52,8 @@ export default class AddUserAPI extends BaseAPI {
         })
         .then((response) => {
           if (response === 'OK') {
-            return getChatUsersAPIInstance
-            .get(`https://ya-praktikum.tech/api/v2/chats/${data.chatid}/users`, {
+            return api
+            .get(`${BASE_URL}/chats/${data.chatid}/users`, {
               credentials: 'include',
               mode: 'cors',
               withCredentials: true

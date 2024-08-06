@@ -1,6 +1,7 @@
 import store from '../tools/Store';
 import { TChatInfo, TErrorMessage, TUpdateUserResponce } from '../types/types';
 import HTTPTransport from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 import { BaseAPI } from './baze-api';
 
 const setChatAvatarAPIInstance = new HTTPTransport();
@@ -9,7 +10,7 @@ const getchatsAPIInstance = new HTTPTransport();
 export default class SetChatAvatarAPI extends BaseAPI {
   request(data: FormData) {
     return setChatAvatarAPIInstance
-    .put('https://ya-praktikum.tech/api/v2/chats/avatar', {
+    .put(`${BASE_URL}/chats/avatar`, {
       data: data,
       credentials: 'include',
       mode: 'cors',
@@ -29,7 +30,7 @@ export default class SetChatAvatarAPI extends BaseAPI {
         return
       } else {
         return getchatsAPIInstance
-        .get('https://ya-praktikum.tech/api/v2/chats', {
+        .get(`${BASE_URL}/chats`, {
           credentials: 'include',
           mode: 'cors',
           withCredentials: true

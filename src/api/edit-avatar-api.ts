@@ -1,14 +1,15 @@
 import store from '../tools/Store';
 import { TErrorMessage, TUpdateUserResponce } from '../types/types';
 import HTTPTransport from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 import { BaseAPI } from './baze-api';
 
-const setAvatarAPIInstance = new HTTPTransport();
+const api = new HTTPTransport();
 
 export default class SetAvatarAPI extends BaseAPI {
   request(formdata: FormData) {
-    return setAvatarAPIInstance
-    .put('https://ya-praktikum.tech/api/v2/user/profile/avatar', {
+    return api
+    .put(`${BASE_URL}/user/profile/avatar`, {
       data: formdata,
       credentials: 'include',
       mode: 'cors',

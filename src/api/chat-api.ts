@@ -4,16 +4,15 @@ import Router from '../tools/Router';
 import store from '../tools/Store';
 import { TChatInfo, TSignupResponse, TErrorMessage, TCreareChatRequest, TChatInfo2, TOtherUserType } from '../types/types';
 import { chatController } from '../controllers/chats-controller';
+import { BASE_URL } from '../utils/constants';
 
-const createChatAPIInstance = new HTTPTransport();
-const getchatsAPIInstance1 = new HTTPTransport();
-const getUsersAPIInstance = new HTTPTransport();
+const api = new HTTPTransport();
 
 export default class CreareChatAPI extends BaseAPI {
   request(title: TCreareChatRequest) {
     let newchatid: number = 0;
-    return createChatAPIInstance
-    .post('https://ya-praktikum.tech/api/v2/chats', {
+    return api
+    .post(`${BASE_URL}/chats`, {
       data: title,
       credentials: 'include',
       mode: 'cors',
@@ -34,8 +33,8 @@ export default class CreareChatAPI extends BaseAPI {
       }
       if (response.id) {
         newchatid = response.id;
-        return getchatsAPIInstance1
-        .get('https://ya-praktikum.tech/api/v2/chats', {
+        return api
+        .get(`${BASE_URL}/chats`, {
           credentials: 'include',
           mode: 'cors',
           withCredentials: true,
@@ -61,8 +60,8 @@ export default class CreareChatAPI extends BaseAPI {
             if (chats[0]) {
               console.log('promise');
               const chatsWithUsers = (chats as TChatInfo2[]).map((item) => {
-              return getUsersAPIInstance
-              .get(`https://ya-praktikum.tech/api/v2/chats/${item.id}/users`, {
+              return api
+              .get(`${BASE_URL}/chats/${item.id}/users`, {
                 credentials: 'include',
                 mode: 'cors',
                 headers: { 'Content-Type': 'application/json' },

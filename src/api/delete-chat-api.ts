@@ -1,14 +1,15 @@
 import store from '../tools/Store';
 import { TChatDeleteRequest, TDeleteCharResponce } from '../types/types';
 import HTTPTransport from '../utils/api';
+import { BASE_URL } from '../utils/constants';
 import { BaseAPI } from './baze-api';
 
-const deleteChatAPIInstance = new HTTPTransport();
+const api = new HTTPTransport();
 
   export default class DeleteChatAPI extends BaseAPI {
     request(data: TChatDeleteRequest) {
-      return deleteChatAPIInstance
-      .delete('https://ya-praktikum.tech/api/v2/chats', {
+      return api
+      .delete(`${BASE_URL}/chats`, {
         data: data,
         credentials: 'include',
         mode: 'cors',

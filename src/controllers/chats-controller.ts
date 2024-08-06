@@ -3,6 +3,7 @@ import store from '../tools/Store'
 import HTTPTransport from '../utils/api'
 import { TChatInfo2, TTokenResponce, WSConnection } from '../types/types'
 import { WSTransport } from '../tools/Websocket';
+import { BASE_URL } from '../utils/constants';
 
 const openChatAPIInstance = new HTTPTransport();
 
@@ -15,7 +16,7 @@ export class ChatController {
     console.log('promise');
     const chatsWithSockets = (chats as TChatInfo2[]).map((chat) => {
     return openChatAPIInstance
-    .post(`https://ya-praktikum.tech/api/v2/chats/token/${chat.id}`, {
+    .post(`${BASE_URL}/chats/token/${chat.id}`, {
       credentials: 'include',
       mode: 'cors',
       headers: { 'Content-Type': 'application/json' },
@@ -48,7 +49,7 @@ export class ChatController {
     //const chat = store.getState().chats.find((item: TChatInfo2) => item.id === data.id);
     //console.log(chat);
     return openChatAPIInstance
-    .post(`https://ya-praktikum.tech/api/v2/chats/token/${data.id}`, {
+    .post(`${BASE_URL}/chats/token/${data.id}`, {
       credentials: 'include',
       mode: 'cors',
       headers: { 'Content-Type': 'application/json' },

@@ -2,6 +2,8 @@ import './profile-page.scss';
 import Block, { IProps } from '../../tools/Block';
 import { Logo, ChatIcon, Title, Avatar, InputProfileField, Button, ExitButton, Link, FileInputProfileField } from '../../components';
 import ProfilePageRaw from './profile-page.hbs?raw';
+import store from '../../tools/Store';
+import { BASE_URL } from '../../utils/constants';
 
 export class ProfilePage extends Block {
   constructor() {
@@ -62,10 +64,11 @@ export class ProfilePage extends Block {
         name: "email",
         title: "Email:",
         required: "true",
-        type: "email",
+        //type: "email",
         errormessage: "Проверьте написание адреса электронной почты",
         spanclass: "span_profile_email",
         spanid: "span_profile_email",
+        autocomplete: "off"
       }),
       phoneinput: new InputProfileField({
         className: "profile-page__input",
@@ -126,17 +129,17 @@ export class ProfilePage extends Block {
     });
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   componentDidUpdate(/*oldProps: IProps, */newProps: IProps): boolean {
     console.log(newProps.avatar);
-    this.children.firstnameinput.setProps({value: newProps.firstname});
-    this.children.lastnameinput.setProps({value: newProps.secondname});
-    this.children.logininput.setProps({value: newProps.login});
-    this.children.emailinput.setProps({value: newProps.email});
-    this.children.phoneinput.setProps({value: newProps.phone});
-    if (newProps.avatar !== null && newProps.avatar !== '' && newProps.avatar !== undefined) {
-      this.children.avatar.setProps({src: `
-https://ya-praktikum.tech/api/v2/resources${newProps.avatar}`})
+    console.log(newProps.email);
+    const user = store.getState().user;
+    this.children.firstnameinput.setProps({value: user.first_name});
+    this.children.lastnameinput.setProps({value: user.second_name});
+    this.children.logininput.setProps({value: user.login});
+    this.children.emailinput.setProps({value: user.email});
+    this.children.phoneinput.setProps({value: user.phone});
+    if (user.avatar !== null && user.avatar !== '' && user.avatar !== undefined) {
+      this.children.avatar.setProps({src: `${BASE_URL}/resources${user.avatar}`})
     }  else {
       this.children.chaticon.setProps({src: `/assets/avatar.png`})
     }
