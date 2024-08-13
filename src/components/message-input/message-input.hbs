@@ -1,11 +1,13 @@
 <form class="message-input{{#if className}} {{className}}{{/if}}">
-  <input
+  <textarea
     class="message-input__element"
     type="{{ type }}" 
     placeholder="{{ placeholder }}" 
     name="{{ name }}" 
     value="{{ value }}"
     required="true"
-    minlength="1"/>
+    minlength="1"
+    id="message">
+    </textarea>
   <button class="message-input__icon"></button>
 </form>

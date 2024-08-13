@@ -2,6 +2,7 @@ import './register-page.scss';
 import Block from '../../tools/Block';
 import { PageTitle, InputField, Button, Link } from '../../components';
 import RegisterPageRaw from './register-page.hbs?raw';
+
 export class RegisterPage extends Block {
   constructor() {
     super({
@@ -80,35 +81,16 @@ export class RegisterPage extends Block {
         className: "button__register button__disabled",
       }),
       linktologin: new Link({
-        page: "LoginPage", 
+        page: "login", 
         text: "Already registered? ", 
         link: "Log in",
       }),
-      link1: new Link({ 
-        page: "error404",
-        text: "Ошибок быть не может, но вдруг: ",
-        link: "Ошибка 404",
-      }),
-      link2: new Link({ 
-        page: "error500", 
-        text: "И вот еще ", 
-        link: "Ошибка 5**", 
-      }),
-      events: {
-        submit: (e: SubmitEvent) => {
-          e.preventDefault();
-          const inputs = document.querySelectorAll('input');
-          type MyType = {
-            [key: string]: boolean;
-          };
-          const res: MyType = {};
-          inputs.forEach((item) => {
-            res[item.name] = item.validity.valid;
-          })
-          console.log(res);
-        }
-      },
     });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  componentDidUpdate(/*oldProps: IProps, newProps: IProps*/): boolean {
+    return true;
   }
 
   render() {

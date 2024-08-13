@@ -1,8 +1,9 @@
 import EventBus from "./EventBus";
 import Handlebars from "handlebars";
 import {v4 as makeUUID} from 'uuid';
+import { isEqual } from "../utils/is-equal";
 
-interface IProps {
+export interface IProps {
   [key: string]: unknown;
   events?: Record<string, EventListenerOrEventListenerObject>;
 }
@@ -39,7 +40,10 @@ export default class Block {
   _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-    eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+    eventBus.on(
+      Block.EVENTS.FLOW_CDU,
+      this._componentDidUpdate.bind(this) as (...args: unknown[]) => void
+    );
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
@@ -63,6 +67,8 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
+  preRender() { }
+
   _componentDidMount() {
     this.componentDidMount();
     Object.values(this.children).forEach(child => {child.dispatchComponentDidMount();});
@@ -74,16 +80,16 @@ export default class Block {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
   }
 
-  _componentDidUpdate() {
-    const response = this.componentDidUpdate();
+  _componentDidUpdate(oldProps: IProps, newProps: IProps) {
+    const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
     }
     this._render();
   }
 
-  componentDidUpdate() {
-    return true;
+  componentDidUpdate(oldProps: IProps, newProps: IProps) {
+    return !isEqual(oldProps, newProps);
   }
 
   _getChildrenPropsAndProps(
@@ -98,14 +104,13 @@ export default class Block {
       if (value instanceof Block) {
         children[key] = value as typeof this;
       } else if (Array.isArray(value)) {
-        lists[key] = value;
+        lists[key] = value as typeof this[];
       } else {
         props[key] = value;
       }
     });
     return { children, props, lists };
   }
-
 
   addAttributes(): void {
     const {attr = {}} = this.props;
@@ -142,7 +147,7 @@ export default class Block {
 
     Object.values(this.children).forEach(child => {
       const stub = fragment.content.querySelector(`[data-id="${child._id}"]`)
-      stub!.replaceWith(child.getContent() as HTMLElement);
+      stub?.replaceWith(child.getContent() as HTMLElement);
     });
 
     Object.entries(this.lists).forEach(([, child]) => {
@@ -201,9 +206,17 @@ export default class Block {
 
   show() {
     this.getContent()!.style.display = 'block';
+    document.querySelectorAll('.page').forEach((item, i) => {
+      if(i !== 0)
+      item.remove();
+    })
   }
 
   hide() {
     this.getContent()!.style.display = 'none';
+    console.log(document.querySelectorAll('[style="display: none;"]'));
+    document.querySelectorAll('[style="display: none;"]').forEach((item) => {
+      item.remove();
+    })
   }
 }

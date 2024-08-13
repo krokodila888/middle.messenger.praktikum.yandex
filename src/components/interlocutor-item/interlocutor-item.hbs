@@ -1,9 +1,10 @@
 <div 
   class="interlocutor-item">
+  <div class="interlocutor-item__avatar-block">
   {{#if avatar}}
   <img 
     class="interlocutor-item__avatar" 
-    src="/assets/avatar.png"
+    src={{avatar}}
     alt="User avatar" />
   {{else }}
   <img 
@@ -11,11 +12,24 @@
     src="/assets/no-avatar-icon.png"
     alt="Icon with question sign for users withour avatar pictures"/>
   {{/if}}
+  {{#if name}}
+    {{{changechatavataritem}}}
+  {{/if}}
+  </div>
   <p class="interlocutor-item__name">
-    {{ name }}
+    {{#if name}} {{ name }} {{else }} Выберите чат {{/if}}
   </p>
-  <img 
-    class="interlocutor-item__delete" 
-    src="/assets/delete-icon.png"
-    alt="Icon with garbage busket icon to delete chat"/>
+  {{#if name}} 
+  <div class="interlocutor-item__users">
+
+    {{{ lists }}}
+  </div>
+  
+  <div class="interlocutor-item__button-block">
+    {{{ adduserinput }}}
+    {{{ deletechatbutton}}}
+  </div>
+
+  {{/if}}
+
 </div>

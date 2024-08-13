@@ -25,39 +25,45 @@ export type TOptions = {
   cache?: "default" | "no-store" | "reload" | "no-cache" | "force-cache" | "only-if-cached";
   signal?: unknown;
   timeout?: number;
-  data?: Record<string, unknown>;
+  data?: Record<string, unknown> | FormData;
+  withCredentials?: boolean;
 };
 
-function queryStringify(data: Record<string, unknown> /*| null*/) {
-  if (typeof data !== 'object') {
-    throw new Error('Data must be object');
+function queryStringify(data: Record<string, unknown>): string  {
+  const string = [];
+  for (const [key, value] of Object.entries(data)) {
+    const k = key;
+    if (typeof value === 'object' && !Array.isArray(value) && value !== null) {
+      string.push(`${k}=[object Object]`);
+    } else if (Array.isArray(value)) {
+      string.push(`${k}=${value!.join(',')}`);
+    } else {
+      string.push(`${k}=${value}`);
+    }
   }
-
-  const keys = Object.keys(data);
-  return keys.reduce((result, key, index) => {
-    return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
-  }, '?');
+  const res = string.join('&');
+  return `?${res}`;
 }
 
 export default class HTTPTransport {
 
   get = (url: string, options:TOptions = {}) => {
-    return this.request(url, {...options, method: METHOD.GET}, options.timeout);
+    return this.request(url, {...options, method: METHOD.GET}, options.timeout/*, options.withCredentials*/);
   };
 
   post = (url: string, options:TOptions = {}) => {
-    return this.request(url, {...options, method: METHOD.POST}, options.timeout);
+    return this.request(url, {...options, method: METHOD.POST}, options.timeout/*, options.withCredentials*/);
   };
 
   put = (url: string, options:TOptions = {}) => {
-    return this.request(url, {...options, method: METHOD.PUT}, options.timeout);
+    return this.request(url, {...options, method: METHOD.PUT}, options.timeout/*, options.withCredentials*/);
   };
 
   delete = (url: string, options:TOptions = {}) => { 
-    return this.request(url, {...options, method: METHOD.DELETE}, options.timeout);
+    return this.request(url, {...options, method: METHOD.DELETE}, options.timeout/*, options.withCredentials*/);
   };
 
-  request = (url: string, options:TOptions = {}, timeout = 5000) => {
+  request = (url: string, options:TOptions = {}, timeout = 5000/*, withCredentials = true*/) => {
     const {headers = {}, method, data} = options;
 
   return new Promise(function(resolve, reject) {
@@ -71,7 +77,7 @@ export default class HTTPTransport {
 
     xhr.open(
       method, 
-      isGet && !!data
+      isGet && !!data && !(data instanceof FormData) 
       ? `${url}${queryStringify(data)}`
       : url,
     );
@@ -79,6 +85,7 @@ export default class HTTPTransport {
     Object.keys(headers).forEach((key: string) => {
       xhr.setRequestHeader(key, headers[key]);
     });
+    xhr.withCredentials = true;
 
     xhr.onload = function() {
       resolve(xhr);
@@ -91,9 +98,11 @@ export default class HTTPTransport {
     xhr.ontimeout = reject;
 
     if (isGet || !data) {
-      xhr.send(JSON.stringify(data));
-    } else {
       xhr.send();
+    } else if (data instanceof FormData) {
+      xhr.send(data as FormData) 
+    } else {
+      xhr.send(JSON.stringify(data));
     }
   });
   };

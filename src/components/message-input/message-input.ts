@@ -1,6 +1,8 @@
 import './message-input.scss';
 import MessageInputRaw from './message-input.hbs?raw';
 import Block from '../../tools/Block';
+import { chatController } from '../../controllers/chats-controller';
+import store from '../../tools/Store';
 
 interface Props {
   [key: string]: string;
@@ -13,15 +15,12 @@ export class MessageInput extends Block {
       events: {
         submit: (e: SubmitEvent) => {
           e.preventDefault();
-          const input1 = document.querySelector(".message-input__element") as HTMLInputElement;
-          type MyType = {
-            [key: string]: string;
-          };
-          const res: MyType = {};
-          if (input1) {
-            res[input1.name] = input1.value;
-          };
-          console.log(res);
+          const input = document.getElementById('message');
+          chatController.getConnectionById(store.getState().currentChat.id)!.send({
+            content: (input as HTMLInputElement).value,
+            type: "message"
+          });
+          (input as HTMLInputElement).value = '';
         }
       },
     });

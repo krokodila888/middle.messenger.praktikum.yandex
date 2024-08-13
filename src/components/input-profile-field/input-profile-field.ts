@@ -1,12 +1,10 @@
 import './input-profile-field.scss';
 import InputProfileFieldRaw from './input-profile-field.hbs?raw';
-import Block from '../../tools/Block';
-import { ProfileInput } from '../profile-input/profile-input';
-
+import Block, { IProps } from '../../tools/Block';
+import { ProfileInput, InputButton } from '../../components';
 interface Props {
   [key: string]: string;
 }
-
 export class InputProfileField extends Block {
   constructor(props: Props) {
     super({
@@ -23,9 +21,18 @@ export class InputProfileField extends Block {
         value: props.value,
         disabled: props.disabled,
         readonly: props.readonly,
+      }),
+      buttonDiv: new InputButton({
+        name: props.name,
+        spanident: props.spanident,
       })
-      });
-    }
+    })
+  }
+  componentDidUpdate(/*oldProps: IProps, */newProps: IProps): boolean {
+    this.children.input.setProps({value: newProps.value});
+    return true;
+  }
+
   render() {
     return InputProfileFieldRaw;
   }

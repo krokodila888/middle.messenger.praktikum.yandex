@@ -1,8 +1,10 @@
 <label for="{{ name }}" class="input-profile-field">
-  <div class="input-profile-field__input-raw">
+  <div class="input-profile-field__input-raw {{#if classNameForInput}} {{classNameForInput}}{{/if}}">
   <p class="input-profile-field__title">{{ title }}</p>
   {{{ input }}}
-  <div class="input-profile-field__icon"></div>
+  {{#if span}}
+    {{{ buttonDiv }}}
+  {{/if}}
   </div>
   <span
     class="input-profile-field__span input-profile-field__span_valid {{spanclass}}"

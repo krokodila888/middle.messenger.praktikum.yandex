@@ -14,6 +14,7 @@
     "function-linear-gradient-no-nonstandard-direction": true,
     "string-no-newline": true,
     "unit-no-unknown": true,
+    "property-no-vendor-prefix": [true, { "ignoreProperties": ["box-shadow"] }],
     "property-no-unknown": [
       true,
       {
