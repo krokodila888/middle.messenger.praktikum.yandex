@@ -31,7 +31,9 @@ describe("HTTP Transport", () => {
     it("Have to pass headers", (done) => {
       const httpTransport = new HTTPTransport();
       const url = "/test";
-      const headers = { "Content-Type": "multipart/form-data;charset=utf-8" };
+      const headers = { 
+        "Content-Type": "multipart/form-data;charset=utf-8" 
+      };
 
       httpTransport.get(url, { headers }).then(() => {
         done();
