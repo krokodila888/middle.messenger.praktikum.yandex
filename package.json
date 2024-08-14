@@ -14,11 +14,6 @@
       "includeNodeModules": true
     }
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint && npm run stylelint && npm run test"
-    }
-  },
   "scripts": {
     "dev": "vite",
     "build": "vite build --emptyOutDir",
@@ -31,7 +26,7 @@
     "checkAll": "npm run lint && npm run stylelint",
     "fixAll": "npm run lint:fix && npm run stylelint:fix",
     "test": "mocha --es-module-specifier-resolution=node",
-    "prepare": "npm install husky"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/chai": "^4.3.17",
