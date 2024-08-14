@@ -31,8 +31,7 @@
     "checkAll": "npm run lint && npm run stylelint",
     "fixAll": "npm run lint:fix && npm run stylelint:fix",
     "test": "mocha --es-module-specifier-resolution=node",
-    "prepare": "husky install",
-    "pre-commit": "npm run fixAll && npm run checkAll"
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@types/chai": "^4.3.17",
