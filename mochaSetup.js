@@ -1,14 +1,13 @@
-import {JSDOM} from 'jsdom';
+import { JSDOM } from "jsdom";
 
-const jsdom = new JSDOM('<body></body>');
-
-/*const jsdom1 = new JSDOM(input: '<body></body>', options:{
-    url: 'https://example.org/'
-});*/
+const jsdom = new JSDOM("<body></body>", {
+  url: "http://localhost/3000",
+});
 
 global.window = jsdom.window;
 global.document = jsdom.window.document;
+global.FormData = jsdom.window.FormData;
 global.Node = jsdom.window.Node;
 global.MouseEvent = jsdom.window.MouseEvent;
-global.FormData - json.window.FormData;
+global.history = jsdom.window.history;
 global.XMLHttpRequest = jsdom.window.XMLHttpRequest;
