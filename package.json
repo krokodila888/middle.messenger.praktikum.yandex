@@ -14,6 +14,11 @@
       "includeNodeModules": true
     }
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run stylelint && npm run test"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build --emptyOutDir",
