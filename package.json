@@ -3,6 +3,22 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=16.20.2"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "targets": {
+    "default": {
+      "includeNodeModules": true
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run stylelint && npm run test"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build --emptyOutDir",
@@ -13,18 +29,28 @@
     "stylelint": "stylelint src/**/*.scss",
     "stylelint:fix": "stylelint src/**/*.scss --fix",
     "checkAll": "npm run lint && npm run stylelint",
-    "fixAll": "npm run lint:fix && npm run stylelint:fix"
-  },
-  "engines": {
-    "node": ">=20.5.0"
+    "fixAll": "npm run lint:fix && npm run stylelint:fix",
+    "test": "mocha --es-module-specifier-resolution=node",
+    "prepare": "husky install"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.17",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^22.2.0",
+    "@types/sinon": "^17.0.3",
     "@types/uuid": "^10.0.0",
+    "chai": "^5.1.1",
     "eslint": "^8.57.0",
+    "husky": "^8.0.3",
+    "jsdom": "^24.1.1",
+    "mocha": "^10.7.3",
     "sass": "^1.77.4",
+    "sinon": "^18.0.0",
     "stylelint": "^16.6.1",
     "stylelint-config-standard": "^36.0.1",
     "stylelint-order": "^6.0.4",
+    "ts-node": "^10.9.2",
+    "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "vite": "^5.2.0",
     "vite-plugin-checker": "^0.6.4",
